@@ -1,5 +1,6 @@
 # TeslaMate-特斯拉伴侣
 正在汉化中...
+
 [![CI](https://github.com/adriankumpf/teslamate/workflows/CI/badge.svg?branch=master)](https://github.com/adriankumpf/teslamate/actions?query=workflow%3ACI)
 [![](https://coveralls.io/repos/github/adriankumpf/teslamate/badge.svg?branch=master)](https://coveralls.io/github/adriankumpf/teslamate?branch=master)
 [![](https://img.shields.io/docker/v/teslamate/teslamate/latest)](https://hub.docker.com/r/teslamate/teslamate)
@@ -9,14 +10,14 @@
 
 为您的特斯拉提供功能强大的自托管数据记录器。
 
-- 用**[Elixir]书写 (https://elixir-lang.org/)**
+- 用**[Elixir](https://elixir-lang.org/)**书写
 - 数据存储在**Postgres**数据库中
 - 使用**Grafana进行可视化和数据分析**
 - 车辆数据发布到本地**MQTT**代理
 
 ## 文档
 
-该文档可在 [docs.teslamate.org](https://docs.teslamate.org/).
+该文档存在 [docs.teslamate.org](https://docs.teslamate.org/).
 
 ## 特色
 
@@ -48,8 +49,8 @@
 
 ## 截图
 
-![驱动器详细信息](/website/static/screenshots/drive.png)
-![网页界面](/website/static/screenshots/web_interface.png)
+<!-- ![驱动器详细信息](/website/static/screenshots/drive.png)
+![网页界面](/website/static/screenshots/web_interface.png) -->
 
 <p align="center">
   <strong><a href="https://docs.teslamate.org/docs/screenshots">更多屏幕截图</a></strong>
