@@ -10,7 +10,7 @@
 
 为您的特斯拉提供功能强大的自托管数据记录器。
 
-- 用**[Elixir](https://elixir-lang.org/)**书写
+- 用[**Elixir**](https://elixir-lang.org/)书写
 - 数据存储在**Postgres**数据库中
 - 使用**Grafana进行可视化和数据分析**
 - 车辆数据发布到本地**MQTT**代理
@@ -58,6 +58,6 @@
 
 ## 贡献
 
-- 作者: 阿德里安·库普夫 – [List of contributors](https://github.com/adriankumpf/teslamate/graphs/contributors)
+- 作者: 阿德里安·库普夫 – [贡献者列表](https://github.com/adriankumpf/teslamate/graphs/contributors)
 - 根据MIT许可证分发
 - 汉化: 陈伟明
