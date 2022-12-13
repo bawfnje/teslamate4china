@@ -19,7 +19,7 @@
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "iteration": 1658136653681,
@@ -1995,7 +1995,7 @@
     ]
   },
   "timezone": "",
-  "title": "Drive Details",
+  "title": "驾程明细",
   "uid": "zm7wN6Zgz",
   "version": 1,
   "weekStart": ""

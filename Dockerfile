@@ -30,6 +30,7 @@ COPY priv/repo/migrations priv/repo/migrations
 COPY priv/gettext priv/gettext
 COPY grafana/dashboards grafana/dashboards
 COPY VERSION VERSION
+RUN rm -rf priv/cldr/locales/*
 RUN mix compile
 
 COPY config/runtime.exs config/runtime.exs

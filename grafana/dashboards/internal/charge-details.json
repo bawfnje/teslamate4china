@@ -18,7 +18,7 @@
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "iteration": 1656106965302,
@@ -1096,7 +1096,7 @@
     ]
   },
   "timezone": "",
-  "title": "Charge Details",
+  "title": "费用明细",
   "uid": "BHhxFeZRz",
   "version": 1,
   "weekStart": ""
