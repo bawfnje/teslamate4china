@@ -1,4 +1,4 @@
-# TeslaMate-特斯拉伴侣
+# TeslaMate-特斯拉助手
 正在汉化中...
 
 [![CI](https://github.com/adriankumpf/teslamate/workflows/CI/badge.svg?branch=master)](https://github.com/adriankumpf/teslamate/actions?query=workflow%3ACI)
