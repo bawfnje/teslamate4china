@@ -1107,37 +1107,37 @@
                 "0": {
                   "color": "#6ED0E0",
                   "index": 0,
-                  "text": "online"
+                  "text": "在线"
                 },
                 "1": {
                   "color": "#8F3BB8",
                   "index": 1,
-                  "text": "driving"
+                  "text": "驾驶中"
                 },
                 "2": {
                   "color": "#F2CC0C",
                   "index": 2,
-                  "text": "charging"
+                  "text": "充电中"
                 },
                 "3": {
                   "color": "#FFB357",
                   "index": 3,
-                  "text": "offline"
+                  "text": "离线"
                 },
                 "4": {
                   "color": "#56A64B",
                   "index": 4,
-                  "text": "asleep"
+                  "text": "休眠"
                 },
                 "5": {
                   "color": "#6ED0E0",
                   "index": 5,
-                  "text": "online"
+                  "text": "在线"
                 },
                 "6": {
                   "color": "#E02F44",
                   "index": 6,
-                  "text": "updating"
+                  "text": "更新中"
                 },
                 "null": {
                   "index": 7,
@@ -2626,7 +2626,7 @@
   },
   "timezone": "",
   "title": "10.旅程",
-  "uid": "FkUpJpQZk",
+  "uid": "FkUpJpQZkc",
   "version": 1,
   "weekStart": ""
 }

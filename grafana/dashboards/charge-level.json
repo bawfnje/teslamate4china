@@ -26,7 +26,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -37,7 +37,7 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
     }
   ],
@@ -130,8 +130,8 @@
       "options": {
         "legend": {
           "calcs": [
-            "max",
             "mean",
+            "max",
             "min"
           ],
           "displayMode": "table",
@@ -152,7 +152,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n\t$__time(date),\n\tbattery_level AS \"电池电量\",\n\tusable_battery_level AS \"可用电池电量\"\nfrom positions\n\tWHERE $__timeFilter(date) AND car_id = $car_id\n\tORDER BY Time ASC\n;",
+          "rawSql": "SELECT\n\t$__time(date),\n\tbattery_level AS \"Battery Level\",\n\tusable_battery_level AS \"Usable Battery Level\"\nfrom positions\n\tWHERE $__timeFilter(date) AND car_id = $car_id\n\tORDER BY Time ASC\n;",
           "refId": "A",
           "select": [
             [
@@ -174,7 +174,7 @@
           ]
         }
       ],
-      "title": "电量",
+      "title": "Charge Level",
       "type": "timeseries"
     }
   ],
@@ -266,7 +266,7 @@
     ]
   },
   "timezone": "",
-  "title": "21.电量变化",
+  "title": "21.Charge Level",
   "uid": "WopVO_mgz",
   "version": 1,
   "weekStart": ""

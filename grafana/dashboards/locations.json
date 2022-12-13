@@ -26,7 +26,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -37,7 +37,7 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
     }
   ],
@@ -120,7 +120,7 @@
           ]
         }
       ],
-      "title": "地址总数",
+      "title": "Total addresses",
       "type": "stat"
     },
     {
@@ -200,7 +200,7 @@
           ]
         }
       ],
-      "title": "市",
+      "title": "Cities",
       "type": "stat"
     },
     {
@@ -280,7 +280,7 @@
           ]
         }
       ],
-      "title": "省",
+      "title": "States",
       "type": "stat"
     },
     {
@@ -360,7 +360,7 @@
           ]
         }
       ],
-      "title": "国家",
+      "title": "Countries",
       "type": "stat"
     },
     {
@@ -437,7 +437,7 @@
           ]
         }
       ],
-      "title": "市",
+      "title": "Cities",
       "type": "bargauge"
     },
     {
@@ -516,7 +516,7 @@
           ]
         }
       ],
-      "title": "省",
+      "title": "States",
       "type": "bargauge"
     },
     {
@@ -552,7 +552,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "日期"
+              "options": "Date"
             },
             "properties": [
               {
@@ -568,7 +568,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "市"
+              "options": "City"
             },
             "properties": [
               {
@@ -597,7 +597,7 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "日期"
+            "displayName": "Date"
           }
         ]
       },
@@ -608,7 +608,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  max(end_date) as \"日期\",\n  count(*) as visited,\n  COALESCE(g.name, array_to_string(((string_to_array(a.display_name, ', ', ''))[0:2]), ', ')) AS \"地址\",\n\tCOALESCE(city, neighbourhood) as \"市\"\nFROM drives t\nINNER JOIN addresses a ON end_address_id = a.id\nLEFT JOIN geofences g ON end_geofence_id = g.id\nWHERE a.display_name ilike '%$address_filter%' or g.name ilike '%$address_filter%'\nGROUP BY 3,4\nORDER BY visited DESC\nLIMIT 100",
+          "rawSql": "SELECT\n  max(end_date) as \"Date\",\n  count(*) as visited,\n  COALESCE(g.name, array_to_string(((string_to_array(a.display_name, ', ', ''))[0:2]), ', ')) AS \"Address\",\n\tCOALESCE(city, neighbourhood) as \"City\"\nFROM drives t\nINNER JOIN addresses a ON end_address_id = a.id\nLEFT JOIN geofences g ON end_geofence_id = g.id\nWHERE a.display_name ilike '%$address_filter%' or g.name ilike '%$address_filter%'\nGROUP BY 3,4\nORDER BY visited DESC\nLIMIT 100",
           "refId": "A",
           "select": [
             [
@@ -632,7 +632,7 @@
           ]
         }
       ],
-      "title": "上次访问时间",
+      "title": "Last visited",
       "transformations": [
         {
           "id": "organize",
@@ -684,7 +684,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "更新时间"
+                "value": "Updated at"
               },
               {
                 "id": "unit",
@@ -703,7 +703,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "地址"
+                "value": "Name"
               },
               {
                 "id": "unit",
@@ -736,7 +736,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "街区"
+                "value": "Neighbourhood"
               },
               {
                 "id": "unit",
@@ -759,7 +759,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "市"
+                "value": "City"
               },
               {
                 "id": "unit",
@@ -782,7 +782,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "省"
+                "value": "State"
               },
               {
                 "id": "unit",
@@ -805,7 +805,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "国家"
+                "value": "Country"
               },
               {
                 "id": "unit",
@@ -886,7 +886,7 @@
           ]
         }
       ],
-      "title": "地点",
+      "title": "Addresses",
       "transformations": [
         {
           "id": "merge",
@@ -934,7 +934,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "时间"
+                "value": "Time"
               },
               {
                 "id": "unit",
@@ -953,7 +953,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "地点备注名字"
+                "value": "Name"
               },
               {
                 "id": "unit",
@@ -1041,7 +1041,7 @@
           ]
         }
       ],
-      "title": "收藏点",
+      "title": "Geo-fences",
       "transformations": [
         {
           "id": "merge",
@@ -1165,7 +1165,7 @@
     ]
   },
   "timezone": "",
-  "title": "15.地点",
+  "title": "15.Locations",
   "uid": "ZzhF-aRWz",
   "version": 1,
   "weekStart": ""

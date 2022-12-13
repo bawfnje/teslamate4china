@@ -333,7 +333,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每米净消耗（驾程）"
+                "value": "每英里平均消耗（驾程）"
               },
               {
                 "id": "unit",
@@ -352,7 +352,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每米净消耗（费用）"
+                "value": "每英里平均消耗（费用）"
               },
               {
                 "id": "unit",
@@ -386,11 +386,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每米净消耗（驾程）"
+                "value": "每千米平均消耗（驾程）"
               },
               {
                 "id": "unit",
-                "value": "瓦时/公里"
+                "value": "瓦时/千米"
               },
               {
                 "id": "custom.width"
@@ -405,11 +405,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每米净消耗（费用）"
+                "value": "每千米平均消耗（费用）"
               },
               {
                 "id": "unit",
-                "value": "瓦时/公里"
+                "value": "瓦时/千米"
               },
               {
                 "id": "custom.width"
@@ -503,7 +503,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH data AS (\nSELECT\n  duration_min > 1 AND\n  distance > 1 AND\n  ( \n    start_position.usable_battery_level IS NULL OR\n    (end_position.battery_level - end_position.usable_battery_level) = 0 \n  ) AS is_sufficiently_precise,\n  NULLIF(GREATEST(start_ideal_range_km - end_ideal_range_km, 0), 0) AS range_diff,\n  -- with Postgres 12:\n  -- date_trunc('$period', start_date::TIMESTAMP WITHOUT TIME ZONE, '$timezone') as local_period,\n  date_trunc('$period', (start_date::TIMESTAMP WITHOUT TIME ZONE) AT TIME ZONE '$timezone') as local_period,\n  drives.*\nFROM drives\n  LEFT JOIN positions start_position ON start_position_id = start_position.id\n  LEFT JOIN positions end_position ON end_position_id = end_position.id)\nSELECT\n  EXTRACT(EPOCH FROM date_trunc('$period', local_period))*1000 AS date_from,\n  EXTRACT(EPOCH FROM date_trunc('$period', local_period + ('1 ' || '$period')::INTERVAL))*1000 AS date_to,\n  CASE '$period'\n    WHEN 'month' THEN to_char(local_period, 'YYYY Month')\n    WHEN 'year' THEN to_char(local_period, 'YYYY')\n    WHEN 'week' THEN '第' || to_char(local_period, 'WW') || '周 开始于 ' || to_char(local_period, 'YYYY-MM-DD')\n    ELSE to_char(local_period, 'YYYY-MM-DD')\n  END AS display,\n  local_period AS date,\n  sum(duration_min)||'分' AS sum_duration_h, \n  convert_km(max(end_km)::integer - min(start_km)::integer, '$length_unit') AS sum_distance_$length_unit,\n  convert_celsius(avg(outside_temp_avg), '$temp_unit') AS avg_outside_temp_$temp_unit,\n  count(*) AS cnt,\n  sum(distance)/sum(range_diff) AS efficiency\nFROM data WHERE\n  car_id = $car_id AND\n  $__timeFilter(start_date)\nGROUP BY date\nORDER BY date",
+          "rawSql": "WITH data AS (\nSELECT\n  duration_min > 1 AND\n  distance > 1 AND\n  ( \n    start_position.usable_battery_level IS NULL OR\n    (end_position.battery_level - end_position.usable_battery_level) = 0 \n  ) AS is_sufficiently_precise,\n  NULLIF(GREATEST(start_ideal_range_km - end_ideal_range_km, 0), 0) AS range_diff,\n  -- with Postgres 12:\n  -- date_trunc('$period', start_date::TIMESTAMP WITHOUT TIME ZONE, '$timezone') as local_period,\n  date_trunc('$period', (start_date::TIMESTAMP WITHOUT TIME ZONE) AT TIME ZONE '$timezone') as local_period,\n  drives.*\nFROM drives\n  LEFT JOIN positions start_position ON start_position_id = start_position.id\n  LEFT JOIN positions end_position ON end_position_id = end_position.id)\nSELECT\n  EXTRACT(EPOCH FROM date_trunc('$period', local_period))*1000 AS date_from,\n  EXTRACT(EPOCH FROM date_trunc('$period', local_period + ('1 ' || '$period')::INTERVAL))*1000 AS date_to,\n  CASE '$period'\n    WHEN 'month' THEN to_char(local_period, 'YYYY Month')\n    WHEN 'year' THEN to_char(local_period, 'YYYY')\n    WHEN 'week' THEN '第' || to_char(local_period, 'WW') || '周 开始于 ' || to_char(local_period, 'YYYY-MM-DD')\n    ELSE to_char(local_period, 'YYYY-MM-DD')\n  END AS display,\n  local_period AS date,\n  sum(duration_min)||'分钟' AS sum_duration_h, \n  convert_km(max(end_km)::integer - min(start_km)::integer, '$length_unit') AS sum_distance_$length_unit,\n  convert_celsius(avg(outside_temp_avg), '$temp_unit') AS avg_outside_temp_$temp_unit,\n  count(*) AS cnt,\n  sum(distance)/sum(range_diff) AS efficiency\nFROM data WHERE\n  car_id = $car_id AND\n  $__timeFilter(start_date)\nGROUP BY date\nORDER BY date",
           "refId": "A",
           "select": [
             [
@@ -923,7 +923,7 @@
   },
   "timezone": "browser",
   "title": "03.统计数字",
-  "uid": "1EZnXszMk",
+  "uid": "1EZnXszMkc",
   "version": 1,
   "weekStart": ""
 }

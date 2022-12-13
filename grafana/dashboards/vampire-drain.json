@@ -26,7 +26,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -37,7 +37,7 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
     }
   ],
@@ -92,7 +92,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "开始"
+                "value": "Start"
               },
               {
                 "id": "unit",
@@ -125,7 +125,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "结束"
+                "value": "End"
               },
               {
                 "id": "unit",
@@ -148,7 +148,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "热失控损失"
+                "value": "TR Loss"
               },
               {
                 "id": "unit",
@@ -175,11 +175,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "期间用时"
+                "value": "Period"
               },
               {
                 "id": "unit",
-                "value": "秒"
+                "value": "s"
               },
               {
                 "id": "decimals",
@@ -209,8 +209,8 @@
                 }
               },
               {
-                "id": "custom.width",
-                "value": 120
+                "id": "custom.minWidth",
+                "value": 100
               }
             ]
           },
@@ -222,7 +222,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每小时公里损失距离"
+                "value": "TR Loss / h"
               },
               {
                 "id": "unit",
@@ -237,7 +237,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 160
+                "value": 90
               }
             ]
           },
@@ -272,7 +272,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "待用量"
+                "value": "Standby"
               },
               {
                 "id": "unit",
@@ -323,11 +323,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "消耗"
+                "value": "kWh"
               },
               {
                 "id": "unit",
-                "value": "千瓦时"
+                "value": "kwatth"
               },
               {
                 "id": "decimals",
@@ -350,11 +350,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "平均功率"
+                "value": "Ø-Power"
               },
               {
                 "id": "unit",
-                "value": "瓦特"
+                "value": "watt"
               },
               {
                 "id": "decimals",
@@ -377,7 +377,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每小时英里里程损失"
+                "value": "TR Loss / h"
               },
               {
                 "id": "unit",
@@ -392,7 +392,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 110
+                "value": 90
               }
             ]
           },
@@ -404,11 +404,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "损失距离"
+                "value": "TR Loss"
               },
               {
                 "id": "unit",
-                "value": "英里"
+                "value": "lengthmi"
               },
               {
                 "id": "decimals",
@@ -431,7 +431,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "电量差异"
+                "value": "SOC"
               },
               {
                 "id": "unit",
@@ -442,7 +442,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 80
+                "value": 65
               }
             ]
           },
@@ -454,7 +454,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "❄"
+                "value": " "
               },
               {
                 "id": "custom.align",
@@ -483,7 +483,7 @@
                 "id": "links",
                 "value": [
                   {
-                    "title": "在寒冷天气下，估计的距离损失无法正确估计，因此是隐藏的。",
+                    "title": "In cold weather, the estimated range loss cannot be estimated correctly and is therefore hidden.",
                     "url": ""
                   }
                 ]
@@ -546,7 +546,7 @@
         }
       ],
       "datasource": "TeslaMate",
-      "title": "电量流失",
+      "title": "Vampire Drain",
       "transformations": [
         {
           "id": "merge",
@@ -597,7 +597,7 @@
         },
         "hide": 0,
         "includeAll": false,
-        "label": "最小空闲时间（小时）",
+        "label": "min. Idle Time (h)",
         "multi": false,
         "name": "duration",
         "options": [
@@ -645,7 +645,7 @@
         "current": {
           "selected": false,
           "text": "km",
-          "value": "千米"
+          "value": "km"
         },
         "datasource": "TeslaMate",
         "definition": "select unit_of_length from settings limit 1;",
@@ -744,7 +744,7 @@
     ]
   },
   "timezone": "",
-  "title": "22.电量流失",
+  "title": "22.Vampire Drain",
   "uid": "zhHx2Fggk",
   "version": 1,
   "weekStart": ""

@@ -20,7 +20,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -31,7 +31,7 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
     }
   ],
@@ -99,7 +99,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "瓦时/英里"
+                "value": "Wh/mi"
               }
             ]
           }
@@ -174,7 +174,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "消耗量（净）",
+      "title": "Consumption (net)",
       "type": "stat"
     },
     {
@@ -218,7 +218,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "瓦时/英里"
+                "value": "Wh/mi"
               }
             ]
           }
@@ -293,7 +293,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "消耗量（毛）",
+      "title": "Consumption (gross) ",
       "type": "stat"
     },
     {
@@ -325,7 +325,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "千米"
+                "value": "km"
               }
             ]
           },
@@ -337,7 +337,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "米"
+                "value": "mi"
               }
             ]
           }
@@ -412,7 +412,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "记录的距离",
+      "title": "Logged Distance",
       "type": "stat"
     },
     {
@@ -445,7 +445,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "温度"
+                "value": "Temperature"
               },
               {
                 "id": "unit",
@@ -465,7 +465,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "温度"
+                "value": "Temperature"
               },
               {
                 "id": "unit",
@@ -485,7 +485,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "效率"
+                "value": "Efficiency"
               },
               {
                 "id": "unit",
@@ -533,7 +533,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "消耗"
+                "value": "Consumption"
               },
               {
                 "id": "unit",
@@ -553,11 +553,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "消耗"
+                "value": "Consumption"
               },
               {
                 "id": "unit",
-                "value": "瓦时/英里"
+                "value": "Wh/mi"
               },
               {
                 "id": "custom.width",
@@ -577,7 +577,7 @@
               },
               {
                 "id": "unit",
-                "value": "千米"
+                "value": "km"
               },
               {
                 "id": "custom.width",
@@ -597,7 +597,7 @@
               },
               {
                 "id": "unit",
-                "value": "米"
+                "value": "mi"
               },
               {
                 "id": "custom.width",
@@ -613,11 +613,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "速度"
+                "value": "Speed"
               },
               {
                 "id": "unit",
-                "value": "千米/小时"
+                "value": "velocitykmh"
               },
               {
                 "id": "custom.width",
@@ -633,7 +633,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "速度"
+                "value": "Speed"
               },
               {
                 "id": "unit",
@@ -660,7 +660,7 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "温度"
+            "displayName": "Temperature"
           }
         ]
       },
@@ -704,7 +704,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "温度-效率",
+      "title": "Temperature – Efficiency",
       "type": "table"
     },
     {
@@ -748,7 +748,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "瓦时/英里"
+                "value": "Wh/mi"
               }
             ]
           }
@@ -823,7 +823,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "当前$preferred_range(额定)效率",
+      "title": "Current $preferred_range efficiency",
       "type": "stat"
     },
     {
@@ -854,7 +854,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "效率"
+                "value": "Efficiency"
               },
               {
                 "id": "unit",
@@ -870,11 +870,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "效率"
+                "value": "Efficiency"
               },
               {
                 "id": "unit",
-                "value": "瓦时/英里"
+                "value": "Wh/mi"
               }
             ]
           }
@@ -904,7 +904,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  round((charge_energy_added / NULLIF(end_ideal_range_km - start_ideal_range_km, 0))::numeric *\n\t  CASE WHEN '$length_unit' = 'km' THEN 1.0\n\t       WHEN '$length_unit' = 'mi' THEN 1.60934\n\t  END, 3) * 1000 as \"efficiency_$length_unit\",\n  count(*) as 数量\nFROM\n  charging_processes\nWHERE \n  car_id = $car_id\n  AND duration_min > 10\n  AND end_battery_level <= 95\n  AND start_ideal_range_km IS NOT NULL\n  AND end_ideal_range_km IS NOT NULL\n  AND charge_energy_added > 0\nGROUP BY\n  1\nORDER BY\n  2 DESC\nLIMIT 3",
+          "rawSql": "SELECT\n  round((charge_energy_added / NULLIF(end_ideal_range_km - start_ideal_range_km, 0))::numeric *\n\t  CASE WHEN '$length_unit' = 'km' THEN 1.0\n\t       WHEN '$length_unit' = 'mi' THEN 1.60934\n\t  END, 3) * 1000 as \"efficiency_$length_unit\",\n  count(*) as count\nFROM\n  charging_processes\nWHERE \n  car_id = $car_id\n  AND duration_min > 10\n  AND end_battery_level <= 95\n  AND start_ideal_range_km IS NOT NULL\n  AND end_ideal_range_km IS NOT NULL\n  AND charge_energy_added > 0\nGROUP BY\n  1\nORDER BY\n  2 DESC\nLIMIT 3",
           "refId": "A",
           "select": [
             [
@@ -930,7 +930,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "导出的理想效率",
+      "title": "Derived ideal efficiencies",
       "type": "table"
     },
     {
@@ -965,7 +965,7 @@
               },
               {
                 "id": "displayName",
-                "value": "效率"
+                "value": "Efficiency"
               }
             ]
           },
@@ -977,11 +977,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "效率"
+                "value": "Efficiency"
               },
               {
                 "id": "unit",
-                "value": "瓦时/英里"
+                "value": "Wh/mi"
               }
             ]
           }
@@ -1011,7 +1011,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  round((charge_energy_added / NULLIF(end_rated_range_km - start_rated_range_km, 0))::numeric *\n\t  CASE WHEN '$length_unit' = 'km' THEN 1.0\n\t       WHEN '$length_unit' = 'mi' THEN 1.60934\n\t  END, 3) * 1000 as \"efficiency_$length_unit\",\n\tcount(*) as 数量\nFROM\n  charging_processes\nWHERE \n  car_id = $car_id\n  AND duration_min > 10\n  AND end_battery_level <= 95\n  AND start_rated_range_km IS NOT NULL\n  AND end_rated_range_km IS NOT NULL\n  AND charge_energy_added > 0\nGROUP BY\n  1\nORDER BY\n  2 DESC\nLIMIT 3",
+          "rawSql": "SELECT\n  round((charge_energy_added / NULLIF(end_rated_range_km - start_rated_range_km, 0))::numeric *\n\t  CASE WHEN '$length_unit' = 'km' THEN 1.0\n\t       WHEN '$length_unit' = 'mi' THEN 1.60934\n\t  END, 3) * 1000 as \"efficiency_$length_unit\",\n\tcount(*) as count\nFROM\n  charging_processes\nWHERE \n  car_id = $car_id\n  AND duration_min > 10\n  AND end_battery_level <= 95\n  AND start_rated_range_km IS NOT NULL\n  AND end_rated_range_km IS NOT NULL\n  AND charge_energy_added > 0\nGROUP BY\n  1\nORDER BY\n  2 DESC\nLIMIT 3",
           "refId": "A",
           "select": [
             [
@@ -1037,7 +1037,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "导出的额定效率",
+      "title": "Derived rated efficiencies",
       "type": "table"
     }
   ],
@@ -1105,7 +1105,7 @@
         "current": {
           "selected": false,
           "text": "km",
-          "value": "千米"
+          "value": "km"
         },
         "datasource": "TeslaMate",
         "definition": "select unit_of_length from settings limit 1;",
@@ -1255,7 +1255,7 @@
     ]
   },
   "timezone": "",
-  "title": "25.效率",
+  "title": "25.Efficiency",
   "uid": "fu4SiQgWz",
   "version": 1
 }

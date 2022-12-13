@@ -27,7 +27,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -38,7 +38,7 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
     }
   ],
@@ -136,7 +136,7 @@
           ]
         }
       ],
-      "title": "最近一次状态更新时间",
+      "title": "Last state change",
       "type": "stat"
     },
     {
@@ -144,52 +144,7 @@
       "description": "Only distinguishes between online, offline and asleep.",
       "fieldConfig": {
         "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "online": {
-                  "color": "#6ED0E0",
-                  "index": 0,
-                  "text": "在线"
-                },
-                "driving": {
-                  "color": "#8F3BB8",
-                  "index": 1,
-                  "text": "驾驶中"
-                },
-                "charging": {
-                  "color": "#F2CC0C",
-                  "index": 2,
-                  "text": "充电中"
-                },
-                "offline": {
-                  "color": "#FFB357",
-                  "index": 3,
-                  "text": "离线"
-                },
-                "asleep": {
-                  "color": "#56A64B",
-                  "index": 4,
-                  "text": "休眠"
-                },
-                "5": {
-                  "color": "#6ED0E0",
-                  "index": 5,
-                  "text": "在线"
-                },
-                "updating": {
-                  "color": "#E02F44",
-                  "index": 6,
-                  "text": "更新中"
-                },
-                "无": {
-                  "index": 7,
-                  "text": "未知"
-                }
-              },
-              "type": "value"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -262,7 +217,7 @@
           ]
         }
       ],
-      "title": "当前状态",
+      "title": "Current State",
       "type": "stat"
     },
     {
@@ -275,7 +230,7 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "无"
+                  "text": "N/A"
                 }
               },
               "type": "special"
@@ -355,7 +310,7 @@
           ]
         }
       ],
-      "title": "停放时间比例(%)",
+      "title": "parked (%)",
       "type": "stat"
     },
     {
@@ -369,48 +324,47 @@
             "fillOpacity": 100,
             "lineWidth": 0
           },
-          "displayName": "状态",
           "mappings": [
             {
               "options": {
                 "0": {
                   "color": "#6ED0E0",
                   "index": 0,
-                  "text": "在线"
+                  "text": "online"
                 },
                 "1": {
                   "color": "#8F3BB8",
                   "index": 1,
-                  "text": "驾驶中"
+                  "text": "driving"
                 },
                 "2": {
                   "color": "#F2CC0C",
                   "index": 2,
-                  "text": "充电中"
+                  "text": "charging"
                 },
                 "3": {
                   "color": "#FFB357",
                   "index": 3,
-                  "text": "离线"
+                  "text": "offline"
                 },
                 "4": {
                   "color": "#56A64B",
                   "index": 4,
-                  "text": "休眠"
+                  "text": "asleep"
                 },
                 "5": {
                   "color": "#6ED0E0",
                   "index": 5,
-                  "text": "在线"
+                  "text": "online"
                 },
                 "6": {
                   "color": "#E02F44",
                   "index": 6,
-                  "text": "更新中"
+                  "text": "updating"
                 },
                 "null": {
                   "index": 7,
-                  "text": "无"
+                  "text": "N/A"
                 }
               },
               "type": "value"
@@ -447,8 +401,7 @@
         "showValue": "auto",
         "tooltip": {
           "mode": "single"
-        },
-        "textMode": "value"
+        }
       },
       "targets": [
         {
@@ -480,7 +433,7 @@
           ]
         }
       ],
-      "title": "状态",
+      "title": "States",
       "type": "state-timeline"
     }
   ],
@@ -572,7 +525,7 @@
     ]
   },
   "timezone": "",
-  "title": "02.状态",
+  "title": "02.States",
   "uid": "xo4BNRkZz",
   "version": 1,
   "weekStart": ""

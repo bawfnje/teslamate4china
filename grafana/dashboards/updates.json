@@ -27,7 +27,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -38,7 +38,7 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
     }
   ],
@@ -127,7 +127,7 @@
           ]
         }
       ],
-      "title": "更新次数",
+      "title": "Updates",
       "type": "stat"
     },
     {
@@ -201,7 +201,7 @@
           ]
         }
       ],
-      "title": "更新平均间隔时间",
+      "title": "Median time between updates",
       "type": "stat"
     },
     {
@@ -240,7 +240,7 @@
               },
               {
                 "id": "displayName",
-                "value": "日期"
+                "value": "Date"
               },
               {
                 "id": "unit",
@@ -260,7 +260,7 @@
               },
               {
                 "id": "displayName",
-                "value": "更新持续时间"
+                "value": "Duration"
               },
               {
                 "id": "unit",
@@ -280,7 +280,7 @@
               },
               {
                 "id": "displayName",
-                "value": "自上次更新以来"
+                "value": "Since Previous Update"
               },
               {
                 "id": "unit",
@@ -296,7 +296,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "已安装版本"
+                "value": "Installed Version"
               },
               {
                 "id": "custom.align",
@@ -311,7 +311,7 @@
                 "value": [
                   {
                     "targetBlank": true,
-                    "title": "${__data.fields[version]} 发行说明",
+                    "title": "${__data.fields[version]} release notes",
                     "url": "https://www.notateslaapp.com/software-updates/version/${__data.fields[version]}/release-notes"
                   }
                 ]
@@ -334,7 +334,7 @@
               },
               {
                 "id": "displayName",
-                "value": "充电次数#"
+                "value": "# of Charges"
               }
             ]
           },
@@ -358,7 +358,7 @@
               },
               {
                 "id": "displayName",
-                "value": "平均理想范围"
+                "value": "Avg ideal range"
               }
             ]
           },
@@ -378,11 +378,11 @@
               },
               {
                 "id": "unit",
-                "value": "千米"
+                "value": "lengthkm"
               },
               {
                 "id": "displayName",
-                "value": "平均表显里程"
+                "value": "Avg rated range"
               }
             ]
           },
@@ -406,7 +406,7 @@
               },
               {
                 "id": "displayName",
-                "value": "平均理想范围"
+                "value": "Avg ideal range"
               }
             ]
           },
@@ -426,11 +426,11 @@
               },
               {
                 "id": "unit",
-                "value": "英里"
+                "value": "lengthmi"
               },
               {
                 "id": "displayName",
-                "value": "平均表显里程"
+                "value": "Avg rated range"
               }
             ]
           }
@@ -456,7 +456,7 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "日期"
+            "displayName": "Date"
           }
         ]
       },
@@ -596,7 +596,7 @@
         }
       ],
       "datasource": "TeslaMate",
-      "title": "更新",
+      "title": "Updates",
       "type": "table"
     }
   ],
@@ -732,7 +732,7 @@
     ]
   },
   "timezone": "",
-  "title": "90.更新",
+  "title": "90.Updates",
   "uid": "IiC07mgWz",
   "version": 1,
   "weekStart": ""

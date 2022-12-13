@@ -19,7 +19,7 @@
       }
     ]
   },
-  "description": "汽车的高级概览",
+  "description": "A high level overview of your car",
   "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
@@ -28,7 +28,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -39,7 +39,7 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
     }
   ],
@@ -144,7 +144,7 @@
           "where": []
         }
       ],
-      "title": "电池电量",
+      "title": "Battery Level",
       "type": "gauge"
     },
     {
@@ -167,7 +167,7 @@
               }
             ]
           },
-          "unit": "伏"
+          "unit": "volt"
         },
         "overrides": []
       },
@@ -222,7 +222,7 @@
           ]
         }
       ],
-      "title": "充电电压",
+      "title": "Charging Voltage",
       "type": "gauge"
     },
     {
@@ -245,7 +245,7 @@
               }
             ]
           },
-          "unit": "千瓦"
+          "unit": "kwatt"
         },
         "overrides": []
       },
@@ -299,7 +299,7 @@
           ]
         }
       ],
-      "title": "充电功率",
+      "title": "Charging kW",
       "type": "gauge"
     },
     {
@@ -367,7 +367,7 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "驾驶明细",
+          "title": "Drive details",
           "url": "/d/zm7wN6Zgz/drive-details?orgId=1"
         }
       ],
@@ -393,7 +393,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT $__time(date), battery_level AS \"电量\"\nFROM (\n\tSELECT battery_level, date\n\tFROM positions\n\tWHERE car_id = $car_id AND $__timeFilter(date)\n\tUNION ALL\n\tSELECT battery_level, date\n\tFROM charges c \n  JOIN charging_processes p ON p.id = c.charging_process_id\n\tWHERE $__timeFilter(date) AND p.car_id = $car_id) AS data\nORDER BY date ASC;",
+          "rawSql": "SELECT $__time(date), battery_level AS \"SOC\"\nFROM (\n\tSELECT battery_level, date\n\tFROM positions\n\tWHERE car_id = $car_id AND $__timeFilter(date)\n\tUNION ALL\n\tSELECT battery_level, date\n\tFROM charges c \n  JOIN charging_processes p ON p.id = c.charging_process_id\n\tWHERE $__timeFilter(date) AND p.car_id = $car_id) AS data\nORDER BY date ASC;",
           "refId": "A",
           "select": [
             [
@@ -417,7 +417,7 @@
           ]
         }
       ],
-      "title": "电量变化",
+      "title": "Charge Level",
       "type": "timeseries"
     },
     {
@@ -430,7 +430,7 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "无"
+                  "text": "N/A"
                 }
               },
               "type": "special"
@@ -456,7 +456,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "千米"
+                "value": "lengthkm"
               }
             ]
           },
@@ -468,7 +468,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "米"
+                "value": "lengthmi"
               }
             ]
           }
@@ -531,7 +531,7 @@
           ]
         }
       ],
-      "title": "剩余里程",
+      "title": "Range",
       "type": "stat"
     },
     {
@@ -570,7 +570,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "瓦时/英里"
+                "value": "Wh/mi"
               }
             ]
           }
@@ -628,7 +628,7 @@
           ]
         }
       ],
-      "title": "净",
+      "title": "Net",
       "type": "stat"
     },
     {
@@ -667,7 +667,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "瓦时/英里"
+                "value": "Wh/mi"
               }
             ]
           }
@@ -725,7 +725,7 @@
           ]
         }
       ],
-      "title": "毛",
+      "title": "Gross",
       "type": "stat"
     },
     {
@@ -769,7 +769,7 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "更新",
+          "title": "Updates",
           "url": "/d/IiC07mgWz/updates?orgId=1"
         }
       ],
@@ -824,7 +824,7 @@
           ]
         }
       ],
-      "title": "固件",
+      "title": "Firmware",
       "type": "stat"
     },
     {
@@ -853,7 +853,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "千米"
+                "value": "km"
               }
             ]
           },
@@ -865,7 +865,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "米"
+                "value": "mi"
               }
             ]
           }
@@ -881,7 +881,7 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "里程",
+          "title": "Mileage",
           "url": "/d/NjtMTFggz/mileage?orgId=1"
         }
       ],
@@ -934,7 +934,7 @@
           ]
         }
       ],
-      "title": "里程表",
+      "title": "Odometer",
       "type": "stat"
     },
     {
@@ -996,10 +996,6 @@
             },
             "properties": [
               {
-                "id": "displayName",
-                "value": "充电电压[伏]"
-              },
-              {
                 "id": "min",
                 "value": 0
               },
@@ -1017,11 +1013,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "充电功率"
+                "value": "Power"
               },
               {
                 "id": "unit",
-                "value": "千瓦"
+                "value": "kwatt"
               },
               {
                 "id": "custom.axisPlacement",
@@ -1037,7 +1033,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "电池加热器"
+                "value": "Battery heater"
               },
               {
                 "id": "custom.axisPlacement",
@@ -1057,11 +1053,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "充电电流"
+                "value": "Current"
               },
               {
                 "id": "unit",
-                "value": "安"
+                "value": "amp"
               },
               {
                 "id": "custom.axisPlacement",
@@ -1077,11 +1073,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "增加的充电量"
+                "value": "Energy added"
               },
               {
                 "id": "unit",
-                "value": "千瓦时"
+                "value": "kwatth"
               }
             ]
           }
@@ -1097,7 +1093,7 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "充电明细",
+          "title": "Charging Details",
           "url": "/d/BHhxFeZRz/charge-details?orgId=1"
         }
       ],
@@ -1176,7 +1172,7 @@
           ]
         }
       ],
-      "title": "充电明细",
+      "title": "Charging Details",
       "type": "timeseries"
     },
     {
@@ -1199,7 +1195,7 @@
               }
             ]
           },
-          "unit": "度"
+          "unit": "degree"
         },
         "overrides": []
       },
@@ -1253,7 +1249,7 @@
           ]
         }
       ],
-      "title": "驾驶员体温",
+      "title": "Driver Temp",
       "type": "gauge"
     },
     {
@@ -1276,7 +1272,7 @@
               }
             ]
           },
-          "unit": "度"
+          "unit": "degree"
         },
         "overrides": []
       },
@@ -1330,7 +1326,7 @@
           ]
         }
       ],
-      "title": "车外温度",
+      "title": "Outside Temp",
       "type": "gauge"
     },
     {
@@ -1353,7 +1349,7 @@
               }
             ]
           },
-          "unit": "度"
+          "unit": "degree"
         },
         "overrides": []
       },
@@ -1407,7 +1403,7 @@
           ]
         }
       ],
-      "title": "内部温度",
+      "title": "Inside Temp",
       "type": "gauge"
     },
     {
@@ -1428,41 +1424,41 @@
                 "0": {
                   "color": "#6ED0E0",
                   "index": 0,
-                  "text": "在线"
+                  "text": "online"
                 },
                 "1": {
                   "color": "#8F3BB8",
                   "index": 1,
-                  "text": "驾驶中"
+                  "text": "driving"
                 },
                 "2": {
                   "color": "#F2CC0C",
                   "index": 2,
-                  "text": "充电中"
+                  "text": "charging"
                 },
                 "3": {
                   "color": "#FFB357",
                   "index": 3,
-                  "text": "离线"
+                  "text": "offline"
                 },
                 "4": {
                   "color": "#56A64B",
                   "index": 4,
-                  "text": "休眠"
+                  "text": "asleep"
                 },
                 "5": {
                   "color": "#6ED0E0",
                   "index": 5,
-                  "text": "在线"
+                  "text": "online"
                 },
                 "6": {
                   "color": "#E02F44",
                   "index": 6,
-                  "text": "更新中"
+                  "text": "updating"
                 },
                 "null": {
                   "index": 7,
-                  "text": "无"
+                  "text": "N/A"
                 }
               },
               "type": "value"
@@ -1493,7 +1489,7 @@
       "id": 20,
       "links": [
         {
-          "title": "状态",
+          "title": "States",
           "url": "/d/xo4BNRkZz/states"
         }
       ],
@@ -1541,7 +1537,7 @@
           ]
         }
       ],
-      "title": "状态",
+      "title": "States",
       "type": "state-timeline"
     }
   ],
@@ -1581,7 +1577,7 @@
         "current": {
           "selected": false,
           "text": "km",
-          "value": "千米"
+          "value": "km"
         },
         "datasource": "TeslaMate",
         "definition": "select unit_of_length from settings limit 1;",
@@ -1704,7 +1700,7 @@
     ]
   },
   "timezone": "",
-  "title": "01.概览",
+  "title": "01.Overview",
   "uid": "kOuP_Fggz",
   "version": 1,
   "weekStart": ""
