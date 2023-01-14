@@ -121,7 +121,7 @@
                   {
                     "targetBlank": true,
                     "title": "旅程",
-                    "url": "d/FkUpJpQZk/trip?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
+                    "url": "d/FkUpJpQZkc/trip?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
               }
@@ -179,7 +179,7 @@
                   {
                     "targetBlank": true,
                     "title": "充电统计数据",
-                    "url": "d/-pkIkhmRz/charging-stats?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
+                    "url": "d/-pkIkhmRzc/charging-stats?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
               },
@@ -229,7 +229,7 @@
                   {
                     "targetBlank": true,
                     "title": "收费",
-                    "url": "d/TSmNYvRRk/charges?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
+                    "url": "d/TSmNYvRRkc/charges?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
               }
@@ -247,7 +247,7 @@
                   {
                     "targetBlank": true,
                     "title": "驾程",
-                    "url": "d/Y8upc6ZRk/drives?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
+                    "url": "d/Y8upc6ZRkc/drives?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
               }
@@ -531,7 +531,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH data AS (\n  SELECT\n    charging_processes.*,\n    -- with Postgres 12:\n    -- date_trunc('$period', start_date::TIMESTAMP WITHOUT TIME ZONE, '$timezone') as local_period\n    date_trunc('$period', (start_date::TIMESTAMP WITHOUT TIME ZONE) AT TIME ZONE '$timezone') as local_period\n    FROM charging_processes)\nSELECT\n  EXTRACT(EPOCH FROM date_trunc('$period', local_period))*1000 AS date_from,\n  EXTRACT(EPOCH FROM date_trunc('$period', local_period + ('1 ' || '$period')::INTERVAL))*1000 AS date_to,\n  CASE '$period'\n    WHEN 'month' THEN to_char(local_period, 'YYYY Month')\n    WHEN 'year' THEN to_char(local_period, 'YYYY')\n    WHEN 'week' THEN '第' || to_char(local_period, 'WW') || '周 开始于 ' || to_char(local_period, 'YYYY-MM-DD')\n    ELSE to_char(local_period, 'YYYY-MM-DD')\n  END AS display,\n  local_period AS date,\n  sum(greatest(charge_energy_added,charge_energy_used))||'度' AS sum_consumption_kwh,\n  sum(greatest(charge_energy_added,charge_energy_used)) / count(*)||'度' AS avg_consumption_kwh,\n  sum(cost) AS cost_charges,\n  count(*) AS cnt_charges\nFROM data WHERE\n  car_id = $car_id AND\n  $__timeFilter(start_date) AND\n  (charge_energy_added IS NULL OR charge_energy_added > 0.1)\nGROUP BY date\nORDER BY date",
+          "rawSql": "WITH data AS (\n  SELECT\n    charging_processes.*,\n    -- with Postgres 12:\n    -- date_trunc('$period', start_date::TIMESTAMP WITHOUT TIME ZONE, '$timezone') as local_period\n    date_trunc('$period', (start_date::TIMESTAMP WITHOUT TIME ZONE) AT TIME ZONE '$timezone') as local_period\n    FROM charging_processes)\nSELECT\n  EXTRACT(EPOCH FROM date_trunc('$period', local_period))*1000 AS date_from,\n  EXTRACT(EPOCH FROM date_trunc('$period', local_period + ('1 ' || '$period')::INTERVAL))*1000 AS date_to,\n  CASE '$period'\n    WHEN 'month' THEN to_char(local_period, 'YYYY Month')\n    WHEN 'year' THEN to_char(local_period, 'YYYY')\n    WHEN 'week' THEN '第' || to_char(local_period, 'WW') || '周 开始于 ' || to_char(local_period, 'YYYY-MM-DD')\n    ELSE to_char(local_period, 'YYYY-MM-DD')\n  END AS display,\n  local_period AS date,\n  sum(greatest(charge_energy_added,charge_energy_used))||'度' AS sum_consumption_kwh,\n  round(sum(greatest(charge_energy_added,charge_energy_used)) / count(*),2)||'度' AS avg_consumption_kwh,\n  sum(cost) AS cost_charges,\n  count(*) AS cnt_charges\nFROM data WHERE\n  car_id = $car_id AND\n  $__timeFilter(start_date) AND\n  (charge_energy_added IS NULL OR charge_energy_added > 0.1)\nGROUP BY date\nORDER BY date",
           "refId": "B",
           "select": [
             [
@@ -904,7 +904,7 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-1y",
     "to": "now"
   },
   "timepicker": {

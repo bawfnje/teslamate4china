@@ -29,7 +29,7 @@
       "tags": [],
       "title": "选择最后三次驾驶",
       "type": "link",
-      "url": "/d/FkUpJpQZk?from=$from"
+      "url": "/d/FkUpJpQZkc?from=$from"
     },
     {
       "icon": "dashboard",
@@ -290,6 +290,10 @@
                   "fixedColor": "#73BF69",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "displayName",
+                "value": "交流充电"
               }
             ]
           },
@@ -305,6 +309,10 @@
                   "fixedColor": "#FADE2A",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "displayName",
+                "value": "直流充电"
               }
             ]
           },
@@ -320,6 +328,10 @@
                   "fixedColor": "#5794F2",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "displayName",
+                "value": "驾驶中"
               }
             ]
           }
@@ -1252,7 +1264,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "日期"
+                "value": "开始时间"
               },
               {
                 "id": "unit",
@@ -1263,8 +1275,8 @@
                 "value": [
                   {
                     "targetBlank": false,
-                    "title": "查看驾驶明细",
-                    "url": "d/zm7wN6Zgz?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-drive_id=${__data.fields.drive_id.numeric}"
+                    "title": "驾程明细",
+                    "url": "d/zm7wN6Zgzc?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-drive_id=${__data.fields.drive_id.numeric}"
                   }
                 ]
               },
@@ -1637,7 +1649,7 @@
                   {
                     "targetBlank": false,
                     "title": "查看充电明细",
-                    "url": "d/BHhxFeZRz?orgId=1&from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-charging_process_id=${__data.fields.id.numeric}"
+                    "url": "d/BHhxFeZRzc?orgId=1&from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-charging_process_id=${__data.fields.id.numeric}"
                   }
                 ]
               },

@@ -92,7 +92,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "开始"
+                "value": "开始时间"
               },
               {
                 "id": "unit",
@@ -103,8 +103,8 @@
                 "value": [
                   {
                     "targetBlank": false,
-                    "title": "",
-                    "url": "d/zm7wN6Zgz?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}"
+                    "title": "驾程明细",
+                    "url": "d/zm7wN6Zgzc?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}"
                   }
                 ]
               },
@@ -125,7 +125,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "结束"
+                "value": "结束时间"
               },
               {
                 "id": "unit",
@@ -179,7 +179,7 @@
               },
               {
                 "id": "unit",
-                "value": "秒"
+                "value": "s"
               },
               {
                 "id": "decimals",
@@ -209,8 +209,8 @@
                 }
               },
               {
-                "id": "custom.width",
-                "value": 120
+                "id": "custom.minWidth",
+                "value": 100
               }
             ]
           },
@@ -222,7 +222,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每小时公里损失距离"
+                "value": "每小时损失距离【千米】"
               },
               {
                 "id": "unit",
@@ -237,7 +237,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 160
+                "value": 170
               }
             ]
           },
@@ -272,7 +272,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "待用量"
+                "value": "休眠率"
               },
               {
                 "id": "unit",
@@ -365,7 +365,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 80
+                "value": 100
               }
             ]
           },
@@ -377,7 +377,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每小时英里里程损失"
+                "value": "每小时里程损失【英里】"
               },
               {
                 "id": "unit",
@@ -479,7 +479,8 @@
                     "type": "value"
                   }
                 ]
-              },{
+              },
+              {
                 "id": "links",
                 "value": [
                   {

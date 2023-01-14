@@ -1168,8 +1168,8 @@
     ]
   },
   "time": {
-    "from": "now-1y",
-    "to": "now"
+    "from": "now/M",
+    "to": "now/M"
   },
   "timepicker": {
     "hidden": false,

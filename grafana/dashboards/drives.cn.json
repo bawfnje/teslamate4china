@@ -103,8 +103,8 @@
                 "value": [
                   {
                     "targetBlank": false,
-                    "title": "查看驱动器详细信息",
-                    "url": "d/zm7wN6Zgz?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-drive_id=${__data.fields.drive_id.numeric}"
+                    "title": "驾程明细",
+                    "url": "d/zm7wN6Zgzc?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-drive_id=${__data.fields.drive_id.numeric}"
                   }
                 ]
               },
@@ -125,7 +125,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "平均耗电"
+                "value": "消耗"
               },
               {
                 "id": "unit",
@@ -136,7 +136,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 110
+                "value": 130
               }
             ]
           },
@@ -148,7 +148,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "平均耗电"
+                "value": "消耗"
               },
               {
                 "id": "unit",
@@ -242,7 +242,7 @@
               },
               {
                 "id": "custom.minWidth",
-                "value": 150
+                "value": 120
               }
             ]
           },
@@ -271,7 +271,7 @@
               },
               {
                 "id": "custom.minWidth",
-                "value": 150
+                "value": 120
               }
             ]
           },
@@ -314,7 +314,7 @@
               },
               {
                 "id": "unit",
-                "value": "分钟"
+                "value": "分"
               },
               {
                 "id": "links",

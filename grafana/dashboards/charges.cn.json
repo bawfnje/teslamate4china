@@ -106,7 +106,7 @@
                   {
                     "targetBlank": false,
                     "title": "查看费用明细",
-                    "url": "d/BHhxFeZRz?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-charging_process_id=${__data.fields.id.numeric}"
+                    "url": "d/BHhxFeZRzc?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-charging_process_id=${__data.fields.id.numeric}"
                   }
                 ]
               },
@@ -1224,7 +1224,7 @@
         "definition": "SELECT name AS __text, id AS __value FROM geofences ORDER BY name COLLATE \"C\" ASC;",
         "hide": 0,
         "includeAll": true,
-        "label": "Geofence",
+        "label": "收藏点",
         "multi": true,
         "name": "geofence",
         "options": [],
@@ -1245,7 +1245,7 @@
           "value": "0"
         },
         "hide": 0,
-        "label": "Enter min duration (minutes) here",
+        "label": "在此输入最小时间",
         "name": "min_duration_min",
         "options": [
           {
@@ -1265,7 +1265,7 @@
           "value": "0"
         },
         "hide": 0,
-        "label": "Enter min voltage here",
+        "label": "在此处输入最小电压",
         "name": "voltage",
         "options": [
           {
@@ -1281,8 +1281,8 @@
     ]
   },
   "time": {
-    "from": "now-6M",
-    "to": "now"
+    "from": "now/M",
+    "to": "now/M"
   },
   "timepicker": {
     "refresh_intervals": [

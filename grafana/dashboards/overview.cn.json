@@ -367,8 +367,8 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "驾驶明细",
-          "url": "/d/zm7wN6Zgz/drive-details?orgId=1"
+          "title": "驾程明细",
+          "url": "/d/zm7wN6Zgzc/drive-details?orgId=1"
         }
       ],
       "options": {
@@ -1674,7 +1674,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
