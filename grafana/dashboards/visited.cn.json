@@ -61,7 +61,7 @@
     {
       "autoZoom": true,
       "datasource": "TeslaMate",
-      "defaultLayer": "OpenStreetMap",
+      "defaultLayer": "OpenTopoMap",
       "gridPos": {
         "h": 21,
         "w": 24,
@@ -229,7 +229,7 @@
   },
   "timezone": "",
   "datasource": "TeslaMate",
-  "title": "13.驾程路线",
+  "title": "13.到过地图",
   "uid": "RG_DxSmgkc",
   "version": 1,
   "weekStart": ""

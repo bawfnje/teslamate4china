@@ -69,7 +69,7 @@
     {
       "autoZoom": true,
       "datasource": "TeslaMate",
-      "defaultLayer": "OpenStreetMap",
+      "defaultLayer": "OpenTopoMap",
       "gridPos": {
         "h": 13,
         "w": 13,
@@ -2608,7 +2608,7 @@
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {

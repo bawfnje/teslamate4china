@@ -498,7 +498,7 @@
         ]
       },
       "gridPos": {
-        "h": 23,
+        "h": 9,
         "w": 24,
         "x": 0,
         "y": 1
@@ -593,8 +593,8 @@
       {
         "current": {
           "tags": [],
-          "text": "6",
-          "value": "6"
+          "text": "1",
+          "value": "1"
         },
         "hide": 0,
         "includeAll": false,
@@ -716,7 +716,7 @@
     ]
   },
   "time": {
-    "from": "now-90d",
+    "from": "now-30d",
     "to": "now"
   },
   "timepicker": {

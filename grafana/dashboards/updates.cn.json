@@ -437,7 +437,7 @@
         ]
       },
       "gridPos": {
-        "h": 28,
+        "h": 8,
         "w": 24,
         "x": 0,
         "y": 4
@@ -704,7 +704,7 @@
     ]
   },
   "time": {
-    "from": "now-10y",
+    "from": "now-2y",
     "to": "now"
   },
   "timepicker": {
