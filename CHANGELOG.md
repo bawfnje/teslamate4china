@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.27.3] - 2023-06-12
+
+### Improvements and Bug Fixes
+
+- Read the vehicle name from the `vehicle_data` response as Tesla has made [some changes](https://github.com/timdorr/tesla-api/issues/728) to the API
+- Add composite index to position and drop drive_id index (#3186 - @IlyaDiallo)
+- Bump Grafana to 8.5.26
+- Ship Docker image with OTP 26 (this should improve performance on ARM devices)
+- Optimize automatic Docker image builds
+
+#### Dashboards
+
+- Update drive-details.json missing dataSource for pressure units (#3225 - @OrangeBean)
+- Bump pr0ps-trackmap-panel to 2.1.4 (#3076 - @Obihoernchen)
+
+#### Translations
+
+- Fix Korean translation (#3126 - @nanishin)
+
+#### Documentation
+
+- Update docs to manually remove vehicle (#3075 - @cwanja)
+- Update Project: Tesla Home Assistant Integration (#3194 - @Megabytemb)
+- Updated menu route to Download TeslaFi Data (#3218 - @helmo)
+
 ## [1.27.2] - 2023-01-13
 
 ### Improvements and Bug Fixes
@@ -149,8 +174,8 @@ If no `ENCRYPTION_KEY` environment variable is provided when running the databas
 > ⚠️ Manually managed Grafana instances have to be upgraded to v8.3.4 or higher!
 
 - All table panels have been migrated to the new table component
-  - This brings a bunch of improvments including an improved experience on small screen sizes
-  - The date colums now use a local format depending on your browser language setting
+  - This brings a bunch of improvements including an improved experience on small screen sizes
+  - The date columns now use a local format depending on your browser language setting
 - The pie chart panels have been migrated to the new native pie charts component
 - The discrete panels have been replaced by the native state timeline panel
 
@@ -195,7 +220,7 @@ Disable anonymous logins to Grafana by default (when using the `teslamate/grafan
 
 - Add Apple mobile web app capable meta tag ([#2128](https://github.com/adriankumpf/teslamate/pull/2128))
 - Add NOT NULL constraint to the charging_processes.start_date column
-- Add workaround for an error that occured when the OS does not return the current date and time
+- Add workaround for an error that occurred when the OS does not return the current date and time
 - Display marketing names (again). This was necessary due to an API change.
   - Add Mid-Range Model 3 ([#2057](https://github.com/adriankumpf/teslamate/pull/2057) by [RickyRomero](https://github.com/RickyRomero))
 - Show the token sign-up form by default
@@ -373,7 +398,7 @@ Users who are already signed in in do not have to worry about it. TeslaMate will
 
 - Add option to sign in with existing API tokens
 - Avoid false `plugged_in` events ([#1423](https://github.com/adriankumpf/teslamate/pull/1423) by [brianmay](https://github.com/brianmay))
-- Handle distinct OSM IDs gracefully when chaning the address language
+- Handle distinct OSM IDs gracefully when changing the address language
 - Set another user agent for auth requests.
   - ⚠️ _This fixes timeouts when signing in for the time being. Most users who are affected reported using a cloud hosting service. Expect this to break anytime Tesla decides to block this type of traffic coming from these providers._
 - Update user agent used for API requests to GitHub and OpenStreetMap
@@ -391,7 +416,7 @@ Users who are already signed in in do not have to worry about it. TeslaMate will
 
 #### Documentation
 
-- Explaing the asleep mode with MCU1 and the non-streaming mode ([#1453](https://github.com/adriankumpf/teslamate/pull/1453) by [ToniA](https://github.com/ToniA))
+- Explaining the asleep mode with MCU1 and the non-streaming mode ([#1453](https://github.com/adriankumpf/teslamate/pull/1453) by [ToniA](https://github.com/ToniA))
 
 ## [1.21.6] - 2021-03-10
 
@@ -1606,6 +1631,7 @@ New users need to sign in via the web interface.
 
 ## [1.0.0] - 2019-07-25
 
+[1.27.3]: https://github.com/adriankumpf/teslamate/compare/v1.27.2...v1.27.3
 [1.27.2]: https://github.com/adriankumpf/teslamate/compare/v1.27.1...v1.27.2
 [1.27.1]: https://github.com/adriankumpf/teslamate/compare/v1.27.0...v1.27.1
 [1.27.0]: https://github.com/adriankumpf/teslamate/compare/v1.26.1...v1.27.0
