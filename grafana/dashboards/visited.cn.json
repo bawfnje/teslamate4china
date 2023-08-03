@@ -61,7 +61,7 @@
     {
       "autoZoom": true,
       "datasource": "TeslaMate",
-      "defaultLayer": "OpenTopoMap",
+      "defaultLayer": "OpenStreetMap",
       "gridPos": {
         "h": 21,
         "w": 24,

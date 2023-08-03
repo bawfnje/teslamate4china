@@ -21,7 +21,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "TeslaMate",
+      "title": "特斯拉助手",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -32,7 +32,7 @@
       "tags": [
         "tesla"
       ],
-      "title": "Dashboards",
+      "title": "控制台",
       "type": "dashboards"
     }
   ],
@@ -306,7 +306,7 @@
         ]
       },
       "pluginVersion": "7.2.2",
-	  "repeat": "car_id",
+      "repeat": "car_id",
       "scopedVars": {
         "car_id": {
           "selected": false,
@@ -500,7 +500,17 @@
       "2h",
       "1d"
     ],
-    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
   },
   "timezone": "",
   "title": "驾程 - 荷兰税",
