@@ -2,8 +2,14 @@ name: Elixir CI
 
 on:
   push:
+    paths:
+      - "**/*"
+      - "!.github/**" # Important: Exclude PRs related to .github from auto-run
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
+    paths:
+      - "**/*"
+      - "!.github/**" # Important: Exclude PRs related to .github from auto-run
 
 jobs:
   lint:
@@ -21,7 +27,7 @@ jobs:
             lint: true
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: erlef/setup-beam@v1
         id: beam
@@ -124,7 +130,7 @@ jobs:
     services:
       db:
         image: postgres:15
-        ports: [ "5432:5432" ]
+        ports: ["5432:5432"]
         env:
           POSTGRES_PASSWORD: postgres
         options: >-
@@ -135,7 +141,7 @@ jobs:
       ELIXIR_ASSERT_TIMEOUT: 1000
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: erlef/setup-beam@v1
         id: beam

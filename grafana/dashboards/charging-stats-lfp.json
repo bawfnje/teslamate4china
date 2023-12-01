@@ -19,7 +19,7 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "iteration": 1658137661652,
@@ -1415,26 +1415,6 @@
                 "value": "color-text"
               },
               {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 80
-                    },
-                    {
-                      "color": "red",
-                      "value": 91
-                    }
-                  ]
-                }
-              },
-              {
                 "id": "unit",
                 "value": "percent"
               }
@@ -1993,8 +1973,8 @@
     ]
   },
   "timezone": "",
-  "title": "23.Charging Stats",
-  "uid": "-pkIkhmRz",
+  "title": "Charging Stats - LFP",
+  "uid": "UcjFKmUtpt",
   "version": 1,
   "weekStart": ""
 }

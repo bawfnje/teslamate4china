@@ -1,9 +1,9 @@
 # TeslaMate-特斯拉助手
 正在汉化中...
 
-[![CI](https://github.com/adriankumpf/teslamate/actions/workflows/elixir.yml/badge.svg)](https://github.com/adriankumpf/teslamate/actions/workflows/elixir.yml)
-[![Publish Docker images](https://github.com/adriankumpf/teslamate/actions/workflows/buildx.yml/badge.svg)](https://github.com/adriankumpf/teslamate/actions/workflows/buildx.yml)
-[![](https://coveralls.io/repos/github/adriankumpf/teslamate/badge.svg?branch=master)](https://coveralls.io/github/adriankumpf/teslamate?branch=master)
+[![CI](https://github.com/teslamate-org/teslamate/actions/workflows/elixir.yml/badge.svg)](https://github.com/teslamate-org/teslamate/actions/workflows/elixir.yml)
+[![Publish Docker images](https://github.com/teslamate-org/teslamate/actions/workflows/buildx.yml/badge.svg)](https://github.com/teslamate-org/teslamate/actions/workflows/buildx.yml)
+[![](https://coveralls.io/repos/github/teslamate-org/teslamate/badge.svg?branch=master)](https://coveralls.io/github/teslamate-org/teslamate?branch=master)
 [![](https://img.shields.io/docker/v/teslamate/teslamate/latest)](https://hub.docker.com/r/teslamate/teslamate)
 [![](https://img.shields.io/docker/image-size/teslamate/teslamate/latest)](https://hub.docker.com/r/teslamate/teslamate)
 [![](https://img.shields.io/docker/pulls/teslamate/teslamate?color=%23099cec)](https://hub.docker.com/r/teslamate/teslamate)
@@ -34,8 +34,8 @@
 - [驱动器统计信息](https://docs.teslamate.org/docs/screenshots#drive-stats)
 - [已安装更新的历史记录](https://docs.teslamate.org/docs/screenshots#updates)
 - [查看您的汽车何时在线或睡着](https://docs.teslamate.org/docs/screenshots#states)
-- 终身驾驶地图
-- 访问的地址
+- [终身驾驶地图](https://docs.teslamate.org/docs/screenshots/#lifetime-driving-map)
+- [访问的地址](https://docs.teslamate.org/docs/screenshots/#visited-addresses)
 
 **概要**
 
@@ -59,6 +59,6 @@
 
 ## 贡献
 
-- 作者: 阿德里安·库普夫 – [贡献者列表](https://github.com/adriankumpf/teslamate/graphs/contributors)
+- 作者: 阿德里安·库普夫 – [贡献者列表](https://github.com/teslamate-org/teslamate/graphs/contributors)
 - 根据MIT许可证分发
 - 汉化: 陈伟明
