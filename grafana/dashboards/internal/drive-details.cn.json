@@ -383,8 +383,7 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "index": 0,
-                  "text": "无"
+                  "text": "N/A"
                 }
               },
               "type": "special"
@@ -582,8 +581,7 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "index": 0,
-                  "text": "空"
+                  "text": "N/A"
                 }
               },
               "type": "special"
@@ -767,7 +765,32 @@
     {
       "autoZoom": true,
       "datasource": "TeslaMate",
-      "defaultLayer": "OpenStreetMap",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "fixedColor": "red",
+            "mode": "thresholds"
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 27,
         "w": 12,
@@ -775,16 +798,86 @@
         "y": 4
       },
       "id": 4,
-      "lineColor": "red",
       "links": [],
       "maxDataPoints": 50000,
-      "pointColor": "royalblue",
-      "scrollWheelZoom": false,
-      "showLayerChanger": true,
+      "options": {
+        "view": {
+          "allLayers": true,
+          "id": "fit",
+          "lat": 0,
+          "lon": 0,
+          "zoom": 15
+        },
+        "controls": {
+          "showZoom": true,
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showScale": false,
+          "showMeasure": false,
+          "showDebug": false
+        },
+        "tooltip": {
+          "mode": "details"
+        },
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "osm-standard"
+        },
+        "layers": [
+          {
+            "config": {
+              "arrow": 0,
+              "style": {
+                "color": {
+                  "fixed": "red"
+                },
+                "lineWidth": 2,
+                "opacity": 1,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 3,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "mode": "fixed",
+                  "fixed": "",
+                  "field": ""
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "route",
+            "opacity": 1,
+            "tooltip": true,
+            "type": "route"
+          }
+        ]
+      },
       "targets": [
         {
           "alias": "",
           "datasource": "TeslaMate",
+          "editorMode": "code",
           "format": "time_series",
           "group": [
             {
@@ -798,7 +891,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n   latitude\nFROM positions\nWHERE \n  car_id = $car_id AND \n  $__timeFilter(date)\nORDER BY \n  date ASC",
+          "rawSql": "SELECT\n  $__time(date),\n  latitude,\n  longitude\nFROM positions\nWHERE \n  car_id = $car_id AND \n  $__timeFilter(date)\nORDER BY \n  date ASC",
           "refId": "A",
           "select": [
             [
@@ -842,77 +935,22 @@
               }
             ]
           ],
-          "table": "pos",
-          "timeColumn": "Datum",
-          "timeColumnType": "datetime",
-          "where": [
+          "sql": {
+            "columns": [
             {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
+                "parameters": [],
+                "type": "function"
             }
-          ]
-        },
-        {
-          "alias": "",
-          "datasource": "TeslaMate",
-          "format": "time_series",
-          "group": [
-            {
-              "params": [
-                "$__interval",
-                "none"
+            "groupBy": [
               ],
-              "type": "time"
-            }
-          ],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  longitude\nFROM positions\nWHERE \n  car_id = $car_id AND \n  $__timeFilter(date)\nORDER BY \n  date ASC",
-          "refId": "B",
-          "select": [
-            [
               {
-                "params": [
-                  "lat"
-                ],
-                "type": "column"
+                "property": {
+                  "type": "string"
               },
-              {
-                "params": [
-                  "avg"
-                ],
-                "type": "aggregate"
-              },
-              {
-                "params": [
-                  "lat"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "lng"
-                ],
-                "type": "column"
-              },
-              {
-                "params": [
-                  "avg"
-                ],
-                "type": "aggregate"
-              },
-              {
-                "params": [
-                  "lat"
-                ],
-                "type": "alias"
+                "type": "groupBy"
               }
             ]
-          ],
+              },
           "table": "pos",
           "timeColumn": "Datum",
           "timeColumnType": "datetime",
@@ -925,8 +963,8 @@
           ]
         }
       ],
-      "title": "地图",
-      "type": "pr0ps-trackmap-panel"
+      "title": "Map",
+      "type": "geomap"
     },
     {
       "datasource": "TeslaMate",
