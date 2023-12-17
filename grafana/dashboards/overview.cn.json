@@ -368,7 +368,7 @@
         {
           "targetBlank": true,
           "title": "驾程明细",
-          "url": "/d/zm7wN6Zgzc/drive-details?orgId=1"
+          "url": "/d/WopVO_mgzc"
         }
       ],
       "options": {
@@ -770,7 +770,7 @@
         {
           "targetBlank": true,
           "title": "更新",
-          "url": "/d/IiC07mgWz/updates?orgId=1"
+          "url": "/d/IiC07mgWz/updates"
         }
       ],
       "maxDataPoints": 100,
@@ -882,7 +882,7 @@
         {
           "targetBlank": true,
           "title": "里程",
-          "url": "/d/NjtMTFggz/mileage?orgId=1"
+          "url": "/d/NjtMTFggzc/mileage"
         }
       ],
       "maxDataPoints": 100,
@@ -1098,7 +1098,7 @@
         {
           "targetBlank": true,
           "title": "充电明细",
-          "url": "/d/BHhxFeZRz/charge-details?orgId=1"
+          "url": "/d/BHhxFeZRzc/charge-details"
         }
       ],
       "options": {

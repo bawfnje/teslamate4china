@@ -121,7 +121,7 @@
                   {
                     "targetBlank": true,
                     "title": "旅程",
-                    "url": "d/FkUpJpQZkc/trip?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
+                    "url": "d/FkUpJpQZkc/trip?from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
               }
@@ -179,7 +179,7 @@
                   {
                     "targetBlank": true,
                     "title": "充电统计数据",
-                    "url": "d/-pkIkhmRzc/charging-stats?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
+                    "url": "d/-pkIkhmRzc/charging-stats?from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
               },
@@ -229,7 +229,7 @@
                   {
                     "targetBlank": true,
                     "title": "收费",
-                    "url": "d/TSmNYvRRkc/charges?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
+                    "url": "d/TSmNYvRRkc/charges?from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
               }
@@ -247,7 +247,7 @@
                   {
                     "targetBlank": true,
                     "title": "驾程",
-                    "url": "d/Y8upc6ZRkc/drives?orgId=1&from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
+                    "url": "d/Y8upc6ZRkc/drives?from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
               }
@@ -386,7 +386,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每千米平均消耗（驾程）"
+                "value": "平均消耗（驾程）"
               },
               {
                 "id": "unit",
@@ -405,7 +405,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每千米平均消耗（费用）"
+                "value": "平均消耗（费用）"
               },
               {
                 "id": "unit",
@@ -459,7 +459,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "开始于"
+              "options": "每千瓦时的平均成本"
             },
             "properties": [
               {
@@ -659,6 +659,54 @@
           }
         },
         {
+          "id": "calculateField",
+          "options": {
+            "alias": "avg_cost_kwh",
+            "binary": {
+              "left": "cost_charges",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "sum_consumption_kwh"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "avg_cost_km",
+            "binary": {
+              "left": "cost_charges",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "sum_distance_km"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "avg_cost_mi",
+            "binary": {
+              "left": "cost_charges",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "sum_distance_mi"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
           "id": "organize",
           "options": {
             "excludeByName": {
@@ -671,19 +719,22 @@
             },
             "indexByName": {
               "avg_consumption_kwh": 9,
+              "avg_cost_km": 19,
+              "avg_cost_mi": 20,
+              "avg_cost_kwh": 11,
               "avg_outside_temp_c": 5,
               "cnt": 6,
               "cnt_charges": 11,
               "cost_charges": 10,
               "date": 1,
-              "date_from": 16,
-              "date_to": 17,
+              "date_from": 17,
+              "date_to": 18,
               "display": 0,
               "efficiency": 7,
-              "efficiency_charged_net_km": 14,
-              "efficiency_charged_net_mi": 15,
-              "efficiency_net_km": 12,
-              "efficiency_net_mi": 13,
+              "efficiency_charged_net_km": 15,
+              "efficiency_charged_net_mi": 16,
+              "efficiency_net_km": 13,
+              "efficiency_net_mi": 14,
               "sum_consumption_kwh": 8,
               "sum_distance_km": 3,
               "sum_distance_mi": 4,
@@ -691,18 +742,21 @@
             },
             "renameByName": {
               "avg_consumption_kwh": "平均充电",
-              "avg_outside_temp_c": "",
+              "avg_cost_km": "每公里平均成本",
+              "avg_cost_mi": "每英里平均成本",
+              "avg_cost_kwh": "每千瓦时的平均成本",
+              "avg_outside_temp_c": "平均车外温度",
               "cnt": "#驾驶数",
               "cnt_charges": "#充电数",
               "cost_charges": "花费",
-              "date": "开始于",
-              "date_from": "",
-              "date_to": "",
+              "date": "时间",
+              "date_from": "开始于",
+              "date_to": "结束于",
               "display": "周期",
               "efficiency": "效率",
-              "efficiency_net_km": "",
+              "efficiency_net_km": "净公里效率",
               "sum_consumption_kwh": "合计充电",
-              "sum_distance_km": "",
+              "sum_distance_km": "总距离",
               "sum_duration_h": "驾驶时间"
             }
           }
@@ -712,7 +766,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 34,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "tesla"

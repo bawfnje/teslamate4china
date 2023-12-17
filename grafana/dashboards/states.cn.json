@@ -60,7 +60,7 @@
     },
     {
       "datasource": "TeslaMate",
-      "description": "Only distinguishes betwen online, offline and asleep.",
+      "description": "只区分在线、离线和睡眠。",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -144,52 +144,7 @@
       "description": "Only distinguishes between online, offline and asleep.",
       "fieldConfig": {
         "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "online": {
-                  "color": "#6ED0E0",
-                  "index": 0,
-                  "text": "在线"
-                },
-                "driving": {
-                  "color": "#8F3BB8",
-                  "index": 1,
-                  "text": "驾驶中"
-                },
-                "charging": {
-                  "color": "#F2CC0C",
-                  "index": 2,
-                  "text": "充电中"
-                },
-                "offline": {
-                  "color": "#FFB357",
-                  "index": 3,
-                  "text": "离线"
-                },
-                "asleep": {
-                  "color": "#56A64B",
-                  "index": 4,
-                  "text": "休眠"
-                },
-                "5": {
-                  "color": "#6ED0E0",
-                  "index": 5,
-                  "text": "在线"
-                },
-                "updating": {
-                  "color": "#E02F44",
-                  "index": 6,
-                  "text": "更新中"
-                },
-                "无": {
-                  "index": 7,
-                  "text": "未知"
-                }
-              },
-              "type": "value"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -369,7 +324,6 @@
             "fillOpacity": 100,
             "lineWidth": 0
           },
-          "displayName": "状态",
           "mappings": [
             {
               "options": {
@@ -447,8 +401,7 @@
         "showValue": "auto",
         "tooltip": {
           "mode": "single"
-        },
-        "textMode": "value"
+        }
       },
       "targets": [
         {
@@ -485,7 +438,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 34,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "tesla"

@@ -15,5 +15,10 @@ echo "=========>docker image rm teslamate4china_teslamate4china ==>over"
 # docker volume rm teslamate4china_mosquitto-data
 # echo "=========>docker volume rm teslamate4china_teslamate-grafana-data ==>over"
 echo "=========>docker-compose up -d ==>start"
+docker image prune -a
+docker container prune -a
+docker system prune
+docker system df
 docker-compose up -d
 open http://localhost:4000
+docker-compose logs -f

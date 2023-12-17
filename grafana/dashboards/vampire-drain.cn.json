@@ -148,11 +148,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "热失控损失"
+                "value": "热损失"
               },
               {
                 "id": "unit",
-                "value": "lengthkm"
+                "value": "千米"
               },
               {
                 "id": "decimals",
@@ -222,11 +222,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每小时损失距离【千米】"
+                "value": "每小时热损失距离【千米】"
               },
               {
                 "id": "unit",
-                "value": "lengthkm"
+                "value": "千米"
               },
               {
                 "id": "decimals",
@@ -377,7 +377,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "每小时里程损失【英里】"
+                "value": "每小时热损失里程【英里】"
               },
               {
                 "id": "unit",
@@ -404,7 +404,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "损失距离"
+                "value": "热损失距离"
               },
               {
                 "id": "unit",
@@ -559,7 +559,7 @@
       "type": "table"
     }
   ],
-  "schemaVersion": 34,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "tesla"
@@ -593,8 +593,8 @@
       {
         "current": {
           "tags": [],
-          "text": "1",
-          "value": "1"
+          "text": "6",
+          "value": "6"
         },
         "hide": 0,
         "includeAll": false,

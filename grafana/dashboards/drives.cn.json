@@ -129,7 +129,7 @@
               },
               {
                 "id": "unit",
-                "value": "千瓦时/千米"
+                "value": "瓦时/公里"
               },
               {
                 "id": "custom.align"
@@ -152,7 +152,7 @@
               },
               {
                 "id": "unit",
-                "value": "千瓦时/英里"
+                "value": "瓦时/英里"
               },
               {
                 "id": "custom.align"
@@ -198,11 +198,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "耗电量"
+                "value": "度"
               },
               {
                 "id": "unit",
-                "value": "千瓦时"
+                "value": "度"
               },
               {
                 "id": "decimals",
@@ -467,7 +467,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "距离"
+                "value": "英里"
               },
               {
                 "id": "unit",
@@ -818,7 +818,7 @@
       "type": "table"
     }
   ],
-  "schemaVersion": 34,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "tesla"
