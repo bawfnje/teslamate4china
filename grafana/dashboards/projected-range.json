@@ -7,7 +7,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "type": "dashboard"
       },
       {
@@ -142,7 +142,7 @@
               {
                 "id": "custom.axisLabel",
                 "value": "Mileage"
-        },
+              },
               {
                 "id": "min"
               }
@@ -159,7 +159,7 @@
       "id": 2,
       "links": [],
       "options": {
-      "legend": {
+        "legend": {
           "calcs": [
             "mean",
             "max",
@@ -168,7 +168,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
-      },
+        },
         "tooltip": {
           "mode": "multi",
           "sort": "none"
@@ -272,11 +272,11 @@
             "stacking": {
               "group": "A",
               "mode": "none"
-      },
+            },
             "thresholdsStyle": {
               "mode": "off"
             }
-      },
+          },
           "decimals": 0,
           "links": [],
           "mappings": [],
@@ -284,14 +284,14 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-        {
+              {
                 "color": "green",
                 "value": null
-        },
-        {
+              },
+              {
                 "color": "red",
                 "value": 80
-        }
+              }
             ]
           },
           "unit": "none"
@@ -306,11 +306,11 @@
               {
                 "id": "custom.fillOpacity",
                 "value": 0
-    },
-    {
+              },
+              {
                 "id": "max",
                 "value": 100
-        },
+              },
               {
                 "id": "custom.axisLabel",
                 "value": "Battery Level"
@@ -328,7 +328,7 @@
       "id": 6,
       "links": [],
       "options": {
-      "legend": {
+        "legend": {
           "calcs": [
             "mean",
             "max",
@@ -337,7 +337,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
-      },
+        },
         "tooltip": {
           "mode": "multi",
           "sort": "none"
@@ -479,32 +479,32 @@
               {
                 "id": "custom.axisLabel",
                 "value": "Temp"
-      },
+              },
               {
                 "id": "min"
               }
             ]
-      },
-        {
+          },
+          {
             "matcher": {
               "id": "byRegexp",
               "options": "/.*using usable_battery_level.*/"
-        },
+            },
             "properties": [
-        {
+              {
                 "id": "color",
                 "value": {
                   "fixedColor": "#56A64B",
                   "mode": "fixed"
-        }
-      }
+                }
+              }
             ]
-    },
-    {
+          },
+          {
             "matcher": {
               "id": "byRegexp",
               "options": "/.*using battery_level.*/"
-        },
+            },
             "properties": [
               {
                 "id": "color",
@@ -526,7 +526,7 @@
       "id": 5,
       "links": [],
       "options": {
-      "legend": {
+        "legend": {
           "calcs": [
             "mean",
             "max",
@@ -535,7 +535,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
-      },
+        },
         "tooltip": {
           "mode": "multi",
           "sort": "none"
@@ -604,8 +604,8 @@
       ],
       "title": "Projected Range - Outdoor Temp",
       "type": "timeseries"
-        }
-      ],
+    }
+  ],
   "refresh": "",
   "schemaVersion": 36,
   "tags": [

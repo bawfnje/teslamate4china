@@ -8,7 +8,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -19,7 +19,7 @@
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "iteration": 1658137661652,
@@ -1973,7 +1973,7 @@
     ]
   },
   "timezone": "",
-  "title": "Charging Stats - LFP",
+  "title": "23.Charging Stats - LFP",
   "uid": "UcjFKmUtpt",
   "version": 1,
   "weekStart": ""

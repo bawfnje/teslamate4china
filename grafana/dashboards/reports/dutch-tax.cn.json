@@ -8,12 +8,12 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "type": "dashboard"
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "gnetId": null,
   "graphTooltip": 0,
   "iteration": 1602596446244,

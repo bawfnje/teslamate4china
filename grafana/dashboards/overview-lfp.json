@@ -8,7 +8,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -19,8 +19,8 @@
       }
     ]
   },
-  "description": "A high level overview of your car",
-  "editable": true,
+  "description": "您的汽车的高级概览",
+  "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "iteration": 1656103268002,
@@ -1692,7 +1692,7 @@
     ]
   },
   "timezone": "",
-  "title": "Overview - LFP",
+  "title": "01.Overview - LFP",
   "uid": "EVzVGnwSq",
   "version": 1,
   "weekStart": ""

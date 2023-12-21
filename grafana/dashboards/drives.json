@@ -8,7 +8,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "target": {
           "limit": 100,
           "matchAny": false,

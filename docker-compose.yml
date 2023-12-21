@@ -30,7 +30,7 @@ services:
       - POSTGRES_PASSWORD=Makelt8485secret #insert your secure database password!
       - POSTGRES_DB=teslamate
     volumes:
-      - /Users/chenweiming/Downloads/teslamate-db:/var/lib/postgresql/data
+      - ./shell/data/teslamate-db:/var/lib/postgresql/data
 
   grafana:
     container_name: teslamate4china-grafana

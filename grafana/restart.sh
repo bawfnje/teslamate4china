@@ -1,5 +1,5 @@
 # open -g -a "Docker Desktop.app"
-docker-compose stop
+docker stop teslamate4china-grafana
 echo "=========>docker-compose stop ==>over"
 # docker rm teslamate4china-service
 # docker rm teslamate4china_database
@@ -8,7 +8,6 @@ docker rm teslamate4china-grafana
 echo "=========>docker rm teslamate4china_* ==>over"
 # docker image rm teslamate4china-service
 docker image rm teslamate4china-grafana
-rm -rf ./shell/data/teslamate-grafana-data
 echo "=========>docker image rm teslamate4china_teslamate4china ==>over"
 # docker volume rm teslamate4china_teslamate-grafana-data
 # docker volume rm teslamate4china_teslamate-db
@@ -20,6 +19,6 @@ echo "=========>docker-compose up -d ==>start"
 # docker container prune -a
 # docker system prune
 docker system df
-docker-compose up -d
+docker build .
 open -a "google chrome" http://localhost:4000
 docker-compose logs -f

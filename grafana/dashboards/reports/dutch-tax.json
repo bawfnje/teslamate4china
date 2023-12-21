@@ -8,12 +8,12 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "type": "dashboard"
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "gnetId": null,
   "graphTooltip": 0,
   "iteration": 1602596446244,
@@ -306,7 +306,7 @@
         ]
       },
       "pluginVersion": "7.2.2",
-	  "repeat": "car_id",
+      "repeat": "car_id",
       "scopedVars": {
         "car_id": {
           "selected": false,
@@ -500,11 +500,20 @@
       "2h",
       "1d"
     ],
-    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
   },
   "timezone": "",
   "title": "Drives - Dutch tax",
   "uid": "lBIoQIggk",
   "version": 1
 }
-

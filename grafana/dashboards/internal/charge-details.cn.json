@@ -7,7 +7,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -386,7 +386,7 @@
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
-          "displayName": "Added",
+          "displayName": "已添加",
           "mappings": [
             {
               "options": {
@@ -472,7 +472,7 @@
       "fieldConfig": {
         "defaults": {
           "decimals": 2,
-          "displayName": "Cost",
+          "displayName": "费用",
           "mappings": [
             {
               "options": {
@@ -997,7 +997,7 @@
           ]
         }
       ],
-      "title": "Charging curve",
+      "title": "充电曲线",
       "type": "xychart"
     }
   ],
@@ -1176,8 +1176,8 @@
     ]
   },
   "timezone": "",
-  "title": "charge-details",
-  "uid": "BHhxFeZRz",
+  "title": "充电明细",
+  "uid": "BHhxFeZRzc",
   "version": 1,
   "weekStart": ""
 }

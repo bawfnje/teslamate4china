@@ -8,7 +8,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -383,7 +383,7 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "空"
                 }
               },
               "type": "special"
@@ -495,7 +495,7 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "空"
                 }
               },
               "type": "special"
@@ -763,7 +763,6 @@
       "type": "stat"
     },
     {
-      "autoZoom": true,
       "datasource": "TeslaMate",
       "fieldConfig": {
         "defaults": {
@@ -937,20 +936,20 @@
           ],
           "sql": {
             "columns": [
-            {
+              {
                 "parameters": [],
                 "type": "function"
-            }
+              }
+            ],
             "groupBy": [
-              ],
               {
                 "property": {
                   "type": "string"
-              },
+                },
                 "type": "groupBy"
               }
             ]
-              },
+          },
           "table": "pos",
           "timeColumn": "Datum",
           "timeColumnType": "datetime",
@@ -963,7 +962,7 @@
           ]
         }
       ],
-      "title": "Map",
+      "title": "地图1",
       "type": "geomap"
     },
     {
@@ -1632,7 +1631,6 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "index": 0,
                   "text": "空"
                 }
               },
@@ -1750,9 +1748,9 @@
               {
                 "id": "displayName",
                 "value": "上升"
-          }
+              }
             ]
-        },
+          },
           {
             "matcher": {
               "id": "byName",
@@ -2029,6 +2027,7 @@
           "text": "bar",
           "value": "bar"
         },
+        "datasource": "TeslaMate",
         "definition": "select unit_of_pressure from settings limit 1;",
         "hide": 2,
         "includeAll": false,
