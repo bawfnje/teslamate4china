@@ -8,7 +8,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "注释和警报",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -141,10 +141,50 @@
     },
     {
       "datasource": "TeslaMate",
-      "description": "Only distinguishes between online, offline and asleep.",
+      "description": "只区分在线、离线和睡眠。",
       "fieldConfig": {
         "defaults": {
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "online": {
+                  "color": "#6ED0E0",
+                  "index": 1,
+                  "text": "在线"
+                },
+                "driving": {
+                  "color": "#8F3BB8",
+                  "index": 1,
+                  "text": "驾驶中"
+                },
+                "charging": {
+                  "color": "#F2CC0C",
+                  "index": 2,
+                  "text": "充电中"
+                },
+                "offline": {
+                  "color": "#FFB357",
+                  "index": 3,
+                  "text": "离线"
+                },
+                "asleep": {
+                  "color": "#56A64B",
+                  "index": 4,
+                  "text": "休眠"
+                },
+                "updating": {
+                  "color": "#E02F44",
+                  "index": 6,
+                  "text": "更新中"
+                },
+                "null": {
+                  "index": 7,
+                  "text": "无"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -222,7 +262,7 @@
     },
     {
       "datasource": "TeslaMate",
-      "description": "based on any data ever recorded.",
+      "description": "基于曾经记录的任何数据。",
       "fieldConfig": {
         "defaults": {
           "mappings": [

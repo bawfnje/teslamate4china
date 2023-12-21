@@ -356,7 +356,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "charging (AC)"
+              "options": "充电（交流）"
             },
             "properties": [
               {
@@ -371,7 +371,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "charging (DC)"
+              "options": "充电（直流）"
             },
             "properties": [
               {
@@ -386,7 +386,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "driving"
+              "options": "驾驶"
             },
             "properties": [
               {
@@ -441,7 +441,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n\tnow() AS time,\n\tsum(extract(epoch FROM end_position.date - start_position.date)) as duration_sec,\n\t'driving' as metric\nFROM\n\tdrives\n\tJOIN positions start_position ON start_position_id = start_position.id\n\tJOIN positions end_position ON end_position_id = end_position.id\nWHERE\n\tdrives.car_id = $car_id\n\tAND $__timeFilter(start_date);",
+          "rawSql": "SELECT\n\tnow() AS time,\n\tsum(extract(epoch FROM end_position.date - start_position.date)) as duration_sec,\n\t'驾驶' as metric\nFROM\n\tdrives\n\tJOIN positions start_position ON start_position_id = start_position.id\n\tJOIN positions end_position ON end_position_id = end_position.id\nWHERE\n\tdrives.car_id = $car_id\n\tAND $__timeFilter(start_date);",
           "refId": "A",
           "select": [
             [
@@ -469,7 +469,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH charges_current AS (\n  SELECT\n\t\tcp.id,\n  \textract(epoch FROM LEAST(end_date, $__timeTo()) - GREATEST(start_date, $__timeFrom())) as duration_sec,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN 'charging (DC)'\n\t\t\t\t ELSE 'charging (AC)'\n\t\tEND AS current\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0\n  \tAND ($__timeFilter(start_date) OR $__timeFilter(end_date))\n  GROUP BY 1,2\n),\n\ncharges_total AS (\n  SELECT\n  \tsum(duration_sec) AS duration_sec,\n  \tcurrent AS metric\n  FROM charges_current\n  GROUP BY 2\n  ORDER BY metric\n)\n\nSELECT\n\tnow() AS time,\n\tcoalesce(duration_sec, 0) as duration_sec,\n  metric\nFROM\n\tcharges_total;",
+          "rawSql": "WITH charges_current AS (\n  SELECT\n\t\tcp.id,\n  \textract(epoch FROM LEAST(end_date, $__timeTo()) - GREATEST(start_date, $__timeFrom())) as duration_sec,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN '充电（直流）'\n\t\t\t\t ELSE '充电（交流）'\n\t\tEND AS current\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0\n  \tAND ($__timeFilter(start_date) OR $__timeFilter(end_date))\n  GROUP BY 1,2\n),\n\ncharges_total AS (\n  SELECT\n  \tsum(duration_sec) AS duration_sec,\n  \tcurrent AS metric\n  FROM charges_current\n  GROUP BY 2\n  ORDER BY metric\n)\n\nSELECT\n\tnow() AS time,\n\tcoalesce(duration_sec, 0) as duration_sec,\n  metric\nFROM\n\tcharges_total;",
           "refId": "B",
           "select": [
             [
@@ -1137,7 +1137,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH charges_current AS (\n  SELECT\n\t\tcp.id,\n\t\tcp.charge_energy_added as energy_added,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN '添加（直流）'\n\t\t\t\t ELSE '添加（交流）'\n\t\tEND AS metric\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0\n  \tAND ($__timeFilter(start_date) OR $__timeFilter(end_date))\n  GROUP BY 1,2\n)\n\nSELECT metric, sum(energy_added) AS energy_added\nFROM charges_current\nGROUP BY 1\nORDER BY 1 DESC;",
+          "rawSql": "WITH charges_current AS (\n  SELECT\n\t\tcp.id,\n\t\tcp.charge_energy_added as energy_added,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN '充电（直流）'\n\t\t\t\t ELSE '充电（交流）'\n\t\tEND AS metric\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0\n  \tAND ($__timeFilter(start_date) OR $__timeFilter(end_date))\n  GROUP BY 1,2\n)\n\nSELECT metric, sum(energy_added) AS energy_added\nFROM charges_current\nGROUP BY 1\nORDER BY 1 DESC;",
           "refId": "B",
           "select": [
             [

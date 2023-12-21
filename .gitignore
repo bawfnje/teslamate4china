@@ -66,3 +66,4 @@ config/*.env
 /shell/.htpasswd
 /push.sh
 /push_grafana.sh
+/shell
