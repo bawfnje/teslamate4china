@@ -35,7 +35,7 @@
         "type": "dashboard"
       }
     ]
-        },
+  },
   "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -43,10 +43,19 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "TeslaMate",
+      "title": "特斯拉伴侣",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "特斯拉"
+      ],
+      "title": "仪表板",
+      "type": "dashboards"
     },
     {
       "asDropdown": true,
@@ -135,7 +144,7 @@
           "showZoom": true
         },
         "layers": [
-        {
+          {
             "config": {
               "arrow": 0,
               "style": {
@@ -180,8 +189,8 @@
             "name": "Layer 1",
             "tooltip": true,
             "type": "route"
-              }
-          ],
+          }
+        ],
         "tooltip": {
           "mode": "details"
         },
@@ -191,8 +200,8 @@
           "lat": 0,
           "lon": 0,
           "zoom": 15
-            }
-        },
+        }
+      },
       "pluginVersion": "10.1.2",
       "targets": [
         {
@@ -212,15 +221,15 @@
                 "parameters": [],
                 "type": "function"
               }
-          ],
+            ],
             "groupBy": [
-            {
+              {
                 "property": {
                   "type": "string"
                 },
                 "type": "groupBy"
-            }
-          ]
+              }
+            ]
           }
         }
       ],

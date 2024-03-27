@@ -34,7 +34,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "特斯拉伴侣",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -43,9 +43,18 @@
       "asDropdown": true,
       "icon": "external link",
       "tags": [
+        "特斯拉"
+      ],
+      "title": "仪表板",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
     }
   ],
@@ -2497,7 +2506,7 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "tesla"
+    "特斯拉"
   ],
   "templating": {
     "list": [

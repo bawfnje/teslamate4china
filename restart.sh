@@ -21,5 +21,6 @@ echo "=========>docker-compose up -d ==>start"
 # docker system prune
 docker system df
 docker-compose up -d
-open -a "google chrome" http://localhost:4000
+open -a "firefox" http://localhost:4000
+# /Users/chenweiming/dev/github/tesla_auth/tesla_auth
 docker-compose logs -f

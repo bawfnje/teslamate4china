@@ -74,10 +74,19 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "TeslaMate",
+      "title": "特斯拉伴侣",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "特斯拉"
+      ],
+      "title": "仪表板",
+      "type": "dashboards"
     },
     {
       "asDropdown": true,
@@ -440,7 +449,7 @@
                 "parameters": [],
                 "type": "function"
               }
-          ],
+            ],
             "groupBy": [
               {
                 "property": {
@@ -535,7 +544,7 @@
                 }
               }
             ]
-        },
+          },
           {
             "matcher": {
               "id": "byName",
@@ -614,19 +623,19 @@
           ],
           "sql": {
             "columns": [
-            {
+              {
                 "parameters": [],
                 "type": "function"
-            }
+              }
             ],
             "groupBy": [
-        {
+              {
                 "property": {
                   "type": "string"
-          },
+                },
                 "type": "groupBy"
               }
-          ],
+            ],
             "limit": 50
           },
           "table": "addresses",
@@ -958,7 +967,7 @@
                 "parameters": [],
                 "type": "function"
               }
-          ],
+            ],
             "groupBy": [
               {
                 "property": {
@@ -979,12 +988,12 @@
               "type": "macro"
             }
           ]
-    },
-    {
-      "datasource": {
+        },
+        {
+          "datasource": {
             "type": "grafana-postgresql-datasource",
-        "uid": "TeslaMate"
-      },
+            "uid": "TeslaMate"
+          },
           "editorMode": "code",
           "format": "table",
           "hide": false,
@@ -996,24 +1005,24 @@
               {
                 "parameters": [],
                 "type": "function"
-            }
+              }
             ],
             "groupBy": [
-          {
+              {
                 "property": {
                   "type": "string"
-            },
+                },
                 "type": "groupBy"
-                }
+              }
             ],
             "limit": 50
-              }
-          },
-          {
+          }
+        },
+        {
           "datasource": {
             "type": "grafana-postgresql-datasource",
             "uid": "TeslaMate"
-            },
+          },
           "editorMode": "code",
           "format": "table",
           "hide": false,
@@ -1025,19 +1034,19 @@
               {
                 "parameters": [],
                 "type": "function"
-          }
-        ],
+              }
+            ],
             "groupBy": [
               {
                 "property": {
                   "type": "string"
-        },
+                },
                 "type": "groupBy"
               }
-          ],
+            ],
             "limit": 50
-        }
-      },
+          }
+        },
         {
           "datasource": {
             "type": "grafana-postgresql-datasource",
@@ -1067,7 +1076,7 @@
                 "parameters": [],
                 "type": "function"
               }
-          ],
+            ],
             "groupBy": [
               {
                 "property": {
@@ -1105,8 +1114,8 @@
               {
                 "parameters": [],
                 "type": "function"
-        }
-      ],
+              }
+            ],
             "groupBy": [
               {
                 "property": {
@@ -1364,7 +1373,7 @@
                 },
                 "type": "groupBy"
               }
-          ],
+            ],
             "limit": 50
           },
           "table": "drives",
@@ -1440,7 +1449,7 @@
               {
                 "id": "custom.show",
                 "value": "lines"
-                }
+              }
             ]
           }
         ]

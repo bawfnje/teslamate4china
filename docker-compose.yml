@@ -1,10 +1,22 @@
 version: "3"
 
 services:
+  portainer:
+    # 需使用以下命令重置密码：docker run --rm -v  /var/lib/docker/volumes/portainer_data/_data:/data portainer/helper-reset-password 6053537/portainer-ce
+    image: portainer/portainer-ce
+    container_name: docker-portainer
+    restart: always
+    ports:
+      - 9000:9000
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./shell/data/portainer-data:/data
+      # - ./shell/data/public:/public
   teslamate4china:
     container_name: teslamate4china-service
     # image: i.bawfnje.work:8000/teslamate4china:latest
-    # image: teslamate4china-service:latest
+    # image: dhuar/teslamate:latest
     build: ./
     # restart: always
     environment:
@@ -14,28 +26,29 @@ services:
       - DATABASE_NAME=teslamate
       - DATABASE_HOST=database
       - MQTT_HOST=mosquitto
+      - TZ=CN
     ports:
       - 4000:4000
     volumes:
-      - ./import:/opt/app/import
+      - ./shell/data/import:/opt/app/import
     cap_drop:
       - all
 
   database:
-    container_name: teslamate4china-database
-    image: postgres:13
-    # restart: always
+    container_name: teslamate4china-postgres
+    image: postgres:15.4
+    restart: always
     environment:
       - POSTGRES_USER=teslamate
       - POSTGRES_PASSWORD=Makelt8485secret #insert your secure database password!
       - POSTGRES_DB=teslamate
     volumes:
-      - ./shell/data/teslamate-db:/var/lib/postgresql/data
+      - ./shell/data/teslamate-db-15:/var/lib/postgresql/data
 
   grafana:
     container_name: teslamate4china-grafana
     # image: i.bawfnje.work:8000/teslamate4china_grafana:latest
-    # image: teslamate4china-grafana:latest
+    # image: dhuar/grafana:latest
     build: ./grafana/
     # restart: always
     environment:
@@ -60,8 +73,8 @@ services:
     # ports:
     #   - 1883:1883
     volumes:
-      - mosquitto-conf:/mosquitto/config
-      - mosquitto-data:/mosquitto/data
+      - ./shell/data/mosquitto-conf:/mosquitto/config
+      - ./shell/data/mosquitto-data:/mosquitto/data
 
 volumes:
   teslamate-db:
