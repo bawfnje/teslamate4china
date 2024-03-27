@@ -36,6 +36,7 @@
 - [查看您的汽车何时在线或睡着](https://docs.teslamate.org/docs/screenshots#states)
 - [终身驾驶地图](https://docs.teslamate.org/docs/screenshots/#lifetime-driving-map)
 - [访问的地址](https://docs.teslamate.org/docs/screenshots/#visited-addresses)
+- [电池健康](https://docs.teslamate.org/docs/screenshots/#battery-health)
 
 **概要**
 
@@ -43,6 +44,7 @@
 - 没有额外的吸血鬼排放：汽车会尽快入睡
 - 自动地址查找
 - 轻松集成到家庭助理（通过MQTT）
+- 轻松集成到Node Red&Telegram（通过MQTT）
 - 用于创建自定义位置的地理围栏功能
 - 每个特斯拉账户支持多辆车
 - 费用成本跟踪
