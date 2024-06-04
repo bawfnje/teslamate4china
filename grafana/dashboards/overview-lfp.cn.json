@@ -94,14 +94,6 @@
               {
                 "color": "semi-dark-green",
                 "value": 20
-              },
-              {
-                "color": "semi-dark-yellow",
-                "value": 81
-              },
-              {
-                "color": "light-red",
-                "value": 91
               }
             ]
           },
@@ -243,7 +235,7 @@
           },
           "decimals": 0,
           "mappings": [],
-          "max": 250,
+          "max": 170,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -376,8 +368,8 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "电荷水平",
-          "url": "/d/WopVO_mgzc/charge-level?${__url_time_range}"
+          "title": "Drive details",
+          "url": "/d/zm7wN6Zgz/drive-details?orgId=1"
         }
       ],
       "options": {
@@ -779,7 +771,7 @@
         {
           "targetBlank": true,
           "title": "更新",
-          "url": "/d/IiC07mgWzc/updates"
+          "url": "/d/IiC07mgWzc/updates?orgId=1"
         }
       ],
       "maxDataPoints": 100,
@@ -891,7 +883,7 @@
         {
           "targetBlank": true,
           "title": "里程",
-          "url": "/d/NjtMTFggzc/mileage"
+          "url": "/d/NjtMTFggzc/mileage?orgId=1"
         }
       ],
       "maxDataPoints": 100,
@@ -1714,8 +1706,8 @@
     ]
   },
   "timezone": "",
-  "title": "01.概览(三元锂版)",
-  "uid": "kOuP_Fggzc",
+  "title": "01.概览(磷酸铁锂版)",
+  "uid": "EVzVGnwSqc",
   "version": 1,
   "weekStart": ""
 }

@@ -145,7 +145,7 @@
           ]
         }
       ],
-      "title": "Number of Charges",
+      "title": "充电的数量",
       "type": "stat"
     },
     {
@@ -162,7 +162,7 @@
               }
             ]
           },
-          "unit": "kwatth"
+          "unit": "千瓦时"
         },
         "overrides": []
       },
@@ -225,7 +225,7 @@
           ]
         }
       ],
-      "title": "Charged in total",
+      "title": "合计充电数",
       "type": "stat"
     },
     {
@@ -307,7 +307,7 @@
           ]
         }
       ],
-      "title": "Charging Cost at SuC",
+      "title": "标准单位成本的充电费用",
       "type": "stat"
     },
     {
@@ -388,7 +388,7 @@
           ]
         }
       ],
-      "title": "Total Charging Cost",
+      "title": "总充电费用",
       "type": "stat"
     },
     {
@@ -462,7 +462,7 @@
           ]
         }
       ],
-      "title": "Cost per 100 $length_unit",
+      "title": "每100$length_unit消耗的费用",
       "type": "stat"
     },
     {
@@ -528,7 +528,7 @@
           ]
         }
       ],
-      "title": "Average Cost per kWh",
+      "title": "每度平均费用",
       "type": "stat"
     },
     {
@@ -588,7 +588,7 @@
         }
       ],
       "timeFrom": "6M",
-      "title": "Charge Heatmap",
+      "title": "电荷热图",
       "tooltip": {
         "show": true,
         "showHistogram": false
@@ -756,7 +756,7 @@
         }
       ],
       "timeFrom": "6M",
-      "title": "Charge Delta",
+      "title": "电荷增量",
       "type": "timeseries"
     },
     {
@@ -775,13 +775,13 @@
           },
           "decimals": 0,
           "mappings": [],
-          "unit": "kwatth"
+          "unit": "千瓦时"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "AC"
+              "options": "交流电"
             },
             "properties": [
               {
@@ -796,7 +796,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "DC"
+              "options": "直流电"
             },
             "properties": [
               {
@@ -851,7 +851,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH data AS (\n  SELECT\n\t\tcp.id,\n\t\tcp.charge_energy_added,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN 'DC'\n\t\t\t\t ELSE 'AC'\n\t\tEND AS current\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0.01\n\t  AND $__timeFilter(start_date)\n  GROUP BY 1,2\n)\nSELECT\n\tnow() AS time,\n\tsum(charge_energy_added) AS value,\n\tcurrent AS metric\nFROM data\nGROUP BY 3\nORDER BY metric DESC;",
+          "rawSql": "WITH data AS (\n  SELECT\n\t\tcp.id,\n\t\tcp.charge_energy_added,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN '直流电'\n\t\t\t\t ELSE '交流电'\n\t\tEND AS current\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0.01\n\t  AND $__timeFilter(start_date)\n  GROUP BY 1,2\n)\nSELECT\n\tnow() AS time,\n\tsum(charge_energy_added) AS value,\n\tcurrent AS metric\nFROM data\nGROUP BY 3\nORDER BY metric DESC;",
           "refId": "A",
           "select": [
             [
@@ -875,7 +875,7 @@
           ]
         }
       ],
-      "title": "AC/DC - kWh",
+      "title": "交流/直流–千瓦时",
       "type": "piechart"
     },
     {
@@ -992,9 +992,9 @@
                 },
                 "textConfig": {
                   "fontSize": 12,
-                  "offsetX": 15,
+                  "offsetX": 25,
                   "offsetY": 0,
-                  "textAlign": "left",
+                  "textAlign": "center",
                   "textBaseline": "middle"
                 }
               }
@@ -1027,7 +1027,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH charge_data AS (\r\nSELECT COALESCE(geofence.name, CONCAT_WS(', ', COALESCE(address.name, nullif(CONCAT_WS(' ', address.road, address.house_number), '')), address.city)) AS loc_nm\r\n, AVG(position.latitude) AS latitude\r\n, AVG(position.longitude) AS longitude\r\n, sum(charge.charge_energy_added) AS chg_total\r\n, count(*) as charges\r\nFROM charging_processes charge\r\nLEFT JOIN addresses address ON charge.address_id = address.id\r\nLEFT JOIN positions position ON charge.position_id = position.id\r\nLEFT JOIN geofences geofence ON charge.geofence_id = geofence.id\r\nWHERE $__timeFilter(charge.start_date) \r\nAND charge.car_id = $car_id\r\nGROUP BY COALESCE(geofence.name, CONCAT_WS(', ', COALESCE(address.name, nullif(CONCAT_WS(' ', address.road, address.house_number), '')), address.city))\r\n) \r\nSELECT loc_nm\r\n\t,latitude\r\n\t,longitude\r\n\t,chg_total\r\n\t,chg_total * 1.0 / (SELECT sum(chg_total) FROM charge_data) * 100   AS pct\r\n\t,charges\r\nFROM charge_data",
+          "rawSql": "WITH charge_data AS (\r\nSELECT COALESCE(geofence.name, CONCAT_WS(', ', COALESCE(address.name, nullif(CONCAT_WS(' ', address.road, address.house_number), '')), address.city)) AS loc_nm\r\n, AVG(position.latitude) AS latitude\r\n, AVG(position.longitude) AS longitude\r\n,sum(charge.charge_energy_added) AS chg_total\r\nFROM charging_processes charge\r\nLEFT JOIN addresses address ON charge.address_id = address.id\r\nLEFT JOIN positions position ON charge.position_id = position.id\r\nLEFT JOIN geofences geofence ON charge.geofence_id = geofence.id\r\nWHERE $__timeFilter(charge.start_date) \r\nAND charge.car_id = $car_id\r\nGROUP BY COALESCE(geofence.name, CONCAT_WS(', ', COALESCE(address.name, nullif(CONCAT_WS(' ', address.road, address.house_number), '')), address.city))\r\n) \r\nSELECT loc_nm\r\n\t,latitude\r\n\t,longitude\r\n\t,chg_total\r\n\t,chg_total * 1.0 / (SELECT sum(chg_total) FROM charge_data) * 100   AS pct\r\nFROM charge_data",
           "refId": "A",
           "select": [
             [
@@ -1068,7 +1068,7 @@
           ]
         }
       ],
-      "title": "Charging heat map by kWh",
+      "title": "按度计算的充电热量图",
       "type": "geomap"
     },
     {
@@ -1093,7 +1093,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "AC"
+              "options": "交流电"
             },
             "properties": [
               {
@@ -1108,7 +1108,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "DC"
+              "options": "直流电"
             },
             "properties": [
               {
@@ -1163,7 +1163,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH data AS (\n  SELECT\n\t\tcp.id,\n\t\tcp.duration_min,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN 'DC'\n\t\t\t\t ELSE 'AC'\n\t\tEND AS current\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0.01\n\t  AND $__timeFilter(start_date)\n  GROUP BY 1,2\n)\nSELECT\n\tnow() AS time,\n\tsum(duration_min) * 60 AS value,\n\tcurrent AS metric\nFROM data\nGROUP BY 3\nORDER BY metric DESC;",
+          "rawSql": "WITH data AS (\n  SELECT\n\t\tcp.id,\n\t\tcp.duration_min,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN '直流电'\n\t\t\t\t ELSE '交流电'\n\t\tEND AS current\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0.01\n\t  AND $__timeFilter(start_date)\n  GROUP BY 1,2\n)\nSELECT\n\tnow() AS time,\n\tsum(duration_min) * 60 AS value,\n\tcurrent AS metric\nFROM data\nGROUP BY 3\nORDER BY metric DESC;",
           "refId": "A",
           "select": [
             [
@@ -1187,7 +1187,7 @@
           ]
         }
       ],
-      "title": "AC/DC - Duration",
+      "title": "交流/直流——持续时间",
       "type": "piechart"
     },
     {
@@ -1243,7 +1243,7 @@
                 "id": "links",
                 "value": [
                   {
-                    "title": "Show charge details",
+                    "title": "显示费用详细信息",
                     "url": "d/BHhxFeZRz?from=${__data.fields.start_date.numeric}&to=${__data.fields.end_date.numeric}&var-car_id=${car_id}&var-charging_process_id=${__data.fields.charging_process_id.numeric}"
                   }
                 ]
@@ -1380,7 +1380,7 @@
           ]
         }
       ],
-      "title": "DC Charging Curve",
+      "title": "直流充电曲线",
       "transformations": [],
       "type": "xychart"
     },
@@ -1417,7 +1417,7 @@
               },
               {
                 "id": "displayName",
-                "value": "SOC"
+                "value": "荷电状态"
               },
               {
                 "id": "custom.displayMode",
@@ -1437,7 +1437,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "# of Charges"
+                "value": "# 费用"
               },
               {
                 "id": "custom.displayMode",
@@ -1502,7 +1502,7 @@
           ]
         }
       ],
-      "title": "Charge Stats",
+      "title": "充电统计",
       "type": "table"
     },
     {
@@ -1538,7 +1538,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "SOC"
+                "value": "荷电状态"
               },
               {
                 "id": "unit",
@@ -1582,7 +1582,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "# of Discharges"
+                "value": "#放电"
               },
               {
                 "id": "custom.displayMode",
@@ -1644,7 +1644,7 @@
           ]
         }
       ],
-      "title": "Discharge Stats",
+      "title": "放电统计",
       "type": "table"
     },
     {
@@ -1680,7 +1680,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Location"
+                "value": "地方"
               }
             ]
           },
@@ -1692,7 +1692,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Charged"
+                "value": "已充电"
               },
               {
                 "id": "custom.width",
@@ -1752,7 +1752,7 @@
           ]
         }
       ],
-      "title": "Top Charging Stations (Charged)",
+      "title": "超级充电站（已充电）",
       "type": "table"
     },
     {
@@ -1788,7 +1788,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Location"
+                "value": "地方"
               }
             ]
           },
@@ -1800,7 +1800,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Cost"
+                "value": "费用"
               },
               {
                 "id": "custom.width",
@@ -1866,7 +1866,7 @@
           ]
         }
       ],
-      "title": "Top Charging Stations (Cost)",
+      "title": "超级充电站（费用）",
       "type": "table"
     }
   ],
@@ -1874,7 +1874,7 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "tesla"
+    "特斯拉"
   ],
   "templating": {
     "list": [
@@ -1930,7 +1930,7 @@
         "current": {
           "selected": false,
           "text": "km",
-          "value": "km"
+          "value": "千米"
         },
         "datasource": "TeslaMate",
         "definition": "select unit_of_length from settings limit 1;",
@@ -1982,8 +1982,8 @@
     ]
   },
   "timezone": "",
-  "title": "23.Charging Stats - LFP",
-  "uid": "UcjFKmUtpt",
+  "title": "23.充电统计(磷酸铁锂版)",
+  "uid": "UcjFKmUtptc",
   "version": 1,
   "weekStart": ""
 }

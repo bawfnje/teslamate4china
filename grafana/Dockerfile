@@ -1,6 +1,6 @@
 # Ensure selecting a tag that is available for arm/v7, arm64, and amd64
 # https://hub.docker.com/r/grafana/grafana/tags
-FROM grafana/grafana:10.4.0
+FROM grafana/grafana:10.4.1
 
 ENV GF_ANALYTICS_REPORTING_ENABLED=false \
     GF_AUTH_ANONYMOUS_ENABLED=false \
@@ -13,6 +13,10 @@ ENV GF_ANALYTICS_REPORTING_ENABLED=false \
     GF_USERS_ALLOW_SIGN_UP=false \
     DATABASE_PORT=5432 \
     DATABASE_SSL_MODE=disable
+
+# 默认中文界面
+USER root
+RUN sed -i "s/;default_language = en-US/default_language = zh-Hans/g" /etc/grafana/grafana.ini
 
 USER grafana
 

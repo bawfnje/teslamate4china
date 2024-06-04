@@ -1,19 +1,37 @@
 {
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "geomap",
+      "name": "Geomap",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.1.2"
+    },
+    {
+      "type": "datasource",
+      "id": "postgres",
+      "name": "PostgreSQL",
+      "version": "1.0.0"
+    }
+  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "注释和警报",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
         "type": "dashboard"
       }
     ]
@@ -25,7 +43,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉伴侣",
+      "title": "特斯拉伙伴",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -73,7 +91,10 @@
       "type": "row"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "postgres",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -128,7 +149,7 @@
               "arrow": 0,
               "style": {
                 "color": {
-                  "fixed": "red"
+                  "fixed": "dark-blue"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -181,9 +202,13 @@
           "zoom": 15
         }
       },
+      "pluginVersion": "10.1.2",
       "targets": [
         {
-          "datasource": "TeslaMate",
+          "datasource": {
+            "type": "postgres",
+            "uid": "TeslaMate"
+          },
           "editorMode": "code",
           "format": "table",
           "hide": false,
@@ -213,7 +238,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 36,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "特斯拉"
@@ -221,12 +246,11 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
         "hide": 2,
         "includeAll": true,
@@ -271,7 +295,7 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-90d",
     "to": "now"
   },
   "timepicker": {

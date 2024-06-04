@@ -5,7 +5,7 @@ services:
     # 需使用以下命令重置密码：docker run --rm -v  /var/lib/docker/volumes/portainer_data/_data:/data portainer/helper-reset-password 6053537/portainer-ce
     image: portainer/portainer-ce
     container_name: docker-portainer
-    restart: always
+    # restart: always
     ports:
       - 9000:9000
     command: -H unix:///var/run/docker.sock
@@ -36,15 +36,17 @@ services:
 
   database:
     container_name: teslamate4china-postgres
-    image: postgres:15.4
-    restart: always
+    image: postgres:13
+    # restart: always
     environment:
       - POSTGRES_USER=teslamate
       - POSTGRES_PASSWORD=Makelt8485secret #insert your secure database password!
       - POSTGRES_DB=teslamate
+      - TZ=CN
     volumes:
-      - ./shell/data/teslamate-db-15:/var/lib/postgresql/data
-
+      - ./shell/data/teslamate-db:/var/lib/postgresql/data
+    ports:
+    - 5432:5432
   grafana:
     container_name: teslamate4china-grafana
     # image: i.bawfnje.work:8000/teslamate4china_grafana:latest
@@ -60,6 +62,8 @@ services:
       - GF_SECURITY_ADMIN_USER=bawfnje
       - GF_SECURITY_ADMIN_PASSWORD=Makelt8485
       - GF_AUTH_ANONYMOUS_ENABLED=false
+      - TZ=CN
+      - GF_DEFAULT_LOCALE=zh-CN
     ports:
       - 3000:3000
     volumes:

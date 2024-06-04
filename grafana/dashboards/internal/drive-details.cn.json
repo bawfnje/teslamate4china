@@ -27,7 +27,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉伴侣",
+      "title": "特斯拉伙伴",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -69,6 +69,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -80,6 +82,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -336,14 +339,14 @@
             "min"
           ],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.4",
       "targets": [
         {
           "alias": "",
@@ -459,7 +462,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.6",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "format": "table",
@@ -497,8 +500,82 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "decimals": 1,
-          "displayName": "用时",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dtdurations"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 18,
+        "y": 0
+      },
+      "id": 34,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "datasource": "TeslaMate",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT ${__to:date:seconds} - ${__from:date:seconds}",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "选定的持续时间",
+      "type": "stat"
+    },
+    {
+      "datasource": "TeslaMate",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
           "mappings": [
             {
               "options": {
@@ -544,9 +621,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.5.6",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "format": "table",
@@ -577,6 +655,7 @@
           ]
         }
       ],
+      "title": "驾驶持续时间",
       "type": "stat"
     },
     {
@@ -632,7 +711,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.6",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "format": "table",
@@ -738,7 +817,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.6",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "format": "table",
@@ -775,11 +854,15 @@
       "datasource": "TeslaMate",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "thresholds"
+          },
           "custom": {
             "hideFrom": {
+              "legend": false,
               "tooltip": false,
-              "viz": false,
-              "legend": false
+              "viz": false
             }
           },
           "mappings": [],
@@ -791,10 +874,6 @@
                 "value": null
               }
             ]
-          },
-          "color": {
-            "fixedColor": "red",
-            "mode": "thresholds"
           }
         },
         "overrides": []
@@ -809,28 +888,18 @@
       "links": [],
       "maxDataPoints": 50000,
       "options": {
-        "view": {
-          "allLayers": true,
-          "id": "fit",
-          "lat": 0,
-          "lon": 0,
-          "zoom": 15
-        },
-        "controls": {
-          "showZoom": true,
-          "mouseWheelZoom": true,
-          "showAttribution": true,
-          "showScale": false,
-          "showMeasure": false,
-          "showDebug": false
-        },
-        "tooltip": {
-          "mode": "details"
-        },
         "basemap": {
           "config": {},
           "name": "Layer 0",
           "type": "osm-standard"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
         },
         "layers": [
           {
@@ -838,7 +907,7 @@
               "arrow": 0,
               "style": {
                 "color": {
-                  "fixed": "red"
+                  "fixed": "dark-blue"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -854,9 +923,9 @@
                   "min": 2
                 },
                 "symbol": {
-                  "mode": "fixed",
+                  "field": "",
                   "fixed": "",
-                  "field": ""
+                  "mode": "fixed"
                 },
                 "symbolAlign": {
                   "horizontal": "center",
@@ -879,8 +948,19 @@
             "tooltip": true,
             "type": "route"
           }
-        ]
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "fit",
+          "lat": 0,
+          "lon": 0,
+          "zoom": 15
+        }
       },
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "alias": "",
@@ -971,7 +1051,7 @@
           ]
         }
       ],
-      "title": "地图1",
+      "title": "地图",
       "type": "geomap"
     },
     {
@@ -982,6 +1062,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -993,6 +1075,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineStyle": {
               "fill": "solid"
@@ -1175,14 +1258,14 @@
             "max"
           ],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.4",
       "targets": [
         {
           "alias": "",
@@ -1261,8 +1344,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1328,15 +1410,15 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.4",
       "targets": [
         {
           "datasource": "TeslaMate",
@@ -1412,8 +1494,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1589,14 +1670,14 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.4",
       "targets": [
         {
           "datasource": "TeslaMate",
@@ -1650,27 +1731,13 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-blue",
-                "value": null
+                "color": "super-light-blue"
               }
             ]
           },
           "unit": "none"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Odometer"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "里程表"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 2,
@@ -1695,7 +1762,6 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.6",
       "targets": [
         {
           "format": "table",
@@ -1741,38 +1807,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UP"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "上升"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "DOWN"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "下降"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 2,
@@ -1796,7 +1836,6 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.6",
       "targets": [
         {
           "datasource": "TeslaMate",
@@ -2084,6 +2123,6 @@
   "timezone": "",
   "title": "驾程明细",
   "uid": "zm7wN6Zgzc",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

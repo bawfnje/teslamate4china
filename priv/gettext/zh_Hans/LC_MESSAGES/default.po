@@ -348,6 +348,8 @@ msgstr "充电剩余时间"
 #, elixir-autogen, elixir-format
 msgid "Dashboards"
 msgstr "控制台"
+msgid "DashboardsEN"
+msgstr "Dashboards"
 
 #: lib/teslamate_web/live/settings_live/index.html.heex:264
 #, elixir-autogen, elixir-format
@@ -457,7 +459,7 @@ msgstr "捐赠"
 #, elixir-autogen, elixir-format
 #: lib/teslamate_web/templates/layout/root.html.heex:26
 msgid "TeslaMate"
-msgstr "特斯拉助手"
+msgstr "特斯拉伙伴"
 
 #: lib/teslamate_web/live/import_live/index.ex:34
 #: lib/teslamate_web/live/import_live/index.html.heex:89

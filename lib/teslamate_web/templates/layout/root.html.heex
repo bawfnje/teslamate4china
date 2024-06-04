@@ -54,9 +54,9 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href={Routes.static_path(@conn, "/")}>
-            <%= img_tag(Routes.static_path(@conn, "/images/logo.svg"),
-              alt: "TeslaMate",
-              width: "90px"
+            <%= img_tag(Routes.static_path(@conn, "/images/logo_cn.svg"),
+              alt: gettext("TeslaMate"),
+              width: "190px"
             ) %>
           </a>
 
@@ -79,6 +79,23 @@
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link is-arrowless">
                   <span class="icon"><i class="mdi mdi-view-dashboard"></i></span>&nbsp;<span><%= gettext "Dashboards" %></span>
+                </a>
+                <div class="navbar-dropdown">
+                  <%= for %{"title" => title, "uid" => uid} <- list_dashboards_cn() do %>
+                    <%= link(title,
+                      to: "#{grafana_url}/d/#{uid}",
+                      class: "navbar-item",
+                      data_uid: uid,
+                      target: "_blank"
+                    ) %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+            <%= if grafana_url = @conn.assigns.settings.grafana_url do %>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link is-arrowless">
+                  <span class="icon"><i class="mdi mdi-view-dashboard"></i></span>&nbsp;<span><%= gettext "DashboardsEN" %></span>
                 </a>
                 <div class="navbar-dropdown">
                   <%= for %{"title" => title, "uid" => uid} <- list_dashboards() do %>

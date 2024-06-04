@@ -26,7 +26,7 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉伴侣",
+      "title": "特斯拉伙伴",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]"
@@ -121,8 +121,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 180
+                "id": "custom.width"
               }
             ]
           },
@@ -144,8 +143,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 180
+                "id": "custom.width"
               }
             ]
           },
@@ -171,8 +169,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 90
+                "id": "custom.width"
               }
             ]
           },
@@ -218,8 +215,7 @@
                 }
               },
               {
-                "id": "custom.minWidth",
-                "value": 100
+                "id": "custom.width"
               }
             ]
           },
@@ -245,8 +241,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 170
+                "id": "custom.width"
               }
             ]
           },
@@ -319,8 +314,7 @@
                 "value": 0
               },
               {
-                "id": "custom.width",
-                "value": 75
+                "id": "custom.width"
               }
             ]
           },
@@ -346,8 +340,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 100
+                "id": "custom.width"
               }
             ]
           },
@@ -373,8 +366,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 100
+                "id": "custom.width"
               }
             ]
           },
@@ -400,8 +392,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 110
+                "id": "custom.width"
               }
             ]
           },
@@ -427,8 +418,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 90
+                "id": "custom.width"
               }
             ]
           },
@@ -450,8 +440,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 80
+                "id": "custom.width"
               }
             ]
           },
@@ -499,8 +488,7 @@
                 ]
               },
               {
-                "id": "custom.width",
-                "value": 5
+                "id": "custom.width"
               }
             ]
           }
@@ -725,7 +713,7 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-1M",
     "to": "now"
   },
   "timepicker": {

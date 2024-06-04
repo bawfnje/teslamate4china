@@ -117,9 +117,8 @@ list_dashboards() {
     --silent \
     --user "$LOGIN" \
     "$URL/api/search" |
-    jq -r '.[] | select(.type == "dash-db") | .uri' |
+    jq -r '.[] | select(.type == "dash-db") | select(.tags == "tesla") | .uri' |
     cut -d '/' -f2
 }
-
 
 main "$@"
