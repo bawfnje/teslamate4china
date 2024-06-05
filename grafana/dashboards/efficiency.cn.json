@@ -12,7 +12,7 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
   "iteration": 1598013087999,

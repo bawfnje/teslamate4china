@@ -1,0 +1,58 @@
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Docker.gitlab-ci.yml
+# Build a Docker image with CI/CD and push to the GitLab registry.
+# Docker-in-Docker documentation: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
+# This template uses one generic job with conditional builds
+# for the default branch and all other (MR) branches.
+# Use the official docker image.
+image: docker:latest
+stages:
+  - delivery
+
+services:
+  - docker:dind
+
+variables:
+  CI_COMMIT_BRANCH: master
+  CI_COMMIT_REF_SLUG: latest
+  CI_DEFAULT_BRANCH: master
+  CI_REGISTRY: i.bawfnje.work:8000
+  CI_REGISTRY_IMAGE: i.bawfnje.work:8000/teslamate4china
+  CI_REGISTRY_PASSWORD: makelt8485
+  CI_REGISTRY_USER: admin
+  DOCKER_DRIVER: overlay
+  DOCKER_TLS_CERTDIR: ""
+  SPRING_PROFILES_ACTIVE: prd
+  DOCKER_AUTH_CONFIG: '{"auths": {"i.bawfnje.work:8000": {"auth": "YWRtaW46bWFrZWx0ODQ4NQ=="}}}'
+
+docker-build:
+  # Use the official docker image.
+  # image: docker:latest
+  stage: delivery
+  tags:
+    - nas
+  retry: 0
+  # services:
+  #   - docker:dind
+  before_script:
+    - docker system info
+    - echo '$CI_REGISTRY_USER:'$CI_REGISTRY_USER',$CI_REGISTRY_PASSWORD:'$CI_REGISTRY_PASSWORD',$CI_REGISTRY:'$CI_REGISTRY
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  # Default branch leaves tag empty (= latest tag)
+  # All other branches are tagged with the escaped branch name (commit ref slug)
+  script:
+    - echo "\n>>>docker build . --pull -t i.bawfnje.work:8000/teslamate4china:latest"
+    - docker build . --pull -t i.bawfnje.work:8000/teslamate4china:latest
+    - echo "\n>>>docker push i.bawfnje.work:8000/teslamate4china:latest"
+    - docker push i.bawfnje.work:8000/teslamate4china:latest
+    - echo "\n>>>docker build ./grafana/ --pull -t i.bawfnje.work:8000/teslamate4china_grafana:latest"
+    - docker build ./grafana/ --pull -t i.bawfnje.work:8000/teslamate4china_grafana:latest
+    - echo "\n>>>docker push i.bawfnje.work:8000/teslamate4china_grafana:latest"
+    - docker push i.bawfnje.work:8000/teslamate4china_grafana:latest
+  # Run this job in a branch where a Dockerfile exists
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      exists:
+        - Dockerfile

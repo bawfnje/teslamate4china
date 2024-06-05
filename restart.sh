@@ -1,3 +1,4 @@
+echo "\n注意需要先下载nas:/v1/docker/backup/teslamate/*.gz/data到本地downloads."
 open -g -a "Docker Desktop.app"
 docker-compose stop
 echo "\n=========>docker-compose stop ==>over"
@@ -22,7 +23,8 @@ echo "\n=========>docker system df"
 docker system df
 echo "\n=========>docker-compose up -d ==>start"
 docker-compose up -d
-sleep 10
+sleep 20
+read -p "首次本地使用需打开配置，修改控制台地址：http://localhost:3000"
 open -a "firefox" http://localhost:4000
 # /Users/chenweiming/dev/github/tesla_auth/tesla_auth
 docker-compose logs -f

@@ -20,7 +20,7 @@
     ]
   },
   "description": "您的汽车的高级概览",
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "iteration": 1656103268002,
