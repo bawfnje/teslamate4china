@@ -1,4 +1,4 @@
-echo "\n注意需要先下载nas:/v1/docker/backup/teslamate/*.gz/data到本地downloads."
+echo "\n注意需要先下载nas:/v1/docker/backup/teslamate/*.gz/data到本地~/downloads/data."
 open -g -a "Docker Desktop.app"
 docker-compose stop
 echo "\n=========>docker-compose stop ==>over"
