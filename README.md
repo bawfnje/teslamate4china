@@ -1,4 +1,4 @@
-# TeslaMate-特斯拉助手
+# TeslaMate-特斯拉伙伴
 正在汉化中...
 
 [![CI](https://github.com/teslamate-org/teslamate/actions/workflows/elixir.yml/badge.svg)](https://github.com/teslamate-org/teslamate/actions/workflows/elixir.yml)
@@ -11,7 +11,7 @@
 
 为您的特斯拉提供功能强大的自托管数据记录器。
 
-- 用[**Elixir**](https://elixir-lang.org/)书写
+- 用[**Elixir**](https://elixir-lang.org/)语言开发
 - 数据存储在**Postgres**数据库中
 - 使用**Grafana进行可视化和数据分析**
 - 车辆数据发布到本地**MQTT**代理
@@ -52,8 +52,11 @@
 
 ## 截图
 
-<!-- ![驱动器详细信息](/website/static/screenshots/drive.png)
-![网页界面](/website/static/screenshots/web_interface.png) -->
+![驱动器详细信息](/website/static/screenshots/drive.png)
+
+![网页界面](/website/static/screenshots/web_interface.png) 
+
+![电池健康状况](/website/static/screenshots/battery-health.png)
 
 <p align="center">
   <strong><a href="https://docs.teslamate.org/docs/screenshots">更多屏幕截图</a></strong>
@@ -61,6 +64,9 @@
 
 ## 贡献
 
-- 作者: 阿德里安·库普夫 – [贡献者列表](https://github.com/teslamate-org/teslamate/graphs/contributors)
+- 初始作者: 阿德里安·库普夫 – [贡献者列表](https://github.com/teslamate-org/teslamate/graphs/contributors)
+- 贡献者名单:
+- <a href="https://github.com/teslamate-org/teslamate/graphs/contributors"><img src="https://contrib.rocks/image?repo=teslamate-org/teslamate"  alt="TeslaMate贡献者"/></a>
 - 根据MIT许可证分发
 - 汉化: 陈伟明
+
