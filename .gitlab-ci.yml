@@ -44,9 +44,6 @@ docker-build:
   # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
     - export https_proxy=http://192.168.1.43:7890 http_proxy=http://192.168.1.43:7890 all_proxy=socks5://192.168.1.43:7890
-    - yum install curl
-    - curl --version
-    - curl --max-time 1 ipinfo.io
     - echo "\n>>>docker build . --pull -t i.bawfnje.work:8000/teslamate4china:latest"
     - docker build . --pull -t i.bawfnje.work:8000/teslamate4china:latest
     - echo "\n>>>docker push i.bawfnje.work:8000/teslamate4china:latest"
