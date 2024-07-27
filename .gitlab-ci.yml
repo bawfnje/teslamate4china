@@ -7,7 +7,7 @@
 # This template uses one generic job with conditional builds
 # for the default branch and all other (MR) branches.
 # Use the official docker image.
-image: docker:latest
+image: i.bawfnje.work:8000/docker:latest
 stages:
   - delivery
 
