@@ -40,6 +40,9 @@ docker-build:
     - docker system info
     - echo '$CI_REGISTRY_USER:'$CI_REGISTRY_USER',$CI_REGISTRY_PASSWORD:'$CI_REGISTRY_PASSWORD',$CI_REGISTRY:'$CI_REGISTRY
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker pull elixir:1.16.2-otp-26
+    - docker tag elixir:1.16.2-otp-26 i.bawfnje.work:8000/elixir:1.16.2-otp-26
+    - docker push i.bawfnje.work:8000/elixir:1.16.2-otp-26
   # Default branch leaves tag empty (= latest tag)
   # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
