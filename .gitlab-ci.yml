@@ -23,6 +23,7 @@ variables:
   CI_REGISTRY_PASSWORD: makelt8485
   CI_REGISTRY_USER: admin
   DOCKER_DRIVER: overlay
+  DOCKER_TLS_VERIFY: "0"
   DOCKER_TLS_CERTDIR: ""
   SPRING_PROFILES_ACTIVE: prd
   DOCKER_AUTH_CONFIG: '{"auths": {"i.bawfnje.work:8000": {"auth": "YWRtaW46bWFrZWx0ODQ4NQ=="}}}'
