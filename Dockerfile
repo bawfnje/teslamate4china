@@ -1,4 +1,4 @@
-FROM elixir:1.16.2-otp-26 AS builder
+FROM i.bawfnje.work:8000/elixir:1.16.2-otp-26 AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -6,10 +6,10 @@ RUN apt-get update \
     && apt-get install -y ca-certificates curl gnupg \
     && mkdir -p /etc/apt/keyrings \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
-     | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && NODE_MAJOR=20 \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" \
-     | tee /etc/apt/sources.list.d/nodesource.list \
+    | tee /etc/apt/sources.list.d/nodesource.list \
     && apt-get update \
     && apt-get install nodejs -y \
     && apt-get clean \
@@ -48,7 +48,7 @@ RUN SKIP_LOCALE_DOWNLOAD=true mix release --path /opt/built
 
 ########################################################################
 
-FROM debian:bookworm-slim AS app
+FROM i.bawfnje.work:8000/debian:bookworm-slim AS app
 
 ENV LANG=C.UTF-8 \
     SRTM_CACHE=/opt/app/.srtm_cache \
@@ -57,13 +57,13 @@ ENV LANG=C.UTF-8 \
 WORKDIR $HOME
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        libodbc1  \
-        libsctp1  \
-        libssl3  \
-        libstdc++6 \
-        netcat-openbsd \
-        tini  \
-        tzdata && \
+    libodbc1  \
+    libsctp1  \
+    libssl3  \
+    libstdc++6 \
+    netcat-openbsd \
+    tini  \
+    tzdata && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     addgroup --gid 10001 --system nonroot && \
