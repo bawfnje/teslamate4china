@@ -30,7 +30,7 @@ variables:
 docker-build:
   # Use the official docker image.
   # image: docker:latest
-  stage: build&push
+  stage: delivery
   tags:
     - nas
   retry: 0
