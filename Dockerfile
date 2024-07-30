@@ -1,4 +1,4 @@
-FROM i.bawfnje.work:8008/elixir:1.16.2-otp-26 AS builder
+FROM i.bawfnje.work:8000/elixir:1.16.2-otp-26 AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -48,7 +48,7 @@ RUN SKIP_LOCALE_DOWNLOAD=true mix release --path /opt/built
 
 ########################################################################
 
-FROM i.bawfnje.work:8008/debian:bookworm-slim AS app
+FROM i.bawfnje.work:8000/debian:bookworm-slim AS app
 
 ENV LANG=C.UTF-8 \
     SRTM_CACHE=/opt/app/.srtm_cache \
