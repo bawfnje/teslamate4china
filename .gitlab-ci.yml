@@ -40,18 +40,20 @@ docker-build:
     - docker system info
     - echo '$CI_REGISTRY_USER:'$CI_REGISTRY_USER',$CI_REGISTRY_PASSWORD:'$CI_REGISTRY_PASSWORD',$CI_REGISTRY:'$CI_REGISTRY
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker pull $CI_REGISTRY/elixir:1.16.2-otp-26
+    - docker pull $CI_REGISTRY/debian:bookworm-slim
   # Default branch leaves tag empty (= latest tag)
   # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
     # - export https_proxy=http://192.168.1.43:7890 http_proxy=http://192.168.1.43:7890 all_proxy=socks5://192.168.1.43:7890
-    - echo "\n>>>docker build . --pull -t i.bawfnje.work:8000/teslamate4china:latest"
-    - docker build . --pull -t i.bawfnje.work:8000/teslamate4china:latest
-    - echo "\n>>>docker push i.bawfnje.work:8000/teslamate4china:latest"
-    - docker push i.bawfnje.work:8000/teslamate4china:latest
-    - echo "\n>>>docker build ./grafana/ --pull -t i.bawfnje.work:8000/teslamate4china_grafana:latest"
-    - docker build ./grafana/ --pull -t i.bawfnje.work:8000/teslamate4china_grafana:latest
-    - echo "\n>>>docker push i.bawfnje.work:8000/teslamate4china_grafana:latest"
-    - docker push i.bawfnje.work:8000/teslamate4china_grafana:latest
+    - echo "\n>>>docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - echo "\n>>>docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - echo "\n>>>docker build ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG"
+    - docker build ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
+    - echo "\n>>>docker push ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG"
+    - docker push ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
   # Run this job in a branch where a Dockerfile exists
   rules:
     - if: $CI_COMMIT_BRANCH
