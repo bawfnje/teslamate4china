@@ -138,7 +138,7 @@ function createMap(opts) {
   const map = new M(opts.elId != null ? `map_${opts.elId}` : "map", opts);
 
   const osm = new TileLayer(
-    "https://tile.dhuar.org/{z}/{x}/{y}.png",
+    "https://tile.dhuar.com/{z}/{x}/{y}.png",
     { maxZoom: 19 }
   );
 

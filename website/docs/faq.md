@@ -79,7 +79,7 @@ HTTPS (TCP/443)
 auth.tesla.com  
 owner-api.teslamotors.com  
 streaming.vn.teslamotors.com  
-nominatim.openstreetmap.org  
+tile.dhuar.com  
 
 HTTP (TCP/80)  
 step.esa.int  
