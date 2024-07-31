@@ -18,6 +18,17 @@ ENV GF_ANALYTICS_REPORTING_ENABLED=false \
 # 默认中文界面
 USER root
 RUN sed -i "s/;default_language = en-US/default_language = zh-Hans/g" /etc/grafana/grafana.ini
+# 地图问题
+RUN sed -i "s/;default_baselayer_config/default_baselayer_config/g" /etc/grafana/grafana.ini
+RUN sed -i "s/;  \"type\": \"xyz\",/  \"type\": \"xyz\",/g" /etc/grafana/grafana.ini
+RUN sed -i "s/;  \"config\":/  \"config\":/g" /etc/grafana/grafana.ini
+RUN sed -i "s/;    \"attribution\":/   \"attribution\":/g" /etc/grafana/grafana.ini
+RUN sed -i "s/;    \"url\"/    \"url\"/g" /etc/grafana/grafana.ini
+RUN sed -i "s/tile.openstreetmap.org/tile.dhuar.com/g" /etc/grafana/grafana.ini
+RUN sed -i "s/;  }/  }/g" /etc/grafana/grafana.ini
+RUN sed -i "s/;}\`/}\`/g" /etc/grafana/grafana.ini
+# grafana首页
+RUN sed -i "s/;default_home_dashboard_path =/default_home_dashboard_path = \/dashboards\/overview.cn.json/g" /etc/grafana/grafana.ini
 
 USER grafana
 

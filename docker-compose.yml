@@ -44,7 +44,7 @@ services:
     #   - "traefik.http.routers.teslamateapi.tls.certresolver=tmhttpchallenge"
   teslamate4china:
     container_name: teslamate4china-service
-    image: ccr.ccs.tencentyun.com/dhuar/teslamate:latest
+    #image: ccr.ccs.tencentyun.com/dhuar/teslamate:latest
     #image: i.bawfnje.work:8000/teslamate4china:latest
     # image: dhuar/teslamate:latest
     build: ./
@@ -61,6 +61,8 @@ services:
       - 4000:4000
     volumes:
       - ./shell/data/import:/opt/app/import
+      - /Users/chenweiming/dev/myProfile/alias_profile:/home/nonroot/.bash_profile:ro
+      - /Users/chenweiming/dev/myProfile/bashrc:/home/nonroot/.bashrc:ro
     cap_drop:
       - all
 
@@ -79,6 +81,31 @@ services:
     - 5432:5432
   grafana:
     container_name: teslamate4china-grafana
+    #image: ccr.ccs.tencentyun.com/dhuar/grafana:latest
+    #image: i.bawfnje.work:8000/teslamate4china_grafana:latest
+    # image: dhuar/grafana:latest
+    build: ./grafana/
+    # restart: always
+    environment:
+      - DATABASE_USER=teslamate
+      - DATABASE_PASS=Makelt8485secret #insert your secure database password!
+      - DATABASE_NAME=teslamate
+      - DATABASE_HOST=database
+      - GRAFANA_PASSWD=Makelt8485
+      - GF_SECURITY_ADMIN_USER=bawfnje
+      - GF_SECURITY_ADMIN_PASSWORD=Makelt8485
+      - GF_AUTH_ANONYMOUS_ENABLED=false
+      - TZ=Asia/Shanghai
+      - GF_DEFAULT_LOCALE=zh-CN
+    ports:
+      - 3000:3000
+    volumes:
+      - ./shell/data/teslamate-grafana-data:/var/lib/grafana
+      - /Users/chenweiming/dev/myProfile/alias_profile:/home/grafana/.bash_profile:ro
+      - /Users/chenweiming/dev/myProfile/bashrc:/home/grafana/.bashrc:ro
+
+  grafana4map:
+    container_name: teslamate4china-grafana4map
     image: ccr.ccs.tencentyun.com/dhuar/grafana:latest
     #image: i.bawfnje.work:8000/teslamate4china_grafana:latest
     # image: dhuar/grafana:latest
@@ -96,9 +123,11 @@ services:
       - TZ=Asia/Shanghai
       - GF_DEFAULT_LOCALE=zh-CN
     ports:
-      - 3000:3000
+      - 3003:3000
     volumes:
-      - ./shell/data/teslamate-grafana-data:/var/lib/grafana
+      - ./shell/data/teslamate-grafana-data-new:/var/lib/grafana
+      - /Users/chenweiming/dev/myProfile/alias_profile:/home/grafana/.bash_profile:ro
+      - /Users/chenweiming/dev/myProfile/bashrc:/home/grafana/.bashrc:ro
 
   mosquitto:
     container_name: teslamate4china-proxy

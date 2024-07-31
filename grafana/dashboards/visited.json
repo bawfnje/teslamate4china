@@ -142,7 +142,7 @@
             "server": "streets"
           },
           "name": "Layer 0",
-          "type": "esri-xyz"
+          "type": "default"
         },
         "controls": {
           "mouseWheelZoom": true,

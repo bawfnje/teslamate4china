@@ -136,9 +136,11 @@
       "maxDataPoints": 10000000,
       "options": {
         "basemap": {
-          "config": {},
+          "config": {
+            "server": "streets"
+          },
           "name": "Layer 0",
-          "type": "osm-standard"
+          "type": "default"
         },
         "controls": {
           "mouseWheelZoom": false,

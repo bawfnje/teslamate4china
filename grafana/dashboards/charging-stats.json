@@ -1390,7 +1390,7 @@
           "config": {},
           "name": "Layer 0",
           "tooltip": true,
-          "type": "osm-standard"
+          "type": "default"
         },
         "controls": {
           "mouseWheelZoom": true,
@@ -1895,7 +1895,7 @@
                   "type": "color-text"
                 }
               },
-                    {
+              {
                 "id": "unit",
                 "value": "percent"
               }
@@ -1997,8 +1997,8 @@
               {
                 "parameters": [],
                 "type": "function"
-        }
-      ],
+              }
+            ],
             "groupBy": [
               {
                 "property": {
