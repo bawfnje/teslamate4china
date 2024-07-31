@@ -73,14 +73,6 @@
   "id": null,
   "links": [
     {
-      "icon": "dashboard",
-      "tags": [],
-      "title": "特斯拉伙伴",
-      "tooltip": "",
-      "type": "link",
-      "url": "[[base_url:raw]]"
-    },
-    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -97,6 +89,14 @@
       ],
       "title": "Dashboards",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "特斯拉伙伴",
+      "tooltip": "",
+      "type": "link",
+      "url": "[[base_url:raw]]"
     }
   ],
   "liveNow": false,
@@ -337,7 +337,7 @@
                 "parameters": [],
                 "type": "function"
               }
-          ],
+            ],
             "groupBy": [
               {
                 "property": {
@@ -1334,7 +1334,7 @@
               }
             ],
             "limit": 50
-        }
+          }
         }
       ],
       "title": "Current SOC",

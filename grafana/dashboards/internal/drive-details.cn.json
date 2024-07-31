@@ -25,14 +25,6 @@
   "iteration": 1658136653681,
   "links": [
     {
-      "icon": "dashboard",
-      "tags": [],
-      "title": "特斯拉伙伴",
-      "tooltip": "",
-      "type": "link",
-      "url": "[[base_url:raw]]"
-    },
-    {
       "icon": "",
       "tags": [],
       "title": "GpxExport",
@@ -57,6 +49,14 @@
       ],
       "title": "Dashboards",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "特斯拉伙伴",
+      "tooltip": "",
+      "type": "link",
+      "url": "[[base_url:raw]]"
     }
   ],
   "liveNow": false,
