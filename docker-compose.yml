@@ -1,35 +1,35 @@
 version: "3"
 
 services:
-  portainer:
+  # portainer:
     # 需使用以下命令重置密码：docker run --rm -v  /var/lib/docker/volumes/portainer_data/_data:/data portainer/helper-reset-password 6053537/portainer-ce
-    image: portainer/portainer-ce
-    container_name: docker-portainer
-    # restart: always
-    ports:
-      - 9000:9000
-    command: -H unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./shell/data/portainer-data:/data
+    # image: portainer/portainer-ce
+    # container_name: docker-portainer
+    # # restart: always
+    # ports:
+    #   - 9000:9000
+    # command: -H unix:///var/run/docker.sock
+    # volumes:
+    #   - /var/run/docker.sock:/var/run/docker.sock
+    #   - ./shell/data/portainer-data:/data
       # - ./shell/data/public:/public
-  teslamateapi:
-    # image: tobiasehlert/teslamateapi:latest
-    image: i.bawfnje.work:8000/teslamateapi:latest
-    container_name: teslamateapi
-    restart: always
-    depends_on:
-      - database
-    environment:
-      - ENCRYPTION_KEY=Makelt8485Key #insert a secure key to encrypt your Tesla API tokens
-      - DATABASE_USER=teslamate
-      - DATABASE_PASS=Makelt8485secret #insert your secure database password!
-      - DATABASE_NAME=teslamate
-      - DATABASE_HOST=database
-      - MQTT_HOST=mosquitto
-      - TZ=Asia/Shanghai
-    ports:
-      - 8080:8080
+  # teslamateapi:
+  #   # image: tobiasehlert/teslamateapi:latest
+  #   image: i.bawfnje.work:8000/teslamateapi:latest
+  #   container_name: teslamateapi
+  #   restart: always
+  #   depends_on:
+  #     - database
+  #   environment:
+  #     - ENCRYPTION_KEY=Makelt8485Key #insert a secure key to encrypt your Tesla API tokens
+  #     - DATABASE_USER=teslamate
+  #     - DATABASE_PASS=Makelt8485secret #insert your secure database password!
+  #     - DATABASE_NAME=teslamate
+  #     - DATABASE_HOST=database
+  #     - MQTT_HOST=mosquitto
+  #     - TZ=Asia/Shanghai
+  #   ports:
+  #     - 8080:8080
     # labels:
     #   - "traefik.enable=true"
     #   - "traefik.port=8080"
@@ -65,30 +65,30 @@ services:
       - /Users/chenweiming/dev/myProfile/bashrc:/home/nonroot/.bashrc:ro
     cap_drop:
       - all
-  
-  teslamate4china4map:
-    container_name: teslamate4china-service4map
-    image: ccr.ccs.tencentyun.com/dhuar/teslamate:latest
-    #image: i.bawfnje.work:8000/teslamate4china:latest
-    # image: dhuar/teslamate:latest
-    # build: ./
-    # restart: always
-    environment:
-      - ENCRYPTION_KEY=Makelt8485Key #insert a secure key to encrypt your Tesla API tokens
-      - DATABASE_USER=teslamate
-      - DATABASE_PASS=Makelt8485secret #insert your secure database password!
-      - DATABASE_NAME=teslamate
-      - DATABASE_HOST=database
-      - MQTT_HOST=mosquitto
-      - TZ=Asia/Shanghai
-    ports:
-      - 4004:4000
-    volumes:
-      - ./shell/data/import:/opt/app/import
-      - /Users/chenweiming/dev/myProfile/alias_profile:/home/nonroot/.bash_profile:ro
-      - /Users/chenweiming/dev/myProfile/bashrc:/home/nonroot/.bashrc:ro
-    cap_drop:
-      - all
+
+  # teslamate4china4map:
+  #   container_name: teslamate4china-service4map
+  #   image: ccr.ccs.tencentyun.com/dhuar/teslamate:latest
+  #   #image: i.bawfnje.work:8000/teslamate4china:latest
+  #   # image: dhuar/teslamate:latest
+  #   # build: ./
+  #   # restart: always
+  #   environment:
+  #     - ENCRYPTION_KEY=Makelt8485Key #insert a secure key to encrypt your Tesla API tokens
+  #     - DATABASE_USER=teslamate
+  #     - DATABASE_PASS=Makelt8485secret #insert your secure database password!
+  #     - DATABASE_NAME=teslamate
+  #     - DATABASE_HOST=database
+  #     - MQTT_HOST=mosquitto
+  #     - TZ=Asia/Shanghai
+  #   ports:
+  #     - 4004:4000
+  #   volumes:
+  #     - ./shell/data/import:/opt/app/import
+  #     - /Users/chenweiming/dev/myProfile/alias_profile:/home/nonroot/.bash_profile:ro
+  #     - /Users/chenweiming/dev/myProfile/bashrc:/home/nonroot/.bashrc:ro
+  #   cap_drop:
+  #     - all
 
   database:
     container_name: teslamate4china-postgres
@@ -128,30 +128,30 @@ services:
       - /Users/chenweiming/dev/myProfile/alias_profile:/home/grafana/.bash_profile:ro
       - /Users/chenweiming/dev/myProfile/bashrc:/home/grafana/.bashrc:ro
 
-  grafana4map:
-    container_name: teslamate4china-grafana4map
-    image: ccr.ccs.tencentyun.com/dhuar/grafana:latest
-    #image: i.bawfnje.work:8000/teslamate4china_grafana:latest
-    # image: dhuar/grafana:latest
-    #build: ./grafana/
-    # restart: always
-    environment:
-      - DATABASE_USER=teslamate
-      - DATABASE_PASS=Makelt8485secret #insert your secure database password!
-      - DATABASE_NAME=teslamate
-      - DATABASE_HOST=database
-      - GRAFANA_PASSWD=Makelt8485
-      - GF_SECURITY_ADMIN_USER=bawfnje
-      - GF_SECURITY_ADMIN_PASSWORD=Makelt8485
-      - GF_AUTH_ANONYMOUS_ENABLED=false
-      - TZ=Asia/Shanghai
-      - GF_DEFAULT_LOCALE=zh-CN
-    ports:
-      - 3003:3000
-    volumes:
-      - ./shell/data/teslamate-grafana-data-new:/var/lib/grafana
-      - /Users/chenweiming/dev/myProfile/alias_profile:/home/grafana/.bash_profile:ro
-      - /Users/chenweiming/dev/myProfile/bashrc:/home/grafana/.bashrc:ro
+  # grafana4map:
+  #   container_name: teslamate4china-grafana4map
+  #   image: ccr.ccs.tencentyun.com/dhuar/grafana:latest
+  #   #image: i.bawfnje.work:8000/teslamate4china_grafana:latest
+  #   # image: dhuar/grafana:latest
+  #   #build: ./grafana/
+  #   # restart: always
+  #   environment:
+  #     - DATABASE_USER=teslamate
+  #     - DATABASE_PASS=Makelt8485secret #insert your secure database password!
+  #     - DATABASE_NAME=teslamate
+  #     - DATABASE_HOST=database
+  #     - GRAFANA_PASSWD=Makelt8485
+  #     - GF_SECURITY_ADMIN_USER=bawfnje
+  #     - GF_SECURITY_ADMIN_PASSWORD=Makelt8485
+  #     - GF_AUTH_ANONYMOUS_ENABLED=false
+  #     - TZ=Asia/Shanghai
+  #     - GF_DEFAULT_LOCALE=zh-CN
+  #   ports:
+  #     - 3003:3000
+  #   volumes:
+  #     - ./shell/data/teslamate-grafana-data-new:/var/lib/grafana
+  #     - /Users/chenweiming/dev/myProfile/alias_profile:/home/grafana/.bash_profile:ro
+  #     - /Users/chenweiming/dev/myProfile/bashrc:/home/grafana/.bashrc:ro
 
   mosquitto:
     container_name: teslamate4china-proxy

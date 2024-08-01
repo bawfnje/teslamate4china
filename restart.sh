@@ -1,5 +1,14 @@
-echo "\n注意需要先下载nas:/v1/docker/backup/teslamate/*.gz/data到本地~/downloads/data."
+# 检查文件夹是否存在
+FOLDER_PATH="/Users/chenweiming/downloads/data"
+if [ -d "$FOLDER_PATH" ]; then
+  echo "使用本地数据文件夹："$FOLDER_PATH
+else
+  echo "\n注意需要先下载nas:/v1/docker/backup/teslamate/*.gz/data到本地："$FOLDER_PATH
+  exit 1
+fi
 open -g -a "Docker Desktop.app"
+sleep 1
+osascript -e 'tell application "System Events" to set frontmost of process "Terminal" to true'
 docker-compose stop
 echo "\n=========>docker-compose stop ==>over"
 docker rm teslamate4china-service
@@ -23,8 +32,8 @@ echo "\n=========>docker system df"
 docker system df
 echo "\n=========>docker-compose up -d ==>start"
 docker-compose up -d
-sleep 12
+sleep 20
 read -p "首次本地使用需打开配置，修改控制台地址：http://localhost:3000"
-open -a "safari" http://localhost:4000
+open -a "Google Chrome" http://localhost:4000
 # /Users/chenweiming/dev/github/tesla_auth/tesla_auth
 docker-compose logs -f
