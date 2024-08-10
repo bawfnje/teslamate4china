@@ -1,7 +1,7 @@
 FROM elixir:1.16.2-otp-26 AS builder
 
-ENV http_proxy=http://192.168.100.253:7890
-ENV https_proxy=http://192.168.100.253:7890
+ENV http_proxy=http://192.168.1.43:7890
+ENV https_proxy=http://192.168.1.43:7890
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
