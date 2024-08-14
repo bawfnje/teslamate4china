@@ -24,7 +24,6 @@ variables:
   CI_REGISTRY_USER: admin
   DOCKER_DRIVER: overlay
   DOCKER_TLS_CERTDIR: ""
-  DOCKER_TLS_VERIFY: "0"
   SPRING_PROFILES_ACTIVE: prd
   DOCKER_AUTH_CONFIG: '{"auths": {"i.bawfnje.work:8000": {"auth": "YWRtaW46bWFrZWx0ODQ4NQ=="}}}'
 
@@ -38,7 +37,7 @@ docker-build:
   # services:
   #   - docker:dind
   before_script:
-    # - docker system info
+    - docker system info
     - echo '$CI_REGISTRY_USER:'$CI_REGISTRY_USER',$CI_REGISTRY_PASSWORD:'$CI_REGISTRY_PASSWORD',$CI_REGISTRY:'$CI_REGISTRY
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - cat /etc/docker/daemon.json
@@ -49,11 +48,11 @@ docker-build:
   script:
     # - export https_proxy=http://192.168.1.43:7890 http_proxy=http://192.168.1.43:7890 all_proxy=socks5://192.168.1.43:7890
     - echo "\n>>>docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-    - docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker build --build-arg REGISTRY=$CI_REGISTRY . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker build ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG"
-    - docker build ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
+    - docker build --build-arg REGISTRY=$CI_REGISTRY ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker push ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG"
     - docker push ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
   # Run this job in a branch where a Dockerfile exists
