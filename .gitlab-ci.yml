@@ -49,7 +49,6 @@ docker-build:
   # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
     - export https_proxy=http://192.168.1.43:7890 http_proxy=http://192.168.1.43:7890 all_proxy=socks5://192.168.1.43:7890
-    - curl --max-time 3 ipinfo.io
     - echo "\n>>>docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
