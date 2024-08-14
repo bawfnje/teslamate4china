@@ -38,7 +38,7 @@ docker-build:
   # services:
   #   - docker:dind
   before_script:
-    - docker system info
+    # - docker system info
     - echo '$CI_REGISTRY_USER:'$CI_REGISTRY_USER',$CI_REGISTRY_PASSWORD:'$CI_REGISTRY_PASSWORD',$CI_REGISTRY:'$CI_REGISTRY
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - cat /etc/docker/daemon.json
