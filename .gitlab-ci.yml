@@ -45,12 +45,13 @@ docker-build:
     - docker tag $CI_REGISTRY/elixir:1.16.2-otp-26 elixir:1.16.2-otp-26
     - docker pull $CI_REGISTRY/debian:bookworm-slim
     - docker tag $CI_REGISTRY/debian:bookworm-slim debian:bookworm-slim
+    - docker images
   # Default branch leaves tag empty (= latest tag)
   # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
-    - ping 192.168.1.43 -c 4
-    - export https_proxy=http://192.168.1.43:7890 http_proxy=http://192.168.1.43:7890 all_proxy=socks5://192.168.1.43:7890
-    - apk add curl
+    # - ping 192.168.1.43 -c 4
+    # - export https_proxy=http://192.168.1.43:7890 http_proxy=http://192.168.1.43:7890 all_proxy=socks5://192.168.1.43:7890
+    # - apk add curl
     # - curl -sf --max-time 3 ipinfo.io
     - echo "\n>>>docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
