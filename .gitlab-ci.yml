@@ -42,17 +42,19 @@ docker-build:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - cat /etc/docker/daemon.json
     - docker pull $CI_REGISTRY/elixir:1.16.2-otp-26
+    - docker tag $CI_REGISTRY/elixir:1.16.2-otp-26 elixir:1.16.2-otp-26
     - docker pull $CI_REGISTRY/debian:bookworm-slim
+    - docker tag $CI_REGISTRY/debian:bookworm-slim debian:bookworm-slim
   # Default branch leaves tag empty (= latest tag)
   # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
     # - export https_proxy=http://192.168.1.43:7890 http_proxy=http://192.168.1.43:7890 all_proxy=socks5://192.168.1.43:7890
     - echo "\n>>>docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-    - docker build --build-arg REGISTRY=$CI_REGISTRY . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker build ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG"
-    - docker build --build-arg REGISTRY=$CI_REGISTRY ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
+    - docker build ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker push ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG"
     - docker push ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
   # Run this job in a branch where a Dockerfile exists
