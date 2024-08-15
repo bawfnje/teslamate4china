@@ -3,12 +3,14 @@ export PATH=$PATH:/usr/syno/sbin:/usr/syno/bin:/usr/local/sbin:/usr/local/bin
 echo "PATH: $PATH"
 echo "which docker:`which docker`"
 cd /volume1/docker/teslamate
-# sudo docker-compose stop
-echo "\n=========>docker-compose stop ==>over"
-sudo docker pull teslamate4china-service
-sudo docker pull teslamate4china-grafana
-echo "\n=========>docker rm teslamate4china_* ==>over"
-sudo docker-compose down teslamate4china-service
-sudo docker-compose up -d teslamate4china-service
-sudo docker-compose down teslamate4china-grafana
-sudo docker-compose up -d teslamate4china-grafana
+echo "\n>>>login -u admin -p makelt8485 i.bawfnje.work:8000"
+docker login -u admin -p makelt8485 i.bawfnje.work:8000
+echo "\n=========>docker-compose pull new ==>over"
+sudo docker-compose pull teslamate
+sudo docker-compose pull grafana
+echo "\n=========>docker restart teslamate ==>over"
+sudo docker-compose down teslamate
+sudo docker-compose up -d teslamate
+echo "\n=========>docker-compose restart grafana ==>over"
+sudo docker-compose down grafana
+sudo docker-compose up -d grafana
