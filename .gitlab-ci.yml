@@ -9,7 +9,8 @@
 # Use the official docker image.
 image: i.bawfnje.work:8000/docker:latest
 stages:
-  - delivery
+  - build
+  - deploy
 
 services:
   - docker:dind
@@ -31,7 +32,7 @@ variables:
 docker-build:
   # Use the official docker image.
   image: i.bawfnje.work:8000/docker:latest
-  stage: delivery
+  stage: build
   tags:
     - nas
   retry: 0
@@ -67,3 +68,16 @@ docker-build:
     - if: $CI_COMMIT_BRANCH
       exists:
         - Dockerfile
+deployment:
+   image: i.bawfnje.work:8000/docker:latest
+   stage: deploy
+   tags:
+     - nas
+   retry: 0
+   script:
+     - whoami
+     - pwd
+     - ls -al ./shell
+     - cat ~/.ssh/known_hosts | grep i.bawfnje.work | grep 5522
+     - ssh bawfnje@i.bawfnje.work -p 5522 -i ~/.ssh/id_rsa 'bash -s' < ./restartNas.sh
+     - echo "end deploy"
