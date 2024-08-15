@@ -77,7 +77,7 @@ deployment:
    script:
      - whoami
      - pwd
-     - ls -al ./shell
+     - ls -al
      - cat ~/.ssh/known_hosts | grep i.bawfnje.work | grep 5522
      - ssh bawfnje@i.bawfnje.work -p 5522 -i ~/.ssh/id_rsa 'bash -s' < ./restartNas.sh
      - echo "end deploy"
