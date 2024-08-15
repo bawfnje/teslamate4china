@@ -34,8 +34,8 @@ docker-build:
   tags:
     - nas
   retry: 0
-  # services:
-  #   - docker:dind
+  services:
+    - docker:dind
   before_script:
     - docker system info
     - echo '$CI_REGISTRY_USER:'$CI_REGISTRY_USER',$CI_REGISTRY_PASSWORD:'$CI_REGISTRY_PASSWORD',$CI_REGISTRY:'$CI_REGISTRY
