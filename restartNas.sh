@@ -9,8 +9,8 @@ echo "=========>docker-compose pull new ==>over"
 sudo docker-compose pull teslamate
 sudo docker-compose pull grafana
 echo "=========>docker restart teslamate ==>over"
-sudo docker-compose down teslamate
+sudo docker-compose stop teslamate
 sudo docker-compose up -d teslamate
 echo "=========>docker-compose restart grafana ==>over"
-sudo docker-compose down grafana
+sudo docker-compose stop grafana
 sudo docker-compose up -d grafana
