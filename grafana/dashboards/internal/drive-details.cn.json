@@ -67,7 +67,7 @@
     {
       "icon": "",
       "tags": [],
-      "title": "GpxExport",
+      "title": "导出GPX",
       "tooltip": "",
       "type": "link",
       "url": "[[base_url:raw]]/drive/$drive_id/gpx"
@@ -873,7 +873,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Elevation"
+                "value": "海拔"
               },
               {
                 "id": "color",
@@ -1091,7 +1091,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Inside Temperature"
+                "value": "车内温度"
               }
             ]
           },
@@ -1103,7 +1103,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Driver Temperature"
+                "value": "驾驶员体温"
               }
             ]
           },
@@ -1115,7 +1115,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Passenger Temperature"
+                "value": "乘客体温"
               }
             ]
           },
@@ -1135,7 +1135,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Climate"
+                "value": "空调"
               }
             ]
           },
@@ -1147,7 +1147,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Fan status"
+                "value": "风扇速度"
               },
               {
                 "id": "custom.axisPlacement",
@@ -1211,7 +1211,7 @@
           ]
         }
       ],
-      "title": "Temperatures",
+      "title": "温度",
       "type": "timeseries"
     },
     {
@@ -1289,7 +1289,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Front Left"
+                "value": "左前"
               }
             ]
           },
@@ -1305,7 +1305,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Front Right"
+                "value": "右前"
               }
             ]
           },
@@ -1321,7 +1321,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Rear Left"
+                "value": "左后"
               }
             ]
           },
@@ -1337,7 +1337,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Rear Right"
+                "value": "右后"
               }
             ]
           },
@@ -1353,7 +1353,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Front Left"
+                "value": "左前"
               }
             ]
           },
@@ -1369,7 +1369,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Front Right"
+                "value": "右前"
               }
             ]
           },
@@ -1385,7 +1385,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Rear Left"
+                "value": "左后"
               }
             ]
           },
@@ -1401,7 +1401,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Rear Right"
+                "value": "右后"
               }
             ]
           }
@@ -1466,7 +1466,7 @@
           ]
         }
       ],
-      "title": "Tire Pressure",
+      "title": "轮胎压力",
       "type": "timeseries"
     },
     {
@@ -1479,7 +1479,7 @@
       },
       "id": 36,
       "panels": [],
-      "title": "More Details",
+      "title": "更多详情",
       "type": "row"
     },
     {
@@ -1592,7 +1592,7 @@
           ]
         }
       ],
-      "title": "Odometer (From - To)",
+      "title": "里程表（从-到）",
       "type": "stat"
     },
     {
@@ -1687,7 +1687,7 @@
           ]
         }
       ],
-      "title": "Drive Duration",
+      "title": "驾驶时长",
       "type": "stat"
     },
     {
@@ -1770,7 +1770,7 @@
           }
         }
       ],
-      "title": "Selected Duration",
+      "title": "所选持续时间",
       "type": "stat"
     },
     {
@@ -1922,7 +1922,7 @@
           ]
         }
       ],
-      "title": "Speed Histogram ($speed_unit)",
+      "title": "速度柱状图 ($speed_unit)",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -1949,7 +1949,7 @@
       "fieldConfig": {
         "defaults": {
           "decimals": 2,
-          "displayName": "Distance",
+          "displayName": "距离",
           "mappings": [
             {
               "options": {
@@ -1981,7 +1981,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "lengthkm"
+                "value": "千米"
               }
             ]
           },
@@ -1993,7 +1993,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "lengthmi"
+                "value": "英里"
               }
             ]
           }
@@ -2058,7 +2058,7 @@
           ]
         }
       ],
-      "title": "Distance",
+      "title": "距离",
       "type": "stat"
     },
     {
@@ -2120,7 +2120,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH height as (SELECT\n\televation-LAG(elevation,1) over ( order BY\n\tdate ASC ) as diff\nFROM\n\tpositions\nWHERE\n car_id = $car_id AND\n $__timeFilter(date)\nORDER BY\n\tdate ASC\n\t)\nSELECT  ROUND(convert_m(sum(diff), '$alternative_length_unit')::numeric,0) || ' $alternative_length_unit'  as \"UP\" from height where diff > 0",
+          "rawSql": "WITH height as (SELECT\n\televation-LAG(elevation,1) over ( order BY\n\tdate ASC ) as diff\nFROM\n\tpositions\nWHERE\n car_id = $car_id AND\n $__timeFilter(date)\nORDER BY\n\tdate ASC\n\t)\nSELECT  ROUND(convert_m(sum(diff), '$alternative_length_unit')::numeric,0) || ' $alternative_length_unit'  as \"上升\" from height where diff > 0",
           "refId": "A",
           "select": [
             [
@@ -2171,7 +2171,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH height as (SELECT\n\televation-LAG(elevation,1) over ( order BY\n\tdate ASC ) as diff\nFROM\n\tpositions\nWHERE\n car_id = $car_id AND\n $__timeFilter(date)\nORDER BY\n\tdate ASC\n\t)\nSELECT ROUND(convert_m(sum(diff), '$alternative_length_unit')::numeric,0) || ' $alternative_length_unit' as \"DOWN\" from height where diff < 0",
+          "rawSql": "WITH height as (SELECT\n\televation-LAG(elevation,1) over ( order BY\n\tdate ASC ) as diff\nFROM\n\tpositions\nWHERE\n car_id = $car_id AND\n $__timeFilter(date)\nORDER BY\n\tdate ASC\n\t)\nSELECT ROUND(convert_m(sum(diff), '$alternative_length_unit')::numeric,0) || ' $alternative_length_unit' as \"下降\" from height where diff < 0",
           "refId": "B",
           "select": [
             [
@@ -2212,7 +2212,7 @@
           ]
         }
       ],
-      "title": "Elevation Summary",
+      "title": "海拔变化汇总",
       "type": "stat"
     },
     {
@@ -2306,7 +2306,7 @@
           ]
         }
       ],
-      "title": "Energy Used",
+      "title": "使用的能源",
       "type": "stat"
     },
     {
@@ -2349,7 +2349,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "Wh/km"
+                "value": "瓦时/千米"
               }
             ]
           },
@@ -2361,7 +2361,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "Wh/mi"
+                "value": "瓦时/英里"
               }
             ]
           }
@@ -2443,7 +2443,7 @@
           ]
         }
       ],
-      "title": "Consumption",
+      "title": "能耗",
       "type": "stat"
     },
     {
@@ -2479,7 +2479,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "velocitymph"
+                "value": "英里/小时"
               }
             ]
           },
@@ -2491,7 +2491,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "velocitykmh"
+                "value": "千米/小时"
               }
             ]
           }
@@ -2573,7 +2573,7 @@
           ]
         }
       ],
-      "title": "Avg. Speed",
+      "title": "平均速度",
       "type": "stat"
     }
   ],
@@ -2651,7 +2651,7 @@
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
         "hide": 0,
         "includeAll": false,
-        "label": "Car",
+        "label": "汽车",
         "multi": false,
         "name": "car_id",
         "options": [],
@@ -2758,13 +2758,13 @@
           "type": "grafana-postgresql-datasource",
           "uid": "TeslaMate"
         },
-        "definition": "SELECT  CASE WHEN '$length_unit' = 'km' THEN 'km/h' WHEN '$length_unit' = 'mi' THEN 'mph' END",
+        "definition": "SELECT  CASE WHEN '$length_unit' = 'km' THEN '千米/小时' WHEN '$length_unit' = 'mi' THEN '英里/小时' END",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "speed_unit",
         "options": [],
-        "query": "SELECT  CASE WHEN '$length_unit' = 'km' THEN 'km/h' WHEN '$length_unit' = 'mi' THEN 'mph' END",
+        "query": "SELECT  CASE WHEN '$length_unit' = 'km' THEN '千米/小时' WHEN '$length_unit' = 'mi' THEN '英里/小时' END",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

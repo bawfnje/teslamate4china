@@ -183,6 +183,10 @@
             },
             "properties": [
               {
+                "id": "custom.width",
+                "value": 75
+              },
+              {
                 "id": "unit",
                 "value": "percentunit"
               },
@@ -261,6 +265,10 @@
             },
             "properties": [
               {
+                "id": "custom.width",
+                "value": 75
+              },
+              {
                 "id": "decimals",
                 "value": 2
               }
@@ -281,6 +289,10 @@
                     "url": "d/TSmNYvRRkc/charges?from=${__data.fields.date_from}&to=${__data.fields.date_to}&var-car_id=$car_id"
                   }
                 ]
+              },
+              {
+                "id": "custom.width",
+                "value": 98
               }
             ]
           },
@@ -536,6 +548,18 @@
               {
                 "id": "custom.width",
                 "value": 137
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "每千瓦时的平均成本"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 151
               }
             ]
           }

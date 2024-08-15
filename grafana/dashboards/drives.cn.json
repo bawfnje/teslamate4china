@@ -147,7 +147,7 @@
                 "value": "auto"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 180
               }
             ]
@@ -171,8 +171,8 @@
                 "value": "center"
               },
               {
-                "id": "custom.width",
-                "value": 150
+                "id": "custom.minWidth",
+                "value": 120
               }
             ]
           },
@@ -195,7 +195,7 @@
                 "value": "center"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 150
               }
             ]
@@ -222,7 +222,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 90
               }
             ]
@@ -235,7 +235,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "度"
+                "value": "用电"
               },
               {
                 "id": "unit",
@@ -276,7 +276,7 @@
                 }
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 80
               }
             ]
@@ -306,7 +306,7 @@
                 "value": "auto"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 250
               }
             ]
@@ -336,7 +336,7 @@
                 "value": "auto"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 250
               }
             ]
@@ -363,7 +363,7 @@
                 "value": 1
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 70
               },
               {
@@ -412,7 +412,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 90
               },
               {
@@ -507,8 +507,8 @@
                 "value": 0
               },
               {
-                "id": "custom.width",
-                "value": 90
+                "id": "custom.minWidth",
+                "value": 100
               }
             ]
           },
@@ -557,7 +557,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 90
               }
             ]
@@ -584,7 +584,7 @@
                 "value": 1
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 70
               },
               {
@@ -637,7 +637,7 @@
                 "value": 0
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 90
               }
             ]
@@ -729,7 +729,7 @@
                 "value": 0
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 76
               }
             ]
@@ -752,7 +752,7 @@
                 "value": 0
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 65
               }
             ]
@@ -798,7 +798,7 @@
                 ]
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 5
               }
             ]
@@ -844,7 +844,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 90
               }
             ]
@@ -1483,7 +1483,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT id AS \"Drive ID\", start_date, end_date, distance, duration_min \nFROM drives \nWHERE car_id = $car_id AND end_date is null\nORDER BY start_date DESC",
+          "rawSql": "SELECT id AS \"行程编号\", start_date AS \"开始时间\", end_date AS \"结束时间\", distance AS \"距离\", duration_min AS \"持续时间(分钟)\" \nFROM drives \nWHERE car_id = $car_id AND end_date is null\nORDER BY start_date DESC",
           "refId": "A",
           "select": [
             [

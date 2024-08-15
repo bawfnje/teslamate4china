@@ -560,7 +560,7 @@
           ]
         }
       ],
-      "title": "Cost",
+      "title": "费用",
       "type": "stat"
     },
     {
@@ -746,7 +746,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT  coalesce(cp_added, c_added) AS \"Added\"\r\nFROM (SELECT cp.charge_energy_added AS cp_added from charging_processes cp where id = $charging_process_id) cp\r\nCROSS JOIN (SELECT max(charge_energy_added) AS c_added FROM charges WHERE charging_process_id=$charging_process_id) c",
+          "rawSql": "SELECT  coalesce(cp_added, c_added) AS \"新增\"\r\nFROM (SELECT cp.charge_energy_added AS cp_added from charging_processes cp where id = $charging_process_id) cp\r\nCROSS JOIN (SELECT max(charge_energy_added) AS c_added FROM charges WHERE charging_process_id=$charging_process_id) c",
           "refId": "A",
           "select": [
             [
@@ -795,7 +795,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT  charge_energy_used AS \"Used\"\r\nFROM  charging_processes where id = $charging_process_id",
+          "rawSql": "SELECT  charge_energy_used AS \"使用\"\r\nFROM  charging_processes where id = $charging_process_id",
           "refId": "B",
           "sql": {
             "columns": [
@@ -824,7 +824,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT  CASE WHEN charge_energy_used IS NULL THEN NULL ELSE LEAST(charge_energy_added / NULLIF(charge_energy_used, 0), 1.0) * 100 END AS \"Efficiency\"\r\nFROM  charging_processes where id = $charging_process_id",
+          "rawSql": "SELECT  CASE WHEN charge_energy_used IS NULL THEN NULL ELSE LEAST(charge_energy_added / NULLIF(charge_energy_used, 0), 1.0) * 100 END AS \"效率\"\r\nFROM  charging_processes where id = $charging_process_id",
           "refId": "C",
           "sql": {
             "columns": [
@@ -845,7 +845,7 @@
           }
         }
       ],
-      "title": "Charge Energy",
+      "title": "充电能量",
       "type": "stat"
     },
     {
@@ -1091,7 +1091,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT start_battery_level AS \"Start\" FROM  charging_processes WHERE id=$charging_process_id",
+          "rawSql": "SELECT start_battery_level AS \"开始\" FROM  charging_processes WHERE id=$charging_process_id",
           "refId": "Start",
           "select": [
             [
@@ -1140,7 +1140,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT end_battery_level - start_battery_level AS \"Added\" FROM  charging_processes WHERE id=$charging_process_id",
+          "rawSql": "SELECT end_battery_level - start_battery_level AS \"增加\" FROM  charging_processes WHERE id=$charging_process_id",
           "refId": "Added",
           "sql": {
             "columns": [
@@ -1169,7 +1169,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT end_battery_level AS \"End\" FROM  charging_processes WHERE id=$charging_process_id\r\n",
+          "rawSql": "SELECT end_battery_level AS \"结束\" FROM  charging_processes WHERE id=$charging_process_id\r\n",
           "refId": "End",
           "sql": {
             "columns": [
@@ -1190,7 +1190,7 @@
           }
         }
       ],
-      "title": "Battery Level",
+      "title": "电池电量",
       "type": "stat"
     },
     {
@@ -1214,7 +1214,7 @@
               }
             ]
           },
-          "unit": "kwatt"
+          "unit": "千瓦"
         },
         "overrides": []
       },
@@ -1294,7 +1294,7 @@
           ]
         }
       ],
-      "title": "Average Power",
+      "title": "平均功率",
       "type": "stat"
     },
     {
@@ -1422,7 +1422,7 @@
           ]
         }
       ],
-      "title": "Average Outdoor Temperature",
+      "title": "车外平均温度",
       "type": "stat"
     },
     {
@@ -1457,7 +1457,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "lengthkm"
+                "value": "千米"
               }
             ]
           },
@@ -1469,7 +1469,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "lengthmi"
+                "value": "英里"
               }
             ]
           },
@@ -1481,7 +1481,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Start"
+                "value": "结束"
               }
             ]
           },
@@ -1493,7 +1493,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Added"
+                "value": "新增"
               }
             ]
           },
@@ -1505,7 +1505,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "End"
+                "value": "结束"
               }
             ]
           }
@@ -1715,7 +1715,7 @@
           ]
         }
       ],
-      "title": "Ranges ($preferred_range)",
+      "title": "行驶里程 ($preferred_range)",
       "type": "stat"
     },
     {
@@ -1804,15 +1804,15 @@
         "series": [
           {
             "pointColor": {},
-            "x": "SOC [%]",
-            "y": "Power [kW]"
+            "x": "电量 [%]",
+            "y": "功率 [千瓦]"
           },
           {
             "pointColor": {
               "fixed": "blue"
             },
-            "x": "avg SOC [%]",
-            "y": "avg Power [kW]"
+            "x": "平均电量 [%]",
+            "y": "平均功率 [千瓦]"
           }
         ],
         "seriesMapping": "manual",
@@ -1835,7 +1835,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  battery_level as \"SOC [%]\",\n  charger_power  as \"Power [kW]\"\nFROM\n  charges c\njoin\n  charging_processes p ON p.id = c.charging_process_id \nWHERE\n  $__timeFilter(date)\n AND p.car_id = $car_id\n AND charger_power > 0\nORDER BY\n  date ASC",
+          "rawSql": "SELECT\n  battery_level as \"电量 [%]\",\n  charger_power  as \"功率 [千瓦]\"\nFROM\n  charges c\njoin\n  charging_processes p ON p.id = c.charging_process_id \nWHERE\n  $__timeFilter(date)\n AND p.car_id = $car_id\n AND charger_power > 0\nORDER BY\n  date ASC",
           "refId": "A",
           "select": [
             [
@@ -1883,7 +1883,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  battery_level as \"avg SOC [%]\",\n  avg(charger_power) as \"avg Power [kW]\"\nFROM\n  charges c\njoin\n  charging_processes p ON p.id = c.charging_process_id \nWHERE\n  $__timeFilter(date)\n AND p.car_id = $car_id\n AND charger_power > 0\nGROUP BY\n  battery_level, fast_charger_present\nORDER BY\n  battery_level ASC  ",
+          "rawSql": "SELECT\n  battery_level as \"平均电量 [%]\",\n  avg(charger_power) as \"平均功率 [千瓦]\"\nFROM\n  charges c\njoin\n  charging_processes p ON p.id = c.charging_process_id \nWHERE\n  $__timeFilter(date)\n AND p.car_id = $car_id\n AND charger_power > 0\nGROUP BY\n  battery_level, fast_charger_present\nORDER BY\n  battery_level ASC  ",
           "refId": "B",
           "select": [
             [
