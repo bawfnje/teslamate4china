@@ -1,3 +1,7 @@
+echo "Running main script as $(whoami)"
+export PATH=$PATH:/usr/syno/sbin:/usr/syno/bin:/usr/local/sbin:/usr/local/bin
+echo "PATH: $PATH"
+echo "which docker:`which docker`"
 cd /volume1/docker/teslamate
 docker-compose stop
 echo "\n=========>docker-compose stop ==>over"
