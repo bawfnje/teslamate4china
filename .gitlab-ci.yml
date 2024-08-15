@@ -25,6 +25,7 @@ variables:
   DOCKER_DRIVER: overlay
   DOCKER_TLS_CERTDIR: ""
   SPRING_PROFILES_ACTIVE: prd
+  DOCKER_OPTS: "--insecure-registry i.bawfnje.work:8000"
   DOCKER_AUTH_CONFIG: '{"auths": {"i.bawfnje.work:8000": {"auth": "YWRtaW46bWFrZWx0ODQ4NQ=="}}}'
 
 docker-build:
