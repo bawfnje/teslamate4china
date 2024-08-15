@@ -3,21 +3,21 @@ export PATH=$PATH:/usr/syno/sbin:/usr/syno/bin:/usr/local/sbin:/usr/local/bin
 echo "PATH: $PATH"
 echo "which docker:`which docker`"
 cd /volume1/docker/teslamate
-docker-compose stop
+sudo docker-compose stop
 echo "\n=========>docker-compose stop ==>over"
-docker rm teslamate4china-service
-# docker rm teslamate4china_database
-docker rm teslamate4china-grafana
-# docker rm teslamate4china_mosquitto
+sudo docker rm teslamate4china-service
+# sudo docker rm teslamate4china_database
+sudo docker rm teslamate4china-grafana
+# sudo docker rm teslamate4china_mosquitto
 echo "\n=========>docker rm teslamate4china_* ==>over"
-docker image rm teslamate4china-teslamate4china
-docker image rm teslamate4china-grafana
-rm -rf ./data/teslamate-grafana-data
+sudo docker image rm teslamate4china-teslamate4china
+sudo docker image rm teslamate4china-grafana
+sudo rm -rf ./data/teslamate-grafana-data
 echo "\n=========>docker image rm teslamate4china_teslamate4china ==>over"
-# docker volume rm teslamate4china_teslamate-grafana-data
-# docker volume rm teslamate4china_teslamate-db
-# docker volume rm teslamate4china_mosquitto-conf
-# docker volume rm teslamate4china_mosquitto-data
+# sudo docker volume rm teslamate4china_teslamate-grafana-data
+# sudo docker volume rm teslamate4china_teslamate-db
+# sudo docker volume rm teslamate4china_mosquitto-conf
+# sudo docker volume rm teslamate4china_mosquitto-data
 # echo "=========>docker volume rm teslamate4china_teslamate-grafana-data ==>over"
 echo "\n=========>docker-compose up -d ==>start"
-docker-compose up -d
+sudo docker-compose up -d
