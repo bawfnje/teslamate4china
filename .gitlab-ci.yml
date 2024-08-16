@@ -55,12 +55,14 @@ docker-build:
     # - export https_proxy=http://192.168.1.43:7890 http_proxy=http://192.168.1.43:7890 all_proxy=socks5://192.168.1.43:7890
     # - apk add curl
     # - curl -sf --max-time 3 ipinfo.io
+    - set -x
+    - echo "DOCKER_OPTS:"$DOCKER_OPTS
     - echo "\n>>>docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-    - docker build . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker build --progress=plain . --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker build ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG"
-    - docker build ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
+    - docker build --progress=plain ./grafana/ --pull -t ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
     - echo "\n>>>docker push ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG"
     - docker push ${CI_REGISTRY_IMAGE}_grafana:$CI_COMMIT_REF_SLUG
   # Run this job in a branch where a Dockerfile exists
