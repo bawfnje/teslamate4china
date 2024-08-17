@@ -34,7 +34,7 @@ docker-build:
   image: i.bawfnje.work:8000/docker:latest
   stage: build
   tags:
-    - nas
+    - mac
   retry: 0
   services:
     - name: docker:dind
