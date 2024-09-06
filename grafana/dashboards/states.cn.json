@@ -1,4 +1,31 @@
 {
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-postgresql-datasource",
+      "name": "PostgreSQL",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -19,18 +46,35 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1642780620514,
+  "id": null,
   "links": [
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "01.概览<<",
       "tooltip": "",
       "type": "link",
-      "url": "[[base_url:raw]]"
+      "url": "/d/kOuP_Fggzc/"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "特斯拉"
+      ],
+      "title": "仪表板",
+      "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>03.统计信息",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/1EZnXszMkc/"
     },
     {
       "asDropdown": true,
@@ -38,8 +82,16 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "特斯拉伙伴",
+      "tooltip": "",
+      "type": "link",
+      "url": "[[base_url:raw]]"
     }
   ],
   "liveNow": false,
@@ -59,7 +111,10 @@
       "type": "row"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "description": "只区分在线、离线和睡眠。",
       "fieldConfig": {
         "defaults": {
@@ -84,7 +139,6 @@
         "y": 1
       },
       "id": 2,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -103,9 +157,11 @@
           "fields": "/^time$/",
           "values": true
         },
-        "textMode": "value"
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "format": "table",
@@ -133,14 +189,21 @@
               "params": [],
               "type": "macro"
             }
-          ]
+          ],
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          }
         }
       ],
       "title": "最近一次状态更新时间",
       "type": "stat"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "description": "只区分在线、离线和睡眠。",
       "fieldConfig": {
         "defaults": {
@@ -205,7 +268,6 @@
         "y": 1
       },
       "id": 6,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -224,9 +286,11 @@
           "fields": "/^state$/",
           "values": true
         },
-        "textMode": "value"
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "format": "table",
@@ -254,14 +318,21 @@
               "params": [],
               "type": "macro"
             }
-          ]
+          ],
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          }
         }
       ],
       "title": "当前状态",
       "type": "stat"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "description": "基于曾经记录的任何数据。",
       "fieldConfig": {
         "defaults": {
@@ -298,7 +369,6 @@
         "y": 1
       },
       "id": 8,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -317,9 +387,11 @@
           "fields": "",
           "values": true
         },
-        "textMode": "value"
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "format": "time_series",
@@ -347,14 +419,21 @@
               "params": [],
               "type": "macro"
             }
-          ]
+          ],
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          }
         }
       ],
       "title": "停放时间比例(%)",
       "type": "stat"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -362,7 +441,14 @@
           },
           "custom": {
             "fillOpacity": 100,
-            "lineWidth": 0
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
           },
           "mappings": [
             {
@@ -427,20 +513,23 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 4
       },
       "id": 14,
       "options": {
         "alignValue": "center",
         "legend": {
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "mergeValues": true,
         "rowHeight": 0.9,
         "showValue": "auto",
         "tooltip": {
-          "mode": "single"
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
@@ -470,7 +559,11 @@
               "params": [],
               "type": "macro"
             }
-          ]
+          ],
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          }
         }
       ],
       "title": "状态",
@@ -478,20 +571,18 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 36,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
-    "tesla"
+    "特斯拉"
   ],
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
         "hide": 2,
         "includeAll": true,
@@ -510,12 +601,11 @@
         "useTags": false
       },
       {
-        "current": {
-          "selected": false,
-          "text": "http://localhost:4000",
-          "value": "http://localhost:4000"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "select base_url from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -539,6 +629,7 @@
     "from": "now-2d",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "refresh_intervals": [
       "5s",

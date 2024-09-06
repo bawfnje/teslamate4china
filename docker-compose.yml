@@ -1,10 +1,10 @@
 version: "3"
 
 services:
+
   teslamate4china:
     container_name: teslamate4china-service
-    # image: i.bawfnje.work:8000/teslamate4china:latest
-    # image: teslamate4china-service:latest
+    #image: i.bawfnje.work:8000/teslamate4china:latest
     build: ./
     # restart: always
     environment:
@@ -14,28 +14,32 @@ services:
       - DATABASE_NAME=teslamate
       - DATABASE_HOST=database
       - MQTT_HOST=mosquitto
+      - TZ=Asia/Shanghai
     ports:
       - 4000:4000
     volumes:
-      - ./import:/opt/app/import
+      - ./shell/data/import:/opt/app/import
+      - /Users/chenweiming/dev/myProfile/alias_profile:/home/nonroot/.bash_profile:ro
+      - /Users/chenweiming/dev/myProfile/bashrc:/home/nonroot/.bashrc:ro
     cap_drop:
       - all
 
   database:
-    container_name: teslamate4china-database
+    container_name: teslamate4china-postgres
     image: postgres:13
     # restart: always
     environment:
       - POSTGRES_USER=teslamate
       - POSTGRES_PASSWORD=Makelt8485secret #insert your secure database password!
       - POSTGRES_DB=teslamate
+      - TZ=Asia/Shanghai
     volumes:
       - ./shell/data/teslamate-db:/var/lib/postgresql/data
-
+    ports:
+    - 5432:5432
   grafana:
     container_name: teslamate4china-grafana
-    # image: i.bawfnje.work:8000/teslamate4china_grafana:latest
-    # image: teslamate4china-grafana:latest
+    #image: i.bawfnje.work:8000/teslamate4china_grafana:latest
     build: ./grafana/
     # restart: always
     environment:
@@ -47,10 +51,14 @@ services:
       - GF_SECURITY_ADMIN_USER=bawfnje
       - GF_SECURITY_ADMIN_PASSWORD=Makelt8485
       - GF_AUTH_ANONYMOUS_ENABLED=false
+      - TZ=Asia/Shanghai
+      - GF_DEFAULT_LOCALE=zh-CN
     ports:
       - 3000:3000
     volumes:
       - ./shell/data/teslamate-grafana-data:/var/lib/grafana
+      - /Users/chenweiming/dev/myProfile/alias_profile:/home/grafana/.bash_profile:ro
+      - /Users/chenweiming/dev/myProfile/bashrc:/home/grafana/.bashrc:ro
 
   mosquitto:
     container_name: teslamate4china-proxy
@@ -60,8 +68,8 @@ services:
     # ports:
     #   - 1883:1883
     volumes:
-      - mosquitto-conf:/mosquitto/config
-      - mosquitto-data:/mosquitto/data
+      - ./shell/data/mosquitto-conf:/mosquitto/config
+      - ./shell/data/mosquitto-data:/mosquitto/data
 
 volumes:
   teslamate-db:

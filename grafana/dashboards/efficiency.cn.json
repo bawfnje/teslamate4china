@@ -1,9 +1,39 @@
 {
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-postgresql-datasource",
+      "name": "PostgreSQL",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -12,18 +42,35 @@
       }
     ]
   },
-  "editable": false,
-  "gnetId": null,
+  "editable": true,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1598013087999,
+  "id": null,
   "links": [
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "24.充电明细<<",
       "tooltip": "",
       "type": "link",
-      "url": "[[base_url:raw]]"
+      "url": "/d/TSmNYvRRkc/"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "特斯拉"
+      ],
+      "title": "仪表板",
+      "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>90.更新",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/IiC07mgWzc/"
     },
     {
       "asDropdown": true,
@@ -31,14 +78,25 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "特斯拉伙伴",
+      "tooltip": "",
+      "type": "link",
+      "url": "[[base_url:raw]]"
     }
   ],
   "panels": [
     {
       "collapsed": false,
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -48,25 +106,27 @@
       "id": 10,
       "panels": [],
       "repeat": "car_id",
-      "scopedVars": {
-        "car_id": {
-          "selected": true,
-          "text": "1",
-          "value": "1"
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
+          "refId": "A"
         }
-      },
+      ],
       "title": "$car_id",
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -87,7 +147,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "Wh/km"
+                "value": "瓦时/千米"
               }
             ]
           },
@@ -112,8 +172,6 @@
         "y": 1
       },
       "id": 4,
-      "interval": null,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -132,18 +190,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "value"
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.2.1",
-      "scopedVars": {
-        "car_id": {
-          "selected": true,
-          "text": "1",
-          "value": "1"
-        }
-      },
+      "pluginVersion": "11.0.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -172,20 +229,18 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "消耗量（净）",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -206,7 +261,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "Wh/km"
+                "value": "瓦时/千米"
               }
             ]
           },
@@ -231,8 +286,6 @@
         "y": 1
       },
       "id": 8,
-      "interval": null,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -251,18 +304,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "value"
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.2.1",
-      "scopedVars": {
-        "car_id": {
-          "selected": true,
-          "text": "1",
-          "value": "1"
-        }
-      },
+      "pluginVersion": "11.0.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -291,20 +343,18 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "消耗量（毛）",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -337,7 +387,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "米"
+                "value": "英里"
               }
             ]
           }
@@ -350,8 +400,6 @@
         "y": 1
       },
       "id": 6,
-      "interval": null,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -370,18 +418,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "value"
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.2.1",
-      "scopedVars": {
-        "car_id": {
-          "selected": true,
-          "text": "1",
-          "value": "1"
-        }
-      },
+      "pluginVersion": "11.0.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -410,18 +457,22 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "记录的距离",
       "type": "stat"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
-            "filterable": false
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "max": 100,
@@ -496,8 +547,11 @@
                 "value": 1
               },
               {
-                "id": "custom.displayMode",
-                "value": "lcd-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "lcd",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "thresholds",
@@ -533,11 +587,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "消耗"
+                "value": "能效"
               },
               {
                 "id": "unit",
-                "value": "Wh/km"
+                "value": "瓦时/千米"
               },
               {
                 "id": "custom.width",
@@ -553,7 +607,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "消耗"
+                "value": "能效"
               },
               {
                 "id": "unit",
@@ -597,7 +651,7 @@
               },
               {
                 "id": "unit",
-                "value": "米"
+                "value": "英里"
               },
               {
                 "id": "custom.width",
@@ -648,14 +702,22 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 12,
         "w": 24,
         "x": 0,
         "y": 4
       },
       "id": 2,
-      "links": [],
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -664,16 +726,13 @@
           }
         ]
       },
-      "pluginVersion": "7.2.1",
-      "scopedVars": {
-        "car_id": {
-          "selected": true,
-          "text": "1",
-          "value": "1"
-        }
-      },
+      "pluginVersion": "11.0.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -702,20 +761,18 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "温度-效率",
+      "title": "温度-能效",
       "type": "table"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -736,7 +793,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "Wh/km"
+                "value": "瓦时/千米"
               }
             ]
           },
@@ -756,13 +813,11 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 2,
+        "w": 3,
         "x": 0,
         "y": 16
       },
       "id": 14,
-      "interval": null,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -781,18 +836,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "value"
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.2.1",
-      "scopedVars": {
-        "car_id": {
-          "selected": true,
-          "text": "1",
-          "value": "1"
-        }
-      },
+      "pluginVersion": "11.0.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -821,18 +875,22 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "当前$preferred_range(额定)效率",
+      "title": "当前$preferred_range效率",
       "type": "stat"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
-            "filterable": false
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -858,7 +916,7 @@
               },
               {
                 "id": "unit",
-                "value": "Wh/km"
+                "value": "瓦时/千米"
               }
             ]
           },
@@ -882,24 +940,30 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 11,
-        "x": 2,
+        "w": 10,
+        "x": 3,
         "y": 16
       },
       "id": 12,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true
       },
-      "pluginVersion": "7.2.1",
-      "scopedVars": {
-        "car_id": {
-          "selected": true,
-          "text": "1",
-          "value": "1"
-        }
-      },
+      "pluginVersion": "11.0.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -928,18 +992,22 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "导出的理想效率",
+      "title": "推导出的理想效率",
       "type": "table"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
-            "filterable": false
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -961,7 +1029,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "Wh/km"
+                "value": "瓦时/千米"
               },
               {
                 "id": "displayName",
@@ -995,18 +1063,24 @@
       },
       "id": 15,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true
       },
-      "pluginVersion": "7.2.1",
-      "scopedVars": {
-        "car_id": {
-          "selected": true,
-          "text": "1",
-          "value": "1"
-        }
-      },
+      "pluginVersion": "11.0.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -1035,27 +1109,22 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "导出的额定效率",
+      "title": "推导出的额定效率",
       "type": "table"
     }
   ],
-  "schemaVersion": 26,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
-    "tesla"
+    "特斯拉"
   ],
   "templating": {
     "list": [
       {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "全部",
-          "value": "$__all"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
         "hide": 2,
         "includeAll": true,
@@ -1069,19 +1138,16 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "C",
-          "value": "C"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "select unit_of_temperature from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -1095,19 +1161,16 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "km",
-          "value": "千米"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "select unit_of_length from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -1121,23 +1184,19 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "ideal",
-          "value": "ideal"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "select preferred_range from settings limit 1;",
         "hide": 2,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "preferred_range",
         "options": [],
@@ -1147,21 +1206,19 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1",
           "value": "1"
         },
         "hide": 0,
         "includeAll": false,
-        "label": "min. distance per drive",
+        "label": "每次行驶的最小距离",
         "multi": false,
         "name": "min_distance",
         "options": [
@@ -1197,13 +1254,11 @@
         "type": "custom"
       },
       {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "http://localhost:4000",
-          "value": "http://localhost:4000"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "select base_url from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -1217,7 +1272,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1228,6 +1282,7 @@
     "from": "now-6h",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "hidden": true,
     "refresh_intervals": [
@@ -1255,7 +1310,8 @@
     ]
   },
   "timezone": "",
-  "title": "25.效率",
+  "title": "25.能效",
   "uid": "fu4SiQgWzc",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }

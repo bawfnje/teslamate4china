@@ -13,18 +13,19 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
   "iteration": 1602596446244,
   "links": [
     {
-      "icon": "dashboard",
-      "tags": [],
-      "title": "特斯拉助手",
-      "tooltip": "",
-      "type": "link",
-      "url": "[[base_url:raw]]"
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "特斯拉"
+      ],
+      "title": "仪表板",
+      "type": "dashboards"
     },
     {
       "asDropdown": true,
@@ -32,8 +33,16 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "特斯拉伙伴",
+      "tooltip": "",
+      "type": "link",
+      "url": "[[base_url:raw]]"
     }
   ],
   "panels": [
@@ -133,6 +142,18 @@
           },
           {
             "matcher": {
+              "id": "byRegexp",
+              "options": ".*_mi"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "mi"
+              }
+            ]
+          },
+          {
+            "matcher": {
               "id": "byName",
               "options": "start_date_ts"
             },
@@ -156,18 +177,6 @@
               {
                 "id": "displayName",
                 "value": "Start Odometer"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*_mi"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "mi"
               }
             ]
           },

@@ -1,4 +1,25 @@
 {
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-postgresql-datasource",
+      "name": "PostgreSQL",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -18,18 +39,35 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1642779900099,
+  "id": null,
   "links": [
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "21.电量变化<<",
       "tooltip": "",
       "type": "link",
-      "url": "[[base_url:raw]]"
+      "url": "/d/WopVO_mgzc/"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "特斯拉"
+      ],
+      "title": "仪表板",
+      "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>23.充电统计",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/-pkIkhmRzc/"
     },
     {
       "asDropdown": true,
@@ -37,8 +75,16 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "特斯拉伙伴",
+      "tooltip": "",
+      "type": "link",
+      "url": "[[base_url:raw]]"
     }
   ],
   "liveNow": false,
@@ -59,6 +105,10 @@
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -66,7 +116,10 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto"
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -112,7 +165,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 180
               }
             ]
@@ -135,7 +188,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 180
               }
             ]
@@ -162,7 +215,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 90
               }
             ]
@@ -186,8 +239,10 @@
                 "value": 1
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-text"
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
               },
               {
                 "id": "custom.align"
@@ -236,8 +291,8 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 170
+                "id": "custom.minWidth",
+                "value": 190
               }
             ]
           },
@@ -279,8 +334,10 @@
                 "value": "percentunit"
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-text"
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
               },
               {
                 "id": "custom.align"
@@ -310,7 +367,7 @@
                 "value": 0
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 75
               }
             ]
@@ -337,7 +394,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 100
               }
             ]
@@ -364,8 +421,8 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 100
+                "id": "custom.minWidth",
+                "value": 80
               }
             ]
           },
@@ -391,8 +448,8 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 110
+                "id": "custom.minWidth",
+                "value": 90
               }
             ]
           },
@@ -418,7 +475,7 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 90
               }
             ]
@@ -441,8 +498,8 @@
                 "id": "custom.align"
               },
               {
-                "id": "custom.width",
-                "value": 80
+                "id": "custom.minwidth",
+                "value": 95
               }
             ]
           },
@@ -490,7 +547,7 @@
                 ]
               },
               {
-                "id": "custom.width",
+                "id": "custom.minWidth",
                 "value": 5
               }
             ]
@@ -498,15 +555,16 @@
         ]
       },
       "gridPos": {
-        "h": 9,
+        "h": 23,
         "w": 24,
         "x": 0,
         "y": 1
       },
       "id": 2,
-      "links": [],
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -515,11 +573,14 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "alias": "",
-          "datasource": "TeslaMate",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -546,7 +607,6 @@
           ]
         }
       ],
-      "datasource": "TeslaMate",
       "title": "电量流失",
       "transformations": [
         {
@@ -559,20 +619,18 @@
       "type": "table"
     }
   ],
-  "schemaVersion": 36,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
-    "tesla"
+    "特斯拉"
   ],
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
         "hide": 2,
         "includeAll": true,
@@ -592,7 +650,7 @@
       },
       {
         "current": {
-          "tags": [],
+          "selected": false,
           "text": "6",
           "value": "6"
         },
@@ -643,12 +701,11 @@
         "type": "custom"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "km",
-          "value": "千米"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "select unit_of_length from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -667,12 +724,11 @@
         "useTags": false
       },
       {
-        "current": {
-          "selected": false,
-          "text": "ideal",
-          "value": "ideal"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "select preferred_range from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -690,12 +746,11 @@
         "useTags": false
       },
       {
-        "current": {
-          "selected": false,
-          "text": "http://localhost:4000",
-          "value": "http://localhost:4000"
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
         },
-        "datasource": "TeslaMate",
         "definition": "select base_url from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -716,9 +771,10 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-1M",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "refresh_intervals": [
       "5s",

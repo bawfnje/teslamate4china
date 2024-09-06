@@ -3,7 +3,7 @@ apiVersion: 1
 providers:
 - name: 'teslamate'
   orgId: 1
-  folder: TeslaMate
+  folder: 特斯拉伙伴
   folderUid: Nr4ofiDZk
   type: file
   disableDeletion: false
@@ -13,7 +13,7 @@ providers:
     path: /dashboards
 - name: 'teslamate_internal'
   orgId: 1
-  folder: Internal
+  folder: 内部
   folderUid: Nr5ofiDZk
   type: file
   disableDeletion: false
@@ -23,7 +23,7 @@ providers:
     path: /dashboards_internal
 - name: 'teslamate_reports'
   orgId: 1
-  folder: Reports
+  folder: 报表
   folderUid: Nr6ofiDZk
   type: file
   disableDeletion: false

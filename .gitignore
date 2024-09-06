@@ -55,15 +55,26 @@ config/*.env
 .eclipse/
 .elixir_ls/
 /.project
+.vscode/
 
 # Mac files
 .DS_Store
 
 /priv/plts/*.plt
 /priv/plts/*.plt.hash
+
+# Nix files
+/.direnv
+/.devenv
+/tzdata/
+/result
+
 /shell/docker-compose4china.yml
 /shell/1.restartTeslmaMate4china.sh
 /shell/.htpasswd
 /push.sh
+
+# Used during tests
+/tmp/
 /push_grafana.sh
 /shell

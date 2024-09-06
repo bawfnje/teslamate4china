@@ -1,5 +1,5 @@
-# TeslaMate-特斯拉助手
-正在汉化中...
+# TeslaMate-特斯拉伙伴
+持续汉化中...
 
 [![CI](https://github.com/teslamate-org/teslamate/actions/workflows/elixir.yml/badge.svg)](https://github.com/teslamate-org/teslamate/actions/workflows/elixir.yml)
 [![Publish Docker images](https://github.com/teslamate-org/teslamate/actions/workflows/buildx.yml/badge.svg)](https://github.com/teslamate-org/teslamate/actions/workflows/buildx.yml)
@@ -11,10 +11,13 @@
 
 为您的特斯拉提供功能强大的自托管数据记录器。
 
-- 用[**Elixir**](https://elixir-lang.org/)书写
+- 用[**Elixir**](https://elixir-lang.org/)语言开发
 - 数据存储在**Postgres**数据库中
 - 使用**Grafana进行可视化和数据分析**
 - 车辆数据发布到本地**MQTT**代理
+- 支持Grafana在中国显示地图及地址获取
+- 全汉化Grafana菜单及内容，及英文菜单保留对照
+- Grafana菜单优化排序及链式访问
 
 ## 文档
 
@@ -35,7 +38,8 @@
 - [已安装更新的历史记录](https://docs.teslamate.org/docs/screenshots#updates)
 - [查看您的汽车何时在线或睡着](https://docs.teslamate.org/docs/screenshots#states)
 - [终身驾驶地图](https://docs.teslamate.org/docs/screenshots/#lifetime-driving-map)
-- [访问的地址](https://docs.teslamate.org/docs/screenshots/#visited-addresses)
+- [到访地图](https://docs.teslamate.org/docs/screenshots/#visited-addresses)
+- [电池健康](https://docs.teslamate.org/docs/screenshots/#battery-health)
 
 **概要**
 
@@ -43,6 +47,7 @@
 - 没有额外的吸血鬼排放：汽车会尽快入睡
 - 自动地址查找
 - 轻松集成到家庭助理（通过MQTT）
+- 轻松集成到Node Red&Telegram（通过MQTT）
 - 用于创建自定义位置的地理围栏功能
 - 每个特斯拉账户支持多辆车
 - 费用成本跟踪
@@ -50,8 +55,11 @@
 
 ## 截图
 
-<!-- ![驱动器详细信息](/website/static/screenshots/drive.png)
-![网页界面](/website/static/screenshots/web_interface.png) -->
+![驱动器详细信息](/website/static/screenshots/drive.png)
+
+![网页界面](/website/static/screenshots/web_interface.png) 
+
+![电池健康状况](/website/static/screenshots/battery-health.png)
 
 <p align="center">
   <strong><a href="https://docs.teslamate.org/docs/screenshots">更多屏幕截图</a></strong>
@@ -59,6 +67,9 @@
 
 ## 贡献
 
-- 作者: 阿德里安·库普夫 – [贡献者列表](https://github.com/teslamate-org/teslamate/graphs/contributors)
+- 初始作者: 阿德里安·库普夫 – [贡献者列表](https://github.com/teslamate-org/teslamate/graphs/contributors)
+- 贡献者名单:
+<a href="https://github.com/teslamate-org/teslamate/graphs/contributors"><img src="https://contrib.rocks/image?repo=teslamate-org/teslamate"  alt="TeslaMate贡献者"/></a>
 - 根据MIT许可证分发
-- 汉化: 陈伟明
+- 汉化: 陈伟明(bawfnje)
+

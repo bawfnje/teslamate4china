@@ -138,7 +138,7 @@ function createMap(opts) {
   const map = new M(opts.elId != null ? `map_${opts.elId}` : "map", opts);
 
   const osm = new TileLayer(
-    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "https://tile.dhuar.com/{z}/{x}/{y}.png",
     { maxZoom: 19 }
   );
 
@@ -184,8 +184,8 @@ export const SimpleMap = {
 
     map.removeControl(map.zoomControl);
 
-    map.on('mouseover', function(e) { map.addControl( map.zoomControl ); });
-    map.on('mouseout', function(e) { map.removeControl( map.zoomControl ); });
+    map.on('mouseover', function (e) { map.addControl(map.zoomControl); });
+    map.on('mouseout', function (e) { map.removeControl(map.zoomControl); });
 
     if (isArrow) {
       const setView = () => {

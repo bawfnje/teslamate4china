@@ -1,4 +1,25 @@
 {
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-postgresql-datasource",
+      "name": "PostgreSQL",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -11,12 +32,15 @@
         "type": "dashboard"
       },
       {
-        "datasource": "TeslaMate",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
+        },
         "enable": false,
         "hide": false,
         "iconColor": "rgba(255, 96, 96, 1)",
         "limit": 100,
-        "name": "已充电",
+        "name": "显示充电",
         "rawQuery": "SELECT\n$__time(start_date),\nend_date as timeend,\nconcat('Charged: ',round(cast(charge_energy_added as numeric),2),' kWh') AS text\nFROM charging_processes\nWHERE\n$__timeFilter(start_date)  AND duration_min > 5\nORDER BY start_date DESC",
         "showIn": 0,
         "tags": [],
@@ -24,7 +48,7 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "id": null,
@@ -32,10 +56,27 @@
     {
       "icon": "dashboard",
       "tags": [],
-      "title": "特斯拉助手",
+      "title": "03.统计信息<<",
       "tooltip": "",
       "type": "link",
-      "url": "[[base_url:raw]]"
+      "url": "/d/1EZnXszMkc/"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "特斯拉"
+      ],
+      "title": "仪表板",
+      "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>10.旅程",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/FkUpJpQZkc/"
     },
     {
       "asDropdown": true,
@@ -43,8 +84,16 @@
       "tags": [
         "tesla"
       ],
-      "title": "控制台",
+      "title": "Dashboards",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "特斯拉伙伴",
+      "tooltip": "",
+      "type": "link",
+      "url": "[[base_url:raw]]"
     }
   ],
   "liveNow": false,
@@ -71,7 +120,10 @@
       "type": "row"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -157,7 +209,6 @@
         "y": 1
       },
       "id": 2,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -170,6 +221,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -178,7 +230,10 @@
       "targets": [
         {
           "alias": "",
-          "datasource": "TeslaMate",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "time_series",
           "group": [],
           "hide": false,
@@ -206,7 +261,10 @@
           ]
         },
         {
-          "datasource": "TeslaMate",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -239,7 +297,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -300,7 +361,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/电池.*/"
+              "options": "/电池电量.*/"
             },
             "properties": [
               {
@@ -326,7 +387,6 @@
         "y": 22
       },
       "id": 6,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -339,6 +399,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -347,13 +408,17 @@
       "targets": [
         {
           "alias": "",
-          "datasource": "TeslaMate",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n\t$__timeGroup(date,[[interval]]) AS time,\n\tconvert_km(sum([[preferred_range]]_battery_range_km) / sum(coalesce(usable_battery_level,battery_level)) * 100, '$length_unit') AS \"Projected Range (using usable_battery_level) [$length_unit]\",\n\tconvert_km(sum([[preferred_range]]_battery_range_km) / sum(battery_level) * 100, '$length_unit') AS \"Projected Range (using battery_level)[$length_unit]\"\nFROM\n\t(\n    select battery_level, usable_battery_level, date,\n      rated_battery_range_km, ideal_battery_range_km, outside_temp\n    from positions\n    where\n      car_id = $car_id and $__timeFilter(date) and ideal_battery_range_km is not null\n    union all\n    select battery_level, coalesce(usable_battery_level,battery_level) as usable_battery_level, date,\n      rated_battery_range_km, ideal_battery_range_km, outside_temp\n    from charges c\n    join\n      charging_processes p ON p.id = c.charging_process_id \n    where\n      $__timeFilter(date) and p.car_id = $car_id\n    ) as data\n\nGROUP BY\n\t1\nORDER BY\n\t1,2  DESC",
+          "rawSql": "SELECT\n\t$__timeGroup(date,[[interval]]) AS time,\n\tconvert_km((sum([[preferred_range]]_battery_range_km) / sum(battery_level) * 100 ) - (sum([[preferred_range]]_battery_range_km) / sum(battery_level) * 100 * (avg(battery_level)-avg(coalesce(usable_battery_level,battery_level)))/100 ), '$length_unit') AS \"Projected Range (using usable_battery_level) [$length_unit]\",\n\tconvert_km(max([[preferred_range]]_battery_range_km) / max(battery_level) * 100, '$length_unit') AS \"Projected Range (using battery_level)[$length_unit]\"\nFROM\n\t(\n    select battery_level, usable_battery_level, date,\n      rated_battery_range_km, ideal_battery_range_km, outside_temp\n    from positions\n    where\n      car_id = $car_id and $__timeFilter(date) and ideal_battery_range_km is not null\n    union all\n    select battery_level, coalesce(usable_battery_level,battery_level) as usable_battery_level, date,\n      rated_battery_range_km, ideal_battery_range_km, outside_temp\n    from charges c\n    join\n      charging_processes p ON p.id = c.charging_process_id \n    where\n      $__timeFilter(date) and p.car_id = $car_id\n    ) as data\n\nGROUP BY\n\t1\nORDER BY\n\t1,2  DESC",
           "refId": "A",
           "select": [
             [
@@ -365,6 +430,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "timeColumn": "time",
           "where": [
             {
@@ -375,7 +457,10 @@
           ]
         },
         {
-          "datasource": "TeslaMate",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -408,7 +493,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "TeslaMate",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "TeslaMate"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -454,8 +542,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -524,7 +611,6 @@
         "y": 43
       },
       "id": 5,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -545,13 +631,17 @@
       "targets": [
         {
           "alias": "",
-          "datasource": "TeslaMate",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n\t$__timeGroup(date,[[interval]]) AS time,\n\tconvert_km(sum([[preferred_range]]_battery_range_km) / sum(coalesce(usable_battery_level,battery_level)) * 100, '$length_unit') AS \"预计范围（使用可用的电池电量） [$length_unit]\",\n\tconvert_km(sum([[preferred_range]]_battery_range_km) / sum(battery_level) * 100, '$length_unit') AS \"预计范围（使用电池电量） [$length_unit]\"\nFROM\n\t(\n    select battery_level, usable_battery_level, date,\n      rated_battery_range_km, ideal_battery_range_km, outside_temp\n    from positions\n    where\n      car_id = $car_id and $__timeFilter(date) and ideal_battery_range_km is not null\n    union all\n    select battery_level, coalesce(usable_battery_level,battery_level) as usable_battery_level, date,\n      rated_battery_range_km, ideal_battery_range_km, outside_temp\n    from charges c\n    join\n      charging_processes p ON p.id = c.charging_process_id \n    where\n      $__timeFilter(date) and p.car_id = $car_id\n    ) as data\n\nGROUP BY\n\t1\nORDER BY\n\t1,2  DESC",
+          "rawSql": "\nSELECT\n\t$__timeGroup(date,[[interval]]) AS time,\n\tconvert_km((sum([[preferred_range]]_battery_range_km) / sum(battery_level) * 100 ) - (sum([[preferred_range]]_battery_range_km) / sum(battery_level) * 100 * (avg(battery_level)-avg(coalesce(usable_battery_level,battery_level)))/100 ), '$length_unit') AS \"预计续航里程（根据可用电池电量）[$length_unit]\",\n\tconvert_km(max([[preferred_range]]_battery_range_km) / max(battery_level) * 100, '$length_unit') AS \"预计续航里程（根据电池电量）[$length_unit]\"\nFROM\n\t(\n    select battery_level, usable_battery_level, date,\n      rated_battery_range_km, ideal_battery_range_km, outside_temp\n    from positions\n    where\n      car_id = $car_id and $__timeFilter(date) and ideal_battery_range_km is not null\n    union all\n    select battery_level, coalesce(usable_battery_level,battery_level) as usable_battery_level, date,\n      rated_battery_range_km, ideal_battery_range_km, outside_temp\n    from charges c\n    join\n      charging_processes p ON p.id = c.charging_process_id \n    where\n      $__timeFilter(date) and p.car_id = $car_id\n    ) as data\n\nGROUP BY\n\t1\nORDER BY\n\t1,2  DESC",
           "refId": "A",
           "select": [
             [
@@ -563,6 +653,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "timeColumn": "time",
           "where": [
             {
@@ -574,7 +681,10 @@
         },
         {
           "alias": "",
-          "datasource": "TeslaMate",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "TeslaMate"
+          },
           "format": "time_series",
           "group": [],
           "hide": false,
@@ -607,15 +717,18 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 36,
+  "schemaVersion": 39,
   "tags": [
-    "tesla"
+    "特斯拉"
   ],
   "templating": {
     "list": [
       {
         "current": {},
-        "datasource": "TeslaMate",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
+        },
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
         "hide": 2,
         "includeAll": true,
@@ -635,7 +748,10 @@
       },
       {
         "current": {},
-        "datasource": "TeslaMate",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
+        },
         "definition": "select unit_of_length from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -655,7 +771,10 @@
       },
       {
         "current": {},
-        "datasource": "TeslaMate",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
+        },
         "definition": "select preferred_range from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -674,7 +793,10 @@
       },
       {
         "current": {},
-        "datasource": "TeslaMate",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
+        },
         "definition": "select unit_of_temperature from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -694,7 +816,10 @@
       },
       {
         "current": {},
-        "datasource": "TeslaMate",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
+        },
         "definition": "select base_url from settings limit 1;",
         "hide": 2,
         "includeAll": false,
@@ -764,9 +889,10 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-6M",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "refresh_intervals": [
       "5s",
@@ -793,8 +919,8 @@
     ]
   },
   "timezone": "",
-  "title": "04.预计范围",
+  "title": "04.预计续航",
   "uid": "riqUfXgRzc",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
