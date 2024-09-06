@@ -59,6 +59,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "10.旅程<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/FkUpJpQZkc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -66,6 +74,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>12.驾驶状态",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/_7WkNSyWkc/"
     },
     {
       "asDropdown": true,

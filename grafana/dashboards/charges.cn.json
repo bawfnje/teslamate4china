@@ -58,6 +58,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "23.充电统计<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/-pkIkhmRzc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -65,6 +73,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>25.能效",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/fu4SiQgWzc/"
     },
     {
       "asDropdown": true,

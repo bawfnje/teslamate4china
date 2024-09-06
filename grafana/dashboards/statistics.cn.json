@@ -45,6 +45,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "02.状态<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/xo4BNRkZzc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -52,6 +60,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>04.预计续航",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/riqUfXgRzc/"
     },
     {
       "asDropdown": true,

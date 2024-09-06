@@ -46,6 +46,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "13.到过地图<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/RG_DxSmgkc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -53,6 +61,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>15.地点",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/ZzhF-aRWzc/"
     },
     {
       "asDropdown": true,

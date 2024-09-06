@@ -90,6 +90,14 @@
       "url": "/d/FkUpJpQZkc?from=$from"
     },
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "04.预计续航<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/riqUfXgRzc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -97,6 +105,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>11.驾程",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/Y8upc6ZRkc/"
     },
     {
       "asDropdown": true,

@@ -48,6 +48,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "24.充电明细<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/TSmNYvRRkc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -55,6 +63,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>90.更新",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/IiC07mgWzc/"
     },
     {
       "asDropdown": true,

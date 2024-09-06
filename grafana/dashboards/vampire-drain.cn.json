@@ -45,6 +45,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "21.电量变化<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/WopVO_mgzc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -52,6 +60,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>23.充电统计",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/-pkIkhmRzc/"
     },
     {
       "asDropdown": true,

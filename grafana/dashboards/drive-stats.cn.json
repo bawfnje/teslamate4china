@@ -49,6 +49,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "11.驾程<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/Y8upc6ZRkc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -56,6 +64,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>13.到过地图",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/RG_DxSmgkc/"
     },
     {
       "asDropdown": true,
@@ -1069,7 +1085,7 @@
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
         "hide": 0,
         "includeAll": false,
-        "label": "Car",
+        "label": "汽车",
         "multi": false,
         "name": "car_id",
         "options": [],

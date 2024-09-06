@@ -73,6 +73,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "16.里程变化<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/NjtMTFggzc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -80,6 +88,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>21.电量变化",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/WopVO_mgzc/"
     },
     {
       "asDropdown": true,

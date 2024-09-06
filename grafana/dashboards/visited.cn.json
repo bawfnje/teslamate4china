@@ -49,6 +49,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "12.驾驶状态<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/_7WkNSyWkc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -56,6 +64,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>14.时间线",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/SUBgwtigzc/"
     },
     {
       "asDropdown": true,

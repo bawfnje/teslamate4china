@@ -46,8 +46,7 @@ docker system df
 echo "\n=========>docker-compose up -d ==>start"
 docker-compose up -d
 sleep 20
-# read -p "首次本地使用需打开配置，修改控制台地址：http://localhost:3000"
-# open -a "Google Chrome" http://localhost:4000
-open -a "Google Chrome"
+read -p "首次本地使用需打开配置，修改控制台地址：http://localhost:3000"
+open -a "Google Chrome" http://localhost:4000
 # /Users/chenweiming/dev/github/tesla_auth/tesla_auth
 docker-compose logs -f

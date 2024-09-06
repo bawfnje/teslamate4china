@@ -45,6 +45,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "15.地点<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/ZzhF-aRWzc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -52,6 +60,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>20.电池健康",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/jchmRiqUfXgTMc/"
     },
     {
       "asDropdown": true,

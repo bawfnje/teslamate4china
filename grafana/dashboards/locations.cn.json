@@ -57,6 +57,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "14.时间线<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/SUBgwtigzc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -64,6 +72,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>16.里程变化",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/NjtMTFggzc/"
     },
     {
       "asDropdown": true,
@@ -1250,7 +1266,7 @@
           "value": ""
         },
         "hide": 0,
-        "label": "Address",
+        "label": "地址",
         "name": "address_filter",
         "options": [
           {

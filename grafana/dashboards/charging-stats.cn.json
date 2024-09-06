@@ -82,6 +82,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "22.电量流失<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/zhHx2Fggkc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -89,6 +97,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>24.充电明细",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/TSmNYvRRkc/"
     },
     {
       "asDropdown": true,

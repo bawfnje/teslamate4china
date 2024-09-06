@@ -54,6 +54,14 @@
   "id": null,
   "links": [
     {
+      "icon": "dashboard",
+      "tags": [],
+      "title": "03.统计信息<<",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/1EZnXszMkc/"
+    },
+    {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
@@ -61,6 +69,14 @@
       ],
       "title": "仪表板",
       "type": "dashboards"
+    },
+    {
+      "icon": "dashboard",
+      "tags": [],
+      "title": ">>10.旅程",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/FkUpJpQZkc/"
     },
     {
       "asDropdown": true,
