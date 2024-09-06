@@ -1,14 +1,27 @@
-# 检查文件夹是否存在
+echo "检查docker是否运行"
+open -g -a "Docker Desktop.app"
+sleep 1
+osascript -e 'tell application "System Events" to set frontmost of process "Terminal" to true'
+echo  "检查data文件夹是否存在"
 FOLDER_PATH="/Users/chenweiming/downloads/data"
 if [ -d "$FOLDER_PATH" ]; then
   echo "使用本地数据文件夹："$FOLDER_PATH
 else
-  echo "\n注意需要先下载nas:/v1/docker/backup/teslamate/*.gz/data到本地："$FOLDER_PATH
-  exit 1
+  echo "检查本地是否已有data的压缩文件"
+  if [ls /Users/chenweiming/downloads/teslamate-$(date +%Y%m%d)*.tar.gz 1> /dev/null 2>&1; then
+    echo "已下载压缩文件：/Users/chenweiming/downloads/teslamate-$(date +%Y%m%d)*.tar.gz"
+  else
+    echo "\n下载nas:/v1/docker/backup/teslamate/*.gz/data 到本地："$FOLDER_PATH
+    cp /Volumes/docker/backup/teslamate/teslamate-$(date +%Y%m%d)*.tar.gz /Users/chenweiming/downloads/
+  fi
+  echo "解压文件：/Users/chenweiming/downloads/teslamate-$(date +%Y%m%d)*.tar.gz"
+  tar -zxvf /Users/chenweiming/downloads/teslamate-$(date +%Y%m%d)*.tar.gz -C /Users/chenweiming/downloads/
+  mv /Users/chenweiming/downloads/volume2/dockerdata/teslamate/data /Users/chenweiming/downloads/
+  rm -rf /Users/chenweiming/downloads/volume2
 fi
-open -g -a "Docker Desktop.app"
-sleep 1
-osascript -e 'tell application "System Events" to set frontmost of process "Terminal" to true'
+echo "已存在data文件夹"
+ls -Alh /Users/chenweiming/downloads/data
+echo "停止已有的docker"
 docker-compose stop
 echo "\n=========>docker-compose stop ==>over"
 # docker rm teslamate4china-service
