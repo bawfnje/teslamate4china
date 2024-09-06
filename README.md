@@ -71,5 +71,5 @@
 - 贡献者名单:
 <a href="https://github.com/teslamate-org/teslamate/graphs/contributors"><img src="https://contrib.rocks/image?repo=teslamate-org/teslamate"  alt="TeslaMate贡献者"/></a>
 - 根据MIT许可证分发
-- 汉化: 陈伟明(bawfnje)
+- 汉化: 太极搬码(bawfnje)
 
