@@ -55,11 +55,11 @@
 
 ## 截图
 
-![驱动器详细信息](/website/static/screenshots/drive.png)
+![网页界面](/website/static/screenshots/web_interface_cn.png) 
 
-![网页界面](/website/static/screenshots/web_interface.png) 
+![驱动器详细信息](/website/static/screenshots/drive_cn.png)
 
-![电池健康状况](/website/static/screenshots/battery-health.png)
+![电池健康状况](/website/static/screenshots/battery-health_cn.png)
 
 <p align="center">
   <strong><a href="https://docs.teslamate.org/docs/screenshots">更多屏幕截图</a></strong>
