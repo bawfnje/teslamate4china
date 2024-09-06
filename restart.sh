@@ -8,7 +8,7 @@ if [ -d "$FOLDER_PATH" ]; then
   echo "使用本地数据文件夹："$FOLDER_PATH
 else
   echo "检查本地是否已有data的压缩文件"
-  if [ls /Users/chenweiming/downloads/teslamate-$(date +%Y%m%d)*.tar.gz 1> /dev/null 2>&1; then
+  if ls /Users/chenweiming/downloads/teslamate-$(date +%Y%m%d)*.tar.gz 1> /dev/null 2>&1; then
     echo "已下载压缩文件：/Users/chenweiming/downloads/teslamate-$(date +%Y%m%d)*.tar.gz"
   else
     echo "\n下载nas:/v1/docker/backup/teslamate/*.gz/data 到本地："$FOLDER_PATH
