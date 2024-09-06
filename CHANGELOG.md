@@ -6,14 +6,29 @@
 
 ### Improvements and bug fixes
 
+- Fix 401 on direct Fleet API calls (#4095 - @jlestel)
+
 #### Build, CI, internal
 
 - ci: pin github action dependencies to protect against supply chain attacks (#4076 - @JakobLichterfeld)
+- chore: correct comment for pinned Docker login-action to version 3.2.0 (#4120 - @JakobLichterfeld)
+- build(deps): bump erlef/setup-beam from 1.18.0 to 1.18.1 (#4116)
+- build(deps): bump docker/login-action from 3.2.0 to 3.3.0 (#4115)
+- chore: update PostgreSQL to version 16 in flake.nix (#4135- @JakobLichterfeld)
+- build(deps): bump webpack from 5.92.1 to 5.94.0 in /website (#4171)
+- build(deps): bump micromatch from 4.0.5 to 4.0.8 in /website (#4174)
 
 #### Dashboards
 
 - Improve Battery Health dashboard estimations on rated range (#4074 - @jheredianet)
 - Update charges.json: range added per hour (#4089 - @DrMichael)
+- small visual distinguish between AC & DC charging in charges dashboard and unification of the DC coloring in all dashboards (#4124 - @stauffenberg2020)
+- Improve drive stats (#4148 - @jheredianet)
+- Improve drives dashboard (#4146 - @jheredianet)
+- Odometer in charges (#4144 - @jheredianet)
+- Update charging-stats for handling suc cost mixed with AC charge on TWC (#4137 - @cyberden)
+- Fix the issue of failing to restore efficiency dashboard (#4153 - @ghostiee)
+- Improve rounding to month / weeks / days in Updates "Since Previous Update" column (#4164 - @swiffer)
 
 #### Translations
 
@@ -22,6 +37,11 @@
 #### Documentation
 
 - doc: Add initial author and list of contributors to README.md (#4084 - @JakobLichterfeld)
+- doc: add steps to the guide regarding how to switch to Fleet API (#4103 - @yangiak)
+- doc: align TPMS Pressure naming in sensor config to match ui config for home assistant (#4104 - @helmo)
+- doc: Update screenshots and rearrange links (#4151 - @jheredianet)
+- doc: fix markdownlint warnings in fleet api documentation (#4173 - @JakobLichterfeld)
+- doc: clarify using fleet api has lots of drawbacks (#4173 - @JakobLichterfeld)
 
 ## [1.30.1] - 2024-07-10
 
@@ -316,7 +336,7 @@ same as 1.29.0 but reverted: "Dynamic endpoints and token to use official Tesla 
 
 #### Translations
 
-- fix: translation Update default.po for simplified chinese (#3600 - @ycjcl868)
+- fix: translation Update default.po for simplified Chinese (#3600 - @ycjcl868)
 - Improvements for Spanish translations (#3610 - @jheredianet)
 
 #### Documentation
@@ -516,7 +536,7 @@ Note: TeslaMate moved to the new @teslamate-org organization.
 
 To ensure that the Tesla API tokens are stored securely, **an encryption key must be provided via the `ENCRYPTION_KEY` environment variable**.
 
-If you use a `docker-compose.yml` file to run TeslaMate, add a line with the `ENCRYPTION_KEY` to the `environment` section or check out the updated installation guiddes on [docs.teslamate.org](https://docs.teslamate.org):
+If you use a `docker-compose.yml` file to run TeslaMate, add a line with the `ENCRYPTION_KEY` to the `environment` section or check out the updated installation guides on [docs.teslamate.org](https://docs.teslamate.org):
 
 ```yaml
 services:
@@ -562,7 +582,7 @@ If no `ENCRYPTION_KEY` environment variable is provided when running the databas
 
 #### Translations
 
-- Update Chinse translation (#2479 - @AemonCao)
+- Update Chinese translation (#2479 - @AemonCao)
 - Add missing Swedish translation (#2731 - @tobiasehlert)
 
 #### Documentation

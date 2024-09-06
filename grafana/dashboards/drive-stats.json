@@ -11,7 +11,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.0.0"
+      "version": "11.0.1"
     },
     {
       "type": "datasource",
@@ -34,6 +34,7 @@
           "type": "datasource",
           "uid": "grafana"
         },
+        "definition": "TeslaMate|U2FsdGVkX1/cEWK+8cz7pjEKXtzJnDN7b21ZDXt1MGneFGPWTLqOPtxKmu02mJPLzi/f29I+NBHd3vi0FB8R4Xn0+GtobWDgk6VAVSBTdSNniOKO8i2WPlhRaOsl2+hG7gnZ7wrf1Th2nxR7f1uYCrbwOek0IzkfLzrkjh7gkr6inT6bbDuJqrmogZajLxmAMrQ6V+/vHxBRGiwjJhgiEeq3hM1q2h04JKkNiZ8RHbsF5Cd/xd8Q9u0JVrZzIrtnhM/SFlaApU7RtRMu8CSj1llTX7WEOj6VDZAMSf+XUAanWdk725kEPN9MNu89o2zEq5P3E3cju8IbbBdPzXLV3oVuzD6/tMnxFToIIV1E/BrpF7s2RtNa8+KJJ1PF8xgs6m+/KTD2hy+WsP0636AgObRAmYg7+qotGrgNvpNPdE0EgrB7WHYlV7R/1q66bcq6tCe51X1Un70k+zo+K6AK0o4B1H6IyMlEVuRH/Fz8QVl9aYu2ztd08RbuKJlYVKpkH+pxVETAO9MclYQ90tzE6TfwDZrQZzsAlMenr4s1ZB1OlFXjLjVjnddnUilzO76cqv4yI2THQEuyQ47nuVQ4gUbx02K59vMQhns3C01JOAYokOaSXe66Y7QYdMlk09Lf|aes-256-cbc",
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -76,34 +77,6 @@
   ],
   "panels": [
     {
-      "collapsed": false,
-      "datasource": {
-        "type": "grafana-postgresql-datasource",
-        "uid": "TeslaMate"
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 12,
-      "panels": [],
-      "repeat": "car_id",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "datasource": {
-            "type": "grafana-postgresql-datasource",
-            "uid": "TeslaMate"
-          },
-          "refId": "A"
-        }
-      ],
-      "title": "$car_id",
-      "type": "row"
-    },
-    {
       "datasource": {
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
@@ -128,7 +101,7 @@
         "h": 4,
         "w": 8,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "id": 20,
       "maxDataPoints": 100,
@@ -142,6 +115,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "sum"
@@ -153,7 +127,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -241,7 +215,7 @@
         "h": 4,
         "w": 8,
         "x": 8,
-        "y": 1
+        "y": 0
       },
       "id": 16,
       "maxDataPoints": 100,
@@ -255,6 +229,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "sum"
@@ -266,18 +241,19 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
             "type": "grafana-postgresql-datasource",
             "uid": "TeslaMate"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH since as (\n\tSELECT date FROM positions\n\tWHERE car_id = $car_id\n\tORDER BY date ASC\n\tLIMIT 1\n),\nactual AS (\n\tSELECT\n\t\tdate_trunc('day', date)::date AS date,\n\t\tmax(odometer) - min(odometer) AS distance\n\tFROM positions\n\tWHERE car_id = $car_id\n\tGROUP BY 1\n),\nbase_line AS (\n\tSELECT date_trunc('day', dd)::date AS date\n  FROM generate_series((select date from since) , now(), '1 day'::interval) dd\n)\nSELECT \n  $__time(base_line.date), \n  convert_km(COALESCE(distance, 0)::numeric, '$length_unit') as \"distance_$length_unit\"\nFROM base_line\nLEFT JOIN actual ON actual.date = base_line.date\nWHERE $__timeFilter(base_line.date)\nORDER BY 1;",
+          "rawSql": "SELECT \n    DATE(start_date)  AS \"time\",\n    SUM(convert_km((end_km - start_km)::numeric, '$length_unit')) AS \"distance_$length_unit\"\nFROM drives \nWHERE car_id = $car_id\n\tAND $__timeFilter(start_date)\nGROUP BY DATE(start_date)\nORDER BY DATE(start_date);\n\n",
           "refId": "A",
           "select": [
             [
@@ -289,6 +265,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "addresses",
           "timeColumn": "inserted_at",
           "timeColumnType": "timestamp",
@@ -329,7 +322,7 @@
         "h": 4,
         "w": 8,
         "x": 16,
-        "y": 1
+        "y": 0
       },
       "id": 22,
       "maxDataPoints": 100,
@@ -343,6 +336,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "sum"
@@ -354,7 +348,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -389,7 +383,7 @@
           ]
         }
       ],
-      "title": "kWh used",
+      "title": "Energy used",
       "type": "stat"
     },
     {
@@ -452,7 +446,7 @@
         "h": 3,
         "w": 8,
         "x": 0,
-        "y": 5
+        "y": 4
       },
       "id": 26,
       "maxDataPoints": 100,
@@ -466,6 +460,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -477,7 +472,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -565,7 +560,7 @@
         "h": 3,
         "w": 8,
         "x": 8,
-        "y": 5
+        "y": 4
       },
       "id": 8,
       "maxDataPoints": 100,
@@ -579,6 +574,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -590,7 +586,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -653,7 +649,7 @@
         "h": 3,
         "w": 8,
         "x": 16,
-        "y": 5
+        "y": 4
       },
       "id": 14,
       "maxDataPoints": 100,
@@ -667,6 +663,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -678,7 +675,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -766,7 +763,7 @@
         "h": 3,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 7
       },
       "id": 32,
       "maxDataPoints": 100,
@@ -780,6 +777,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -791,7 +789,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -879,7 +877,7 @@
         "h": 3,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 7
       },
       "id": 30,
       "maxDataPoints": 100,
@@ -893,6 +891,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -904,7 +903,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -954,7 +953,6 @@
           },
           "displayName": "$__cell_0",
           "mappings": [],
-          "max": 100,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -977,7 +975,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 10
       },
       "id": 24,
       "options": {
@@ -998,18 +996,19 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
             "type": "grafana-postgresql-datasource",
             "uid": "TeslaMate"
           },
+          "editorMode": "code",
           "format": "table",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n\tCOALESCE(g.name, array_to_string(((string_to_array(a.display_name, ', ', ''))[0:3]), ', ')) as name,\n\tcount(*) AS visited\nFROM drives t\nINNER JOIN addresses a ON end_address_id = a.id\nLEFT JOIN geofences g ON end_geofence_id = g.id\nWHERE t.car_id = $car_id AND $__timeFilter(t.start_date)\nGROUP BY 1\nORDER BY visited DESC\nLIMIT 10;",
+          "rawSql": "SELECT * FROM (\nSELECT\n\tCOALESCE(g.name, COALESCE(a.name, nullif(CONCAT_WS(' ', a.road, a.house_number), ''))) as name,\n\tcount(*) AS visited\nFROM drives t\nINNER JOIN addresses a ON end_address_id = a.id\nLEFT JOIN geofences g ON end_geofence_id = g.id\nWHERE t.car_id = $car_id AND $__timeFilter(t.start_date)\nGROUP BY 1\nORDER BY visited DESC)\nWHERE name NOT ILIKE ALL ${exclude_formatted_string:raw}\nLIMIT 10;",
           "refId": "A",
           "select": [
             [
@@ -1021,6 +1020,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "addresses",
           "timeColumn": "inserted_at",
           "timeColumnType": "timestamp",
@@ -1033,7 +1049,7 @@
           ]
         }
       ],
-      "title": "Top Destinations",
+      "title": "Top 10 Destinations (in this period)",
       "type": "bargauge"
     }
   ],
@@ -1051,8 +1067,8 @@
           "uid": "TeslaMate"
         },
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
-        "hide": 2,
-        "includeAll": true,
+        "hide": 0,
+        "includeAll": false,
         "label": "Car",
         "multi": false,
         "name": "car_id",
@@ -1080,28 +1096,6 @@
         "name": "length_unit",
         "options": [],
         "query": "select unit_of_length from settings limit 1;",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {},
-        "datasource": {
-          "type": "grafana-postgresql-datasource",
-          "uid": "TeslaMate"
-        },
-        "definition": "select unit_of_temperature from settings limit 1;",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "temp_unit",
-        "options": [],
-        "query": "select unit_of_temperature from settings limit 1;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1156,6 +1150,46 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
+        "description": "Comma separated list of locations to exclude. Ex: home, work",
+        "hide": 0,
+        "label": "Exclude locations",
+        "name": "exclude",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "TeslaMate"
+        },
+        "definition": "WITH splits AS (\n    SELECT unnest(string_to_array('$exclude', ', ')) AS part\n),\nsplit_strings AS (\n\tSELECT COALESCE(part, ' ') AS part\n\tFROM (VALUES (NULL)) AS v(dummy)\n\tLEFT JOIN splits ON TRUE\n),\nexclude_string AS (\n\tSELECT array_to_string(array_agg('''%' || part || '%'''), ', ') AS formatted_string\n\tFROM split_strings\n)\nSELECT '(ARRAY[' || formatted_string || '])' FROM exclude_string",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "exclude_formatted_string",
+        "options": [],
+        "query": "WITH splits AS (\n    SELECT unnest(string_to_array('$exclude', ', ')) AS part\n),\nsplit_strings AS (\n\tSELECT COALESCE(part, ' ') AS part\n\tFROM (VALUES (NULL)) AS v(dummy)\n\tLEFT JOIN splits ON TRUE\n),\nexclude_string AS (\n\tSELECT array_to_string(array_agg('''%' || part || '%'''), ', ') AS formatted_string\n\tFROM split_strings\n)\nSELECT '(ARRAY[' || formatted_string || '])' FROM exclude_string",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
@@ -1163,7 +1197,6 @@
     "from": "now-1y",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "hidden": false,
     "refresh_intervals": [
@@ -1193,6 +1226,6 @@
   "timezone": "",
   "title": "12.Drive Stats",
   "uid": "_7WkNSyWk",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
